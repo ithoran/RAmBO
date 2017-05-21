@@ -25,7 +25,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1">
-    <link rel="stylesheet" href="css/style_forme.css?version=1">
+    <link rel="stylesheet" href="css/style_forme.css?version=2">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
 </head>
@@ -48,7 +48,7 @@
         <div style="height:50px; background-color: transparent"></div>
         <div class="login">
 		<div class="login-screen">
-			<div class="app-title">
+			<div class="form-title">
 				<h1>Registracija</h1>
 			</div>
                     <form action="" method="post">

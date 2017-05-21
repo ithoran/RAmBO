@@ -7,13 +7,14 @@ margin-left: auto;
 margin-right: auto;
 width: 400px;
 }
+
 .login-screen {
 background-color: #FFF;
 padding: 20px;
 border-radius: 5px
 }
 
-.app-title {
+.form-title {
 text-align: center;
 color: #777;
 }
@@ -41,7 +42,7 @@ margin-bottom: 20px;
     font-size: 14px;
 }
 
-input {
+.login-field {
 text-align: center;
 background-color: #ECF0F1;
 border: 2px solid transparent;
@@ -53,23 +54,23 @@ width: 250px;
 transition: border .5s;
 }
 
-input:focus {
+.login-field:focus {
 border: 2px solid #3498DB;
 box-shadow: none;
 }
 
 .btn {
-  border: 2px solid transparent;
-  background: #3498DB;
-  color: #ffffff;
-  font-size: 16px;
-  line-height: 25px;
-  padding: 10px 0;
-  border-radius: 3px;
-  transition: 0.25s;
-  display: block;
-  width: 250px;
-  margin: 40px auto;
+border: 2px solid transparent;
+background: #3498DB;
+color: #ffffff;
+font-size: 16px;
+line-height: 25px;
+padding: 10px 0;
+border-radius: 3px;
+transition: 0.25s;
+display: block;
+width: 250px;
+margin: 40px auto;
 }
 
 .btn:hover {
@@ -92,17 +93,16 @@ box-shadow: none;
      background-color: #c14119;
 }
 
-select{
-
-text-align-last: center;
-background-color: #ECF0F1;
-border: 2px solid transparent;
-border-radius: 3px;
-font-size: 16px;
-font-weight: 200;
-padding: 10px 0;
-width: 250px;
-transition: border .5s;
+.select_forma{
+    text-align-last: center;
+    background-color: #ECF0F1;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 200;
+    padding: 10px 0;
+    width: 250px;
+    transition: border .5s;
 }
 
 .error_message{
@@ -110,3 +110,4 @@ transition: border .5s;
     font-family: "verdana";
     font-size: 14px;
 }
+

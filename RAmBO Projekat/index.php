@@ -9,7 +9,7 @@ $lista_izg = vrati_5_izgubljenih();
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=2">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=3">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
 </head>

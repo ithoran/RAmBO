@@ -30,7 +30,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1">
-    <link rel="stylesheet" href="css/style_forme.css?version=1">
+    <link rel="stylesheet" href="css/style_forme.css?version=2">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
 </head>
@@ -53,7 +53,7 @@
 
         <div class="login">
 		<div class="login-screen">
-			<div class="app-title dodaj_izgubljeno_title">
+			<div class="form-title dodaj_izgubljeno_title">
 				<h1>Prijavi izgubljenu stvar</h1>
 			</div>
                     <form action="" method="post">
@@ -68,7 +68,7 @@
                                 
                                 <div class="form_label">Izaberite tip izgubljene stvari:</div>
 				<div class="control-group">
-				<select name="tip" size="1">
+				<select class="select_forma" name="tip" size="1">
                                     <option value="zivotinja"> Životinja </option>
                                     <option value="dokument"> Lični dokument </option>
                                     <option value="uredjaj"> Elektronski uredjaj </option>

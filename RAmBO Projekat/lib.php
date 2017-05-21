@@ -227,3 +227,48 @@ function vrati_izgubljeno($naziv, $korisnik) {
         }
     }
 }
+
+function vrati_sve_izgubljene_filter($naziv, $tip, $lokacija, $datum_od, $datum_do) {
+
+    $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
+
+    $konekcija->set_charset('utf8');
+    if ($konekcija->connect_errno) {
+
+        print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
+    } else {
+        
+        
+        $rezultat = $konekcija->query("SELECT * "
+                                    . "FROM objavaizg "
+                                    . "WHERE NAZIV LIKE '%$naziv%' AND TIP LIKE '%$tip%' AND MESTO LIKE '%$lokacija%' "
+                                    . "ORDER BY DATUM_OBJAVE DESC");
+        
+        
+        
+        if ($rezultat) {
+            $niz = new ListaIzgubljenih();
+            
+            while ($red = $rezultat->fetch_assoc()) {
+
+                $korisnik_id = $red['KORISNIK_ID'];
+                $korisnik_res = $konekcija->query("SELECT USERNAME AS USERNAME FROM korisnik WHERE ID = '$korisnik_id' ");
+                if ($red2 = $korisnik_res->fetch_assoc()) {
+                    $korisnik = $red2['USERNAME'];
+                }
+                $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $korisnik));
+            }
+            // zatvaranje objekta koji čuva rezultat
+            $rezultat->close();
+            // zatvaranje konekcije
+            $konekcija->close();
+            return $niz;
+        } else if ($konekcija->errno) {
+            // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
+            print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");
+        } else {
+            // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
+            print ("Nepoznata greška pri izvrsenju upita");
+        }
+    }
+}
