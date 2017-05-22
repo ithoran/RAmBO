@@ -19,7 +19,7 @@ if(isset($_POST['filter_submit'])){
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=4">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=44">
     <link rel="stylesheet" href="css/style_forme.css?version=6">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
@@ -41,8 +41,12 @@ if(isset($_POST['filter_submit'])){
             if (isset($_SESSION['login_user'])){
                include("elementi/logout_btn.php");
         ?>
+        
         <div class="header_username">
+            <a href="profil_clana.php">
             <?php print($_SESSION['login_user']) ?>
+            </a>
+    
         </div>
         
         <?php

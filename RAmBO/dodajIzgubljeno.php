@@ -69,6 +69,7 @@
                                 <div class="form_label">Izaberite tip izgubljene stvari:</div>
 				<div class="control-group">
 				<select class="select_forma" name="tip" size="1">
+                                    <option value=""></option>
                                     <option value="zivotinja"> Životinja </option>
                                     <option value="dokument"> Lični dokument </option>
                                     <option value="uredjaj"> Elektronski uredjaj </option>

@@ -57,7 +57,7 @@ function check_username($username) {
     }
 }
 
-function register($username, $password, $email) {
+function register($username, $password, $email, $drzava) {
 
     $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
     
@@ -66,7 +66,42 @@ function register($username, $password, $email) {
 
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
-        $tekst_upita = "INSERT INTO korisnik (FCLAN, USERNAME, PASSWORD, EMAIL) VALUES (1,'$username', '$password', '$email')";
+        
+        $drzava_res = $konekcija->query("SELECT name AS name FROM countries WHERE code = '$drzava' ");
+
+         if ($red = $drzava_res->fetch_assoc()) {
+                $drzava_naziv = $red['name'];
+            }
+        
+        $tekst_upita = "INSERT INTO korisnik (FCLAN, USERNAME, PASSWORD, EMAIL, DRZAVA) VALUES (1,'$username', '$password', '$email', '$drzava_naziv')";
+        $rezultat = $konekcija->query($tekst_upita);
+        
+        if ($rezultat) {
+
+            $konekcija->close();
+        }
+        else{
+            if ($konekcija->errno) {
+                print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");
+            } else {
+                print ("Nepoznata greška pri izvrsenju upita");
+            }
+        }
+    }
+}
+
+function izmeni_korisnika($stari_username, $username, $password, $email) {
+
+    $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
+    
+    $konekcija->set_charset('utf8');
+    if ($konekcija->connect_errno) {
+
+        print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
+    } else {
+                
+        $tekst_upita = "UPDATE korisnik SET USERNAME = '$username', PASSWORD = '$password',"
+                        . " EMAIL = '$email' WHERE USERNAME = '$stari_username' ";
         $rezultat = $konekcija->query($tekst_upita);
         
         if ($rezultat) {
@@ -237,15 +272,12 @@ function vrati_sve_izgubljene_filter($naziv, $tip, $lokacija, $datum_od, $datum_
 
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
-        
-        
+   
         $rezultat = $konekcija->query("SELECT * "
                                     . "FROM objavaizg "
                                     . "WHERE NAZIV LIKE '%$naziv%' AND TIP LIKE '%$tip%' AND MESTO LIKE '%$lokacija%' "
                                     . "ORDER BY DATUM_OBJAVE DESC");
-        
-        
-        
+            
         if ($rezultat) {
             $niz = new ListaIzgubljenih();
             
@@ -263,6 +295,37 @@ function vrati_sve_izgubljene_filter($naziv, $tip, $lokacija, $datum_od, $datum_
             // zatvaranje konekcije
             $konekcija->close();
             return $niz;
+        } else if ($konekcija->errno) {
+            // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
+            print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");
+        } else {
+            // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
+            print ("Nepoznata greška pri izvrsenju upita");
+        }
+    }
+}
+
+function vrati_korisnika($username) {
+
+    $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
+
+    $konekcija->set_charset('utf8');
+    if ($konekcija->connect_errno) {
+
+        print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
+    } else {
+
+        $rezultat = $konekcija->query("SELECT * FROM korisnik WHERE USERNAME = '$username' ");
+        if ($rezultat) {   
+            if ($red = $rezultat->fetch_assoc()) {
+                
+            $korisnik = new Korisnik($red['USERNAME'], $red['PASSWORD'], $red['EMAIL'], $red['DRZAVA'], $red['FADMINISTRATOR']);
+            }
+            // zatvaranje objekta koji čuva rezultat
+            $rezultat->close();
+            // zatvaranje konekcije
+            $konekcija->close();
+            return $korisnik;
         } else if ($konekcija->errno) {
             // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
             print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");

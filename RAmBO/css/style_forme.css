@@ -1,22 +1,19 @@
 
 .login {
-font-family: "verdana";
-margin-bottom: 20px;
-margin-top: 20px;
-margin-left: auto;
-margin-right: auto;
-width: 400px;
+    font-family: "verdana";
+    margin: 20px auto;
+    width: 400px;
 }
 
 .login-screen {
-background-color: #FFF;
-padding: 20px;
-border-radius: 5px
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 5px
 }
 
 .form-title {
-text-align: center;
-color: #777;
+    text-align: center;
+    color: #777;
 }
 
 .dodaj_izgubljeno_title{
@@ -28,11 +25,11 @@ color: #777;
 }
 
 .login-form {
-text-align: center;
+    text-align: center;
 }
 
 .control-group {
-margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .form_label{
@@ -43,34 +40,34 @@ margin-bottom: 20px;
 }
 
 .login-field {
-text-align: center;
-background-color: #ECF0F1;
-border: 2px solid transparent;
-border-radius: 3px;
-font-size: 16px;
-font-weight: 200;
-padding: 10px 0;
-width: 250px;
-transition: border .5s;
+    text-align: center;
+    background-color: #ECF0F1;
+    border: 2px solid transparent;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 200;
+    padding: 10px 0;
+    width: 250px;
+    transition: border .5s;
 }
 
 .login-field:focus {
-border: 2px solid #3498DB;
-box-shadow: none;
+    border: 2px solid #3498DB;
+    box-shadow: none;
 }
 
 .btn {
-border: 2px solid transparent;
-background: #3498DB;
-color: #ffffff;
-font-size: 16px;
-line-height: 25px;
-padding: 10px 0;
-border-radius: 3px;
-transition: 0.25s;
-display: block;
-width: 250px;
-margin: 40px auto;
+    border: 2px solid transparent;
+    background: #3498DB;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 25px;
+    padding: 10px 0;
+    border-radius: 3px;
+    transition: 0.25s;
+    display: block;
+    width: 250px;
+    margin: 40px auto;
 }
 
 .btn:hover {

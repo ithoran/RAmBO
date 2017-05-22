@@ -33,9 +33,10 @@
 				<input type="text" class="login-field" name="naziv" value="" placeholder="naziv nadjene stvari">
 				</div>
 
+				<div class="form_label">Izaberite tip nadjene stvari:</div>
 				<div class="control-group">
-				<select name="tip_izgubljenog" size="1">
-                                    <option value="" disabled selected hidden style="color: gray">Izaberite tip nadjene stvari</option>
+				<select class="select_forma" name="tip" size="1">
+                                    <option value=""></option>
                                     <option value="zivotinja"> Životinja </option>
                                     <option value="dokument"> Lični dokument </option>
                                     <option value="uredjaj"> Elektronski uredjaj </option>

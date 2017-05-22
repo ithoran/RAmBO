@@ -28,8 +28,12 @@ session_start();
             if (isset($_SESSION['login_user'])){
                include("elementi/logout_btn.php");
         ?>
+        
         <div class="header_username">
+            <a href="profil_clana.php">
             <?php print($_SESSION['login_user']) ?>
+            </a>
+    
         </div>
         
         <?php

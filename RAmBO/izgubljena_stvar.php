@@ -15,7 +15,7 @@ $izgubljeno = vrati_izgubljeno($naziv, $korisnik);
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=11">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=41">
     <link rel="stylesheet" href="css/style_forme.css?version=3">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
@@ -38,8 +38,12 @@ $izgubljeno = vrati_izgubljeno($naziv, $korisnik);
             if (isset($_SESSION['login_user'])){
                include("elementi/logout_btn.php");
         ?>
+        
         <div class="header_username">
+            <a href="profil_clana.php">
             <?php print($_SESSION['login_user']) ?>
+            </a>
+    
         </div>
         
         <?php
@@ -56,9 +60,9 @@ $izgubljeno = vrati_izgubljeno($naziv, $korisnik);
         <div class="informacije_o_izgubljenoj_stvari_wrapper">
             <div class="informacije_o_izgubljenoj_stvari">
                 <h2><?php print "$izgubljeno->naziv" ?></h2><hr>
-                <div class="label_informacije_o_izgubljenoj_stvari">Mesto: <?php print "$izgubljeno->mesto" ?></div>
-                <div class="label_informacije_o_izgubljenoj_stvari">Datum: <?php print "$izgubljeno->datum" ?></div>
-                <div class="label_informacije_o_izgubljenoj_stvari">Tip: <?php print "$izgubljeno->tip" ?></div><br>
+                <div class="label_informacije_o_izgubljenoj_stvari">Mesto:  <?php print "$izgubljeno->mesto" ?></div>
+                <div class="label_informacije_o_izgubljenoj_stvari">Datum:  <?php print "$izgubljeno->datum" ?></div>
+                <div class="label_informacije_o_izgubljenoj_stvari">Tip:  <?php print "$izgubljeno->tip" ?></div><br>
                 <?php if ($izgubljeno->nagrada != ""){ ?>
                 <div class="label_nagrada">Nagrada za pronalazaca: <span class="label_nagrada_broj"><?php print "$izgubljeno->nagrada" ?></span></div><br> 
                 <?php } ?>
