@@ -16,7 +16,7 @@
               $password = $_POST['password'];
               $password2 = $_POST['password2'];
               $email = $_POST['email'];
-              
+              $count = 0;
               if($stari_username != $username){
                 $count = check_username($username);
               }
@@ -89,20 +89,21 @@
                     <form action="" method="post">
 			<div class="login-form">
                             <input type="hidden" name="izmeni_hdn">
-                                <div class="control-group">
-				<input type="text" class="login-field" name="username" value="<?php print $korisnik->username ?>" placeholder="unesite korisničko ime">
+                            <div class="form_label">Korisnicko ime:</div>    
+                            <div class="control-group">
+				<input type="text" class="login-field" name="username" value="<?php print $korisnik->username ?>">
 				</div>
-
+                            <div class="form_label">Nova lozinka:</div>
 				<div class="control-group">
-				<input type="password" class="login-field" name="password" value="" placeholder="unesite novu lozinku">
+				<input type="password" class="login-field" name="password" value="">
 				</div>
-                            
+                            <div class="form_label">Potvrda nove lozinke:</div>
                                 <div class="control-group">
-				<input type="password" class="login-field" name="password2" value="" placeholder="potvrdite novu lozinku">
+				<input type="password" class="login-field" name="password2" value="">
 				</div>
-                            
+                            <div class="form_label">E-mail adresa:</div>
                                 <div class="control-group">
-				<input type="text" class="login-field" name="email" value="<?php print $korisnik->email ?>" placeholder="unesite e-mail adresu">
+				<input type="text" class="login-field" name="email" value="<?php print $korisnik->email ?>">
 				</div>
                              <div class="error_message">
                             <?php print("$error"); ?>

@@ -13,8 +13,8 @@ $korisnik = vrati_korisnika($username);
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=81">
-    <link rel="stylesheet" href="css/style_forme.css?version=3">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=882">
+    <link rel="stylesheet" href="css/style_forme.css?version=88">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
 </head>
@@ -46,15 +46,15 @@ $korisnik = vrati_korisnika($username);
     <div id="main"> 
         <div class="profil_wrapper">
             <div class="informacije_profil">
-                <h2><?php print "$korisnik->username" ?></h2>
+                
+                <div class="label_profil"><h2><?php print "$korisnik->username" ?></h2></div>
                 <div class="label_profil">Drzava:  <?php print "$korisnik->drzava" ?></div>
                 <div class="label_profil">Email:  <?php print "$korisnik->email" ?></div>
-                <div class="btn_profil_left">
+                <div class="profil_slika"></div>
+                <div class="btn_profil_div">
                     <form style="display: inline-block;" action="svoje_objave.php" method="post">
                         <input type="submit" class="btn_profil" value="Moje objave">
-                    </form>
-                </div>    
-                <div class="btn_profil_right">    
+                    </form>  
                     <form style="display: inline-block;" action="register.php" method="post">
                         <input type="submit" name="izmeni" class="btn_profil" value="Izmeni profil">
                     </form>

@@ -19,10 +19,14 @@ function login($username, $password) {
 
         $rezultat = $konekcija->query("SELECT * FROM korisnik WHERE USERNAME = '$username' and PASSWORD = '$password'");
         if ($rezultat) {
-            $count = mysqli_num_rows($rezultat);
+            $res = new stdClass();
+            $res->count = mysqli_num_rows($rezultat);
+            if ($red = $rezultat->fetch_assoc()) {
+                $res->f_admin = $red['FADMINISTRATOR'];
+            }
             $rezultat->close();
             $konekcija->close();
-            return $count;
+            return $res;
             
         } else if ($konekcija->errno) {
             print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");
@@ -72,9 +76,8 @@ function register($username, $password, $email, $drzava) {
          if ($red = $drzava_res->fetch_assoc()) {
                 $drzava_naziv = $red['name'];
             }
-        
-        $tekst_upita = "INSERT INTO korisnik (FCLAN, USERNAME, PASSWORD, EMAIL, DRZAVA) VALUES (1,'$username', '$password', '$email', '$drzava_naziv')";
-        $rezultat = $konekcija->query($tekst_upita);
+            
+        $rezultat = $konekcija->query("INSERT INTO korisnik (FCLAN, USERNAME, PASSWORD, EMAIL, DRZAVA) VALUES (1,'$username', '$password', '$email', '$drzava_naziv')");
         
         if ($rezultat) {
 
@@ -128,18 +131,13 @@ function vrati_sve_izgubljene() {
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
 
-        $rezultat = $konekcija->query("SELECT * FROM objavaizg ORDER BY DATUM_OBJAVE DESC");
+        $rezultat = $konekcija->query("SELECT * FROM objavaizg OI, korisnik K WHERE OI.KORISNIK_ID = K.ID ORDER BY DATUM_OBJAVE DESC");
         if ($rezultat) {
             $niz = new ListaIzgubljenih();
             
             while ($red = $rezultat->fetch_assoc()) {
-
-                $korisnik_id = $red['KORISNIK_ID'];
-                $korisnik_res = $konekcija->query("SELECT USERNAME AS USERNAME FROM korisnik WHERE ID = '$korisnik_id' ");
-                if ($red2 = $korisnik_res->fetch_assoc()) {
-                    $korisnik = $red2['USERNAME'];
-                }
-                $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $korisnik));
+                
+                $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $red['USERNAME']));
             }
             // zatvaranje objekta koji čuva rezultat
             $rezultat->close();
@@ -156,7 +154,7 @@ function vrati_sve_izgubljene() {
     }
 }
 
-function vrati_5_izgubljenih() {
+function vrati_n_izgubljenih($broj) {
 
     $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
 
@@ -166,18 +164,13 @@ function vrati_5_izgubljenih() {
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
 
-        $rezultat = $konekcija->query("SELECT * FROM objavaizg ORDER BY DATUM_OBJAVE DESC LIMIT 5");
+        $rezultat = $konekcija->query("SELECT * FROM objavaizg OI, korisnik K WHERE OI.KORISNIK_ID = K.ID ORDER BY DATUM_OBJAVE DESC LIMIT $broj");
         if ($rezultat) {
             $niz = new ListaIzgubljenih();
 
             while ($red = $rezultat->fetch_assoc()) {
 
-                $korisnik_id = $red['KORISNIK_ID'];
-                $korisnik_res = $konekcija->query("SELECT USERNAME AS USERNAME FROM korisnik WHERE ID = '$korisnik_id' ");
-                if ($red2 = $korisnik_res->fetch_assoc()) {
-                    $korisnik = $red2['USERNAME'];
-                }
-                $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $korisnik));
+                $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $red['USERNAME']));
 
             }
             // zatvaranje objekta koji čuva rezultat
@@ -236,17 +229,13 @@ function vrati_izgubljeno($naziv, $korisnik) {
 
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
-         $korisnik_id_res = $konekcija->query("SELECT ID AS ID FROM korisnik WHERE USERNAME = '$korisnik' ");
-         $red = [];
-         if ($red = $korisnik_id_res->fetch_assoc()) {
-                $korisnik_id = $red['ID'];
-            }
-            
-        $rezultat = $konekcija->query("SELECT * FROM objavaizg WHERE NAZIV = '$naziv' AND KORISNIK_ID = '$korisnik_id'");
+
+        $rezultat = $konekcija->query("SELECT * FROM objavaizg OI, korisnik K WHERE OI.KORISNIK_ID = K.ID AND  OI.NAZIV = '$naziv' AND K.USERNAME = '$korisnik'");
+        
         if ($rezultat) {   
-            if ($red2 = $rezultat->fetch_assoc()) {
+            if ($red = $rezultat->fetch_assoc()) {
     
-            $izgubljeno = new Izgubljeno($red2['NAZIV'], $red2['TIP'], $red2['MESTO'], $red2['DATUM'], $red2['NAGRADA'], $korisnik);
+            $izgubljeno = new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $korisnik);
             }
             // zatvaranje objekta koji čuva rezultat
             $rezultat->close();
@@ -326,6 +315,125 @@ function vrati_korisnika($username) {
             // zatvaranje konekcije
             $konekcija->close();
             return $korisnik;
+        } else if ($konekcija->errno) {
+            // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
+            print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");
+        } else {
+            // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
+            print ("Nepoznata greška pri izvrsenju upita");
+        }
+    }
+}
+
+function vrati_sve_korisnike() {
+
+    $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
+
+    $konekcija->set_charset('utf8');
+    if ($konekcija->connect_errno) {
+
+        print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
+    } else {
+
+        $rezultat = $konekcija->query("SELECT * FROM korisnik WHERE FCLAN = 1");
+        if ($rezultat) {
+            $niz = new ListaKorisnika();
+            
+            while ($red = $rezultat->fetch_assoc()) {
+                
+                $niz->dodaj(new Korisnik($red['USERNAME'], $red['PASSWORD'], $red['EMAIL'], $red['DRZAVA'], $red['FADMINISTRATOR']));
+            }
+            // zatvaranje objekta koji čuva rezultat
+            $rezultat->close();
+            // zatvaranje konekcije
+            $konekcija->close();
+            return $niz;
+        } else if ($konekcija->errno) {
+            // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
+            print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");
+        } else {
+            // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
+            print ("Nepoznata greška pri izvrsenju upita");
+        }
+    }
+}
+
+function obrisi_korisnika($username) {
+
+    $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
+    
+    $konekcija->set_charset('utf8');
+    if ($konekcija->connect_errno) {
+
+        print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
+    } else {
+
+        $tekst_upita = "DELETE FROM korisnik WHERE USERNAME = '$username'";
+        $rezultat = $konekcija->query($tekst_upita);
+        
+        if ($rezultat) {
+
+            $konekcija->close();
+        }
+        else{
+            if ($konekcija->errno) {
+                print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");
+            } else {
+                print ("Nepoznata greška pri izvrsenju upita");
+            }
+        }
+    }
+}
+
+function obrisi_izgubljeno($naziv, $korisnik) {
+
+    $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
+    
+    $konekcija->set_charset('utf8');
+    if ($konekcija->connect_errno) {
+
+        print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
+    } else {
+
+        $tekst_upita = "DELETE OI FROM objavaizg OI, korisnik K  WHERE USERNAME = '$korisnik' AND NAZIV = '$naziv'";
+        $rezultat = $konekcija->query($tekst_upita);
+        
+        if ($rezultat) {
+
+            $konekcija->close();
+        }
+        else{
+            if ($konekcija->errno) {
+                print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");
+            } else {
+                print ("Nepoznata greška pri izvrsenju upita");
+            }
+        }
+    }
+}
+
+function vrati_sve_izgubljene_korisnik($korisnik) {
+
+    $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
+
+    $konekcija->set_charset('utf8');
+    if ($konekcija->connect_errno) {
+
+        print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
+    } else {
+            $rezultat = $konekcija->query("SELECT * FROM objavaizg OI, korisnik K WHERE OI.KORISNIK_ID = K.ID AND K.USERNAME = '$korisnik'");
+        if ($rezultat) {
+            $niz = new ListaIzgubljenih();
+            
+            while ($red = $rezultat->fetch_assoc()) {
+
+                $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $korisnik));
+            }
+            // zatvaranje objekta koji čuva rezultat
+            $rezultat->close();
+            // zatvaranje konekcije
+            $konekcija->close();
+            return $niz;
         } else if ($konekcija->errno) {
             // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
             print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");

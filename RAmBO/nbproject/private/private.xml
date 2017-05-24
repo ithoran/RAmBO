@@ -3,14 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/wamp/www/RAmBO/register.php</file>
-            <file>file:/C:/wamp/www/RAmBO/css/style_forme.css</file>
-            <file>file:/C:/wamp/www/RAmBO/login.php</file>
-            <file>file:/C:/wamp/www/RAmBO/index.php</file>
-            <file>file:/C:/wamp/www/RAmBO/dodajIzgubljeno.php</file>
-            <file>file:/C:/wamp/www/RAmBO/profil_clana.php</file>
-            <file>file:/C:/wamp/www/RAmBO/css/style_main.css</file>
-            <file>file:/C:/wamp/www/RAmBO/lib.php</file>
+            <file>file:/C:/wamp64/www/RAmBOProjekat/index.php</file>
+            <file>file:/C:/wamp64/www/RAmBOProjekat/profil_clana.php</file>
+            <file>file:/C:/wamp64/www/RAmBOProjekat/lib.php</file>
+            <file>file:/C:/wamp64/www/RAmBOProjekat/elementi/logout_btn.php</file>
+            <file>file:/C:/wamp64/www/RAmBOProjekat/spisak_izgubljenih.php</file>
+            <file>file:/C:/wamp64/www/RAmBOProjekat/elementi/header_main.php</file>
+            <file>file:/C:/wamp64/www/RAmBOProjekat/register.php</file>
+            <file>file:/C:/wamp64/www/RAmBOProjekat/css/style_main.css</file>
+            <file>file:/C:/wamp64/www/RAmBOProjekat/lista_clanova.php</file>
+            <file>file:/C:/wamp64/www/RAmBOProjekat/izgubljena_stvar.php</file>
+            <file>file:/C:/wamp64/www/RAmBOProjekat/spisak_nadjenih.php</file>
+            <file>file:/C:/wamp64/www/RAmBOProjekat/klase/izgubljeno.php</file>
         </group>
     </open-files>
 </project-private>

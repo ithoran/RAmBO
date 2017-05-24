@@ -15,7 +15,7 @@ $izgubljeno = vrati_izgubljeno($naziv, $korisnik);
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=41">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=441">
     <link rel="stylesheet" href="css/style_forme.css?version=3">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
@@ -30,29 +30,7 @@ $izgubljeno = vrati_izgubljeno($naziv, $korisnik);
         
     </div>
     
-    <header>
-        <a href="index.php">
-        <h1 id="glavniNaslov">RAmBO <span id="lost">Lost</span>&<span id="found" >Found</span></h1>
-        </a>
-        <?php 
-            if (isset($_SESSION['login_user'])){
-               include("elementi/logout_btn.php");
-        ?>
-        
-        <div class="header_username">
-            <a href="profil_clana.php">
-            <?php print($_SESSION['login_user']) ?>
-            </a>
-    
-        </div>
-        
-        <?php
-            }else{
-            include("elementi/login_btn.php"); 
-            include("elementi/register_btn.php"); 
-        }
-        ?>
-    </header>
+<?php include("elementi/header_main.php") ?>
 
     
     
@@ -65,6 +43,11 @@ $izgubljeno = vrati_izgubljeno($naziv, $korisnik);
                 <div class="label_informacije_o_izgubljenoj_stvari">Tip:  <?php print "$izgubljeno->tip" ?></div><br>
                 <?php if ($izgubljeno->nagrada != ""){ ?>
                 <div class="label_nagrada">Nagrada za pronalazaca: <span class="label_nagrada_broj"><?php print "$izgubljeno->nagrada" ?></span></div><br> 
+                <?php } ?>
+                <?php if ($_SESSION['f_admin'] == 1 || $_SESSION['login_user'] == $_GET['korisnik']){?>
+                <form class="obrisi_objavu_btn_form" action="spisak_izgubljenih.php?naziv_del=<?php echo $izgubljeno->naziv ?>&korisnik_del=<?php echo $izgubljeno->korisnik ?>" method="post">
+                    <input type="submit" name="obrisi_izgubljeno" value="Obrisi objavu" class="button obrisi_objavu_button">
+                </form>
                 <?php } ?>
             </div>
         </div>

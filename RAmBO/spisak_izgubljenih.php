@@ -3,6 +3,13 @@ include_once 'lib.php';
 include_once 'klase/listaIzgubljenih.php';
 
 session_start();
+
+if(isset($_GET['naziv_del']) && isset($_GET['korisnik_del'])){
+    $naziv = $_GET['naziv_del'];
+    $korisnik = $_GET['korisnik_del'];
+    obrisi_izgubljeno($naziv, $korisnik);
+}
+
 if(isset($_POST['filter_submit'])){
     $naziv = $_POST['filter_naziv'];
     $lokacija = $_POST['filter_lokacija'];
@@ -33,29 +40,7 @@ if(isset($_POST['filter_submit'])){
         
     </div>
     
-    <header>
-        <a href="index.php">
-        <h1 id="glavniNaslov">RAmBO <span id="lost">Lost</span>&<span id="found" >Found</span></h1>
-        </a>
-        <?php 
-            if (isset($_SESSION['login_user'])){
-               include("elementi/logout_btn.php");
-        ?>
-        
-        <div class="header_username">
-            <a href="profil_clana.php">
-            <?php print($_SESSION['login_user']) ?>
-            </a>
-    
-        </div>
-        
-        <?php
-            }else{
-            include("elementi/login_btn.php"); 
-            include("elementi/register_btn.php"); 
-        }
-        ?>
-    </header>
+<?php include("elementi/header_main.php") ?>
     
     <div id="main"> 
         <div class="left_filter_div">

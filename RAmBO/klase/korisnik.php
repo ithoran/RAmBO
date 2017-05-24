@@ -5,7 +5,7 @@ class Korisnik{
     var $password;
     var $email;
     var $drzava;
-    var $admin;
+    var $f_admin;
 
     
     public function __construct($username, $password, $email, $drzava, $admin) {
@@ -13,7 +13,7 @@ class Korisnik{
         $this->password = $password;
         $this->email = $email;
         $this->drzava = $drzava;
-        $this->admin = $admin;
+        $this->f_admin = $admin;
     }
 }
 

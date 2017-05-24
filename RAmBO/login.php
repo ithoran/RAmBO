@@ -8,11 +8,11 @@
       $myusername = $_POST['username'];
       $mypassword = $_POST['password']; 
       	
-      $count = login($myusername, $mypassword);
+      $res = login($myusername, $mypassword);
       
-      if($count == 1) {
+      if($res->count == 1) {
          $_SESSION['login_user'] = $myusername;
-         
+         $_SESSION['f_admin'] = $res->f_admin;
          header("location: index.php");
       }else {
          $error = "Pogresni podaci za login.";
