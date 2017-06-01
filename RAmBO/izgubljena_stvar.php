@@ -15,7 +15,7 @@ $izgubljeno = vrati_objavu($naziv, $korisnik, 1);
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=441">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=45">
     <link rel="stylesheet" href="css/style_forme.css?version=3">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>

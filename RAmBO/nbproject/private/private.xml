@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/wamp/www/rmbo/index.php</file>
+            <file>file:/C:/wamp/www/rmbo/elementi/header_main.php</file>
+            <file>file:/C:/wamp/www/rmbo/css/style_main.css</file>
+            <file>file:/C:/wamp/www/rmbo/logout.php</file>
+            <file>file:/C:/wamp/www/rmbo/upload.php</file>
+            <file>file:/C:/wamp/www/rmbo/lib.php</file>
+            <file>file:/C:/wamp/www/rmbo/spisak_izgubljenih.php</file>
+            <file>file:/C:/wamp/www/rmbo/izgubljena_stvar.php</file>
+            <file>file:/C:/wamp/www/rmbo/elementi/logout_btn.php</file>
+        </group>
     </open-files>
 </project-private>
