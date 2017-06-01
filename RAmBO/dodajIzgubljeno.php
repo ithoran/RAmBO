@@ -16,7 +16,7 @@
       
       if ($naziv != "" && $tip != NULL && $lokacija != "" && $datum != NULL){
         $izgubljeno = new Izgubljeno($naziv, $tip, $lokacija, $datum, $nagrada, $korisnik);
-        dodajIzgubljno($izgubljeno);
+        dodaj_izgubljeno($izgubljeno);
         header("location: index.php");
       }else {
          $error = "Pogresni podaci za login.";

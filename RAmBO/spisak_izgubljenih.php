@@ -7,7 +7,7 @@ session_start();
 if(isset($_GET['naziv_del']) && isset($_GET['korisnik_del'])){
     $naziv = $_GET['naziv_del'];
     $korisnik = $_GET['korisnik_del'];
-    obrisi_izgubljeno($naziv, $korisnik);
+    obrisi_objavu($naziv, $korisnik);
 }
 
 if(isset($_POST['filter_submit'])){
@@ -17,16 +17,16 @@ if(isset($_POST['filter_submit'])){
     $datum_od = $_POST['filter_datum_do'];
     $datum_do = $_POST['filter_datum_do'];
     
-    $lista_izg = vrati_sve_izgubljene_filter($naziv, $tip, $lokacija, $datum_od, $datum_do);
+    $lista_izg = vrati_sve_objave_filter($naziv, $tip, $lokacija, $datum_od, $datum_do, 1);
 }
  else {
-    $lista_izg = vrati_sve_izgubljene();
+    $lista_izg = vrati_sve_objave(1);
 }
 ?>
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=44">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=54">
     <link rel="stylesheet" href="css/style_forme.css?version=6">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
@@ -84,9 +84,9 @@ if(isset($_POST['filter_submit'])){
             <?php foreach($lista_izg->lista as $izgubljeno){?>
              <a href="izgubljena_stvar.php?naziv=<?php echo $izgubljeno->naziv ?>&korisnik=<?php echo $izgubljeno->korisnik ?>">
             <div class="stvar_u_listi">
-                <div class="label_stvar_u_listi label_stvar_u_listi_naziv"> <?php print "$izgubljeno->naziv" ?></div><br>
-                <div class="label_stvar_u_listi">Mesto: <?php print "$izgubljeno->mesto" ?></div><br>
-                <div class="label_stvar_u_listi">Datum: <?php print "$izgubljeno->datum" ?></div><br>            
+                <div class="label_stvar_u_listi label_stvar_u_listi_naziv"> <?php print "$izgubljeno->naziv" ?></div>
+                <div class="label_stvar_u_listi">Mesto: <?php print "$izgubljeno->mesto" ?></div>
+                <div class="label_stvar_u_listi">Datum: <?php print "$izgubljeno->datum" ?></div>            
             </div>
              </a>
             <?php } ?>

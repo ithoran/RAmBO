@@ -3,13 +3,13 @@
 include_once 'lib.php';
 include_once 'klase/listaIzgubljenih.php';
 session_start();
-$lista_izg = vrati_n_izgubljenih(5);
+$lista_izg = vrati_n_objava(5, 1);
 
 ?>
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=98">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=97">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
 </head>
@@ -44,9 +44,9 @@ $lista_izg = vrati_n_izgubljenih(5);
             <?php foreach($lista_izg->lista as $izgubljeno){?>
             <a href="izgubljena_stvar.php?naziv=<?php echo $izgubljeno->naziv ?>&korisnik=<?php echo $izgubljeno->korisnik ?>">
             <div class="stvar_u_listi_home">
-                <div class="label_stvar_u_listi label_stvar_u_listi_naziv"> <?php print "$izgubljeno->naziv" ?></div><br>
-                <div class="label_stvar_u_listi">Mesto: <?php print "$izgubljeno->mesto" ?></div><br>
-                <div class="label_stvar_u_listi">Datum: <?php print "$izgubljeno->datum" ?></div><br>            
+                <div class="label_stvar_u_listi_home label_stvar_u_listi_naziv"> <?php print "$izgubljeno->naziv" ?></div><br>
+                <div class="label_stvar_u_listi_home">Mesto: <?php print "$izgubljeno->mesto" ?></div><br>
+                <div class="label_stvar_u_listi_home">Datum: <?php print "$izgubljeno->datum" ?></div><br>            
             </div>
              </a>
             <?php } ?>

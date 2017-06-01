@@ -16,6 +16,10 @@
                else{
         ?>
         
+        <div class="header_right message_icon">
+<!--                <img source="../images/poruka.png" style="max-height: 100%; max-width: 100%"/>-->
+        </div>
+    
         <div class="header_username">
             <a href="profil_clana.php">
             <?php print($_SESSION['login_user']) ?>

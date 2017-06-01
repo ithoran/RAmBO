@@ -121,7 +121,7 @@ function izmeni_korisnika($stari_username, $username, $password, $email) {
     }
 }
 
-function vrati_sve_izgubljene() {
+function vrati_sve_objave($f_izgubljeno) {
 
     $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
 
@@ -131,13 +131,22 @@ function vrati_sve_izgubljene() {
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
 
-        $rezultat = $konekcija->query("SELECT * FROM objavaizg OI, korisnik K WHERE OI.KORISNIK_ID = K.ID ORDER BY DATUM_OBJAVE DESC");
+        $rezultat = $konekcija->query("SELECT * FROM objava O, korisnik K WHERE O.KORISNIK_ID = K.ID AND O.FIZGUBLJENO = '$f_izgubljeno' ORDER BY DATUM_OBJAVE DESC");
         if ($rezultat) {
+            if($f_izgubljeno){
             $niz = new ListaIzgubljenih();
-            
+            }
+            else{ 
+            $niz = new ListaNadjenih();
+            }
             while ($red = $rezultat->fetch_assoc()) {
                 
+                if($f_izgubljeno){
                 $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $red['USERNAME']));
+                }
+                else{    
+                $niz->dodaj(new Nadjeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['USERNAME']));    
+                }
             }
             // zatvaranje objekta koji čuva rezultat
             $rezultat->close();
@@ -154,7 +163,7 @@ function vrati_sve_izgubljene() {
     }
 }
 
-function vrati_n_izgubljenih($broj) {
+function vrati_n_objava($broj, $f_izgubljeno) {
 
     $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
 
@@ -164,13 +173,23 @@ function vrati_n_izgubljenih($broj) {
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
 
-        $rezultat = $konekcija->query("SELECT * FROM objavaizg OI, korisnik K WHERE OI.KORISNIK_ID = K.ID ORDER BY DATUM_OBJAVE DESC LIMIT $broj");
+        $rezultat = $konekcija->query("SELECT * FROM objava O, korisnik K WHERE O.KORISNIK_ID = K.ID AND O.FIZGUBLJENO = '$f_izgubljeno' ORDER BY DATUM_OBJAVE DESC LIMIT $broj");
         if ($rezultat) {
+            if($f_izgubljeno){
             $niz = new ListaIzgubljenih();
+            }
+            else{ 
+            $niz = new ListaNadjenih();
+            }
 
             while ($red = $rezultat->fetch_assoc()) {
-
+                
+                if($f_izgubljeno){
                 $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $red['USERNAME']));
+                }
+                else{
+                $niz->dodaj(new Nadjeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['USERNAME']));    
+                }
 
             }
             // zatvaranje objekta koji čuva rezultat
@@ -188,7 +207,7 @@ function vrati_n_izgubljenih($broj) {
     }
 }
 
-function dodajIzgubljno(Izgubljeno $izgubljeno) {
+function dodaj_izgubljeno(Izgubljeno $izgubljeno) {
 
     $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
     
@@ -203,8 +222,8 @@ function dodajIzgubljno(Izgubljeno $izgubljeno) {
                 $korisnik_id = $red['ID'];
             }
             
-         $rezultat = $konekcija->query("INSERT INTO objavaizg (NAZIV, TIP,  MESTO, DATUM, DATUM_OBJAVE, NAGRADA, KORISNIK_ID) VALUES ('$izgubljeno->naziv', '$izgubljeno->tip', '$izgubljeno->mesto', "
-                 . " '$izgubljeno->datum' , NOW(), '$izgubljeno->nagrada', $korisnik_id)");
+         $rezultat = $konekcija->query("INSERT INTO objava (NAZIV, TIP,  MESTO, DATUM, DATUM_OBJAVE, NAGRADA, FIZGUBLJENO, KORISNIK_ID) VALUES ('$izgubljeno->naziv', '$izgubljeno->tip', '$izgubljeno->mesto', "
+                 . " '$izgubljeno->datum' , NOW(), '$izgubljeno->nagrada', 1, $korisnik_id)");
 
         if ($rezultat) {
 
@@ -220,7 +239,7 @@ function dodajIzgubljno(Izgubljeno $izgubljeno) {
     }
 }
 
-function vrati_izgubljeno($naziv, $korisnik) {
+function vrati_objavu($naziv, $korisnik, $f_izgubljeno) {
 
     $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
 
@@ -230,18 +249,22 @@ function vrati_izgubljeno($naziv, $korisnik) {
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
 
-        $rezultat = $konekcija->query("SELECT * FROM objavaizg OI, korisnik K WHERE OI.KORISNIK_ID = K.ID AND  OI.NAZIV = '$naziv' AND K.USERNAME = '$korisnik'");
+        $rezultat = $konekcija->query("SELECT * FROM objava O, korisnik K WHERE O.KORISNIK_ID = K.ID AND O.FIZGUBLJENO = '$f_izgubljeno' AND O.NAZIV = '$naziv' AND K.USERNAME = '$korisnik'");
         
         if ($rezultat) {   
             if ($red = $rezultat->fetch_assoc()) {
-    
-            $izgubljeno = new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $korisnik);
+                if($f_izgubljeno){
+                $to_return = new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $korisnik);
+                }
+                else{
+                $to_return = new Nadjeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['USERNAME']);    
+                }
             }
             // zatvaranje objekta koji čuva rezultat
             $rezultat->close();
             // zatvaranje konekcije
             $konekcija->close();
-            return $izgubljeno;
+            return $to_return;
         } else if ($konekcija->errno) {
             // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
             print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");
@@ -252,7 +275,7 @@ function vrati_izgubljeno($naziv, $korisnik) {
     }
 }
 
-function vrati_sve_izgubljene_filter($naziv, $tip, $lokacija, $datum_od, $datum_do) {
+function vrati_sve_objave_filter($naziv, $tip, $lokacija, $datum_od, $datum_do, $f_izgubljeno) {
 
     $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
 
@@ -263,12 +286,17 @@ function vrati_sve_izgubljene_filter($naziv, $tip, $lokacija, $datum_od, $datum_
     } else {
    
         $rezultat = $konekcija->query("SELECT * "
-                                    . "FROM objavaizg "
-                                    . "WHERE NAZIV LIKE '%$naziv%' AND TIP LIKE '%$tip%' AND MESTO LIKE '%$lokacija%' "
+                                    . "FROM objava "
+                                    . "WHERE NAZIV LIKE '%$naziv%' AND TIP LIKE '%$tip%' AND MESTO LIKE '%$lokacija%' AND FIZGUBLJENO = '$f_izgubljeno' "
                                     . "ORDER BY DATUM_OBJAVE DESC");
             
         if ($rezultat) {
+            if($f_izgubljeno){
             $niz = new ListaIzgubljenih();
+            }
+            else{ 
+            $niz = new ListaNadjenih();
+            }
             
             while ($red = $rezultat->fetch_assoc()) {
 
@@ -277,7 +305,12 @@ function vrati_sve_izgubljene_filter($naziv, $tip, $lokacija, $datum_od, $datum_
                 if ($red2 = $korisnik_res->fetch_assoc()) {
                     $korisnik = $red2['USERNAME'];
                 }
+                if($f_izgubljeno){
                 $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $korisnik));
+                }
+                else{
+                $niz->dodaj(new Nadjeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['USERNAME']));    
+                }
             }
             // zatvaranje objekta koji čuva rezultat
             $rezultat->close();
@@ -385,7 +418,7 @@ function obrisi_korisnika($username) {
     }
 }
 
-function obrisi_izgubljeno($naziv, $korisnik) {
+function obrisi_objavu($naziv, $korisnik) {
 
     $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
     
@@ -395,7 +428,7 @@ function obrisi_izgubljeno($naziv, $korisnik) {
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
 
-        $tekst_upita = "DELETE OI FROM objavaizg OI, korisnik K  WHERE USERNAME = '$korisnik' AND NAZIV = '$naziv'";
+        $tekst_upita = "DELETE O FROM objava O, korisnik K  WHERE USERNAME = '$korisnik' AND NAZIV = '$naziv'";
         $rezultat = $konekcija->query($tekst_upita);
         
         if ($rezultat) {
@@ -412,7 +445,7 @@ function obrisi_izgubljeno($naziv, $korisnik) {
     }
 }
 
-function vrati_sve_izgubljene_korisnik($korisnik) {
+function vrati_sve_objave_korisnik($korisnik, $f_izgubljeno) {
 
     $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
 
@@ -421,13 +454,23 @@ function vrati_sve_izgubljene_korisnik($korisnik) {
 
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
-            $rezultat = $konekcija->query("SELECT * FROM objavaizg OI, korisnik K WHERE OI.KORISNIK_ID = K.ID AND K.USERNAME = '$korisnik'");
+            $rezultat = $konekcija->query("SELECT * FROM objava O, korisnik K WHERE O.KORISNIK_ID = K.ID AND O.FIZGUBLJENO = '$f_izgubljeno' AND K.USERNAME = '$korisnik'");
         if ($rezultat) {
+            if($f_izgubljeno){
             $niz = new ListaIzgubljenih();
+            }
+            else{ 
+            $niz = new ListaNadjenih();
+            }
             
             while ($red = $rezultat->fetch_assoc()) {
 
-                $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $korisnik));
+                if($f_izgubljeno){
+                $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $red['USERNAME']));
+                }
+                else{    
+                $niz->dodaj(new Nadjeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['USERNAME']));    
+                }
             }
             // zatvaranje objekta koji čuva rezultat
             $rezultat->close();

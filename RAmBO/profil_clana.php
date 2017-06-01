@@ -50,13 +50,12 @@ $korisnik = vrati_korisnika($username);
                 <div class="label_profil"><h2><?php print "$korisnik->username" ?></h2></div>
                 <div class="label_profil">Drzava:  <?php print "$korisnik->drzava" ?></div>
                 <div class="label_profil">Email:  <?php print "$korisnik->email" ?></div>
-                <div class="profil_slika"></div>
                 <div class="btn_profil_div">
                     <form style="display: inline-block;" action="svoje_objave.php" method="post">
                         <input type="submit" class="btn_profil" value="Moje objave">
                     </form>  
                     <form style="display: inline-block;" action="register.php" method="post">
-                        <input type="submit" name="izmeni" class="btn_profil" value="Izmeni profil">
+                        <input type="submit" name="izmeni" class="btn_profil" value="Izmeni podatke">
                     </form>
                 </div>   
             </div>

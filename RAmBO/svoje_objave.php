@@ -8,10 +8,10 @@ $korisnik = $_SESSION['login_user'];
 
 if (isset($_GET['naziv_del'])){
     $naziv = $_GET['naziv_del'];
-    obrisi_izgubljeno($naziv, $korisnik);
+    obrisi_objavu($naziv, $korisnik);
 }
 
-$lista_objava = vrati_sve_izgubljene_korisnik($korisnik);
+$lista_objava = vrati_sve_objave_korisnik($korisnik, 1);
 
 
 ?>
@@ -19,7 +19,7 @@ $lista_objava = vrati_sve_izgubljene_korisnik($korisnik);
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=76">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=44">
     <link rel="stylesheet" href="css/style_forme.css?version=88">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
@@ -42,7 +42,7 @@ $lista_objava = vrati_sve_izgubljene_korisnik($korisnik);
         <div class="clanovi_wrapper">
 
             <div class="table-title">
-                <h3>Lista objava</h3>
+                <h3>Moje objave</h3>
                 </div>
                 <table class="table table-fill">
                 <thead>

@@ -6,7 +6,7 @@ session_start();
 
 $naziv = $_GET['naziv'];
 $korisnik = $_GET['korisnik'];
-$izgubljeno = vrati_izgubljeno($naziv, $korisnik);
+$izgubljeno = vrati_objavu($naziv, $korisnik, 1);
 
 ?>
 
@@ -44,7 +44,7 @@ $izgubljeno = vrati_izgubljeno($naziv, $korisnik);
                 <?php if ($izgubljeno->nagrada != ""){ ?>
                 <div class="label_nagrada">Nagrada za pronalazaca: <span class="label_nagrada_broj"><?php print "$izgubljeno->nagrada" ?></span></div><br> 
                 <?php } ?>
-                <?php if ($_SESSION['f_admin'] == 1 || $_SESSION['login_user'] == $_GET['korisnik']){?>
+                <?php if (isset($_SESSION['f_admin']) && $_SESSION['f_admin'] == 1 || isset($_SESSION['login_user']) && $_SESSION['login_user'] == $_GET['korisnik']){?>
                 <form class="obrisi_objavu_btn_form" action="spisak_izgubljenih.php?naziv_del=<?php echo $izgubljeno->naziv ?>&korisnik_del=<?php echo $izgubljeno->korisnik ?>" method="post">
                     <input type="submit" name="obrisi_izgubljeno" value="Obrisi objavu" class="button obrisi_objavu_button">
                 </form>
