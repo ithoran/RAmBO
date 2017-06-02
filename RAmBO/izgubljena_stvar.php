@@ -35,8 +35,8 @@ $izgubljeno = vrati_objavu($naziv, $korisnik, 1);
     
     
     <div id="main"> 
-        <div class="informacije_o_izgubljenoj_stvari_wrapper">
-            <div class="informacije_o_izgubljenoj_stvari">
+        <div class="informacije_o_stvari_wrapper">
+            <div class="informacije_o_stvari">
                 <h2><?php print "$izgubljeno->naziv" ?></h2><hr>
                 <div class="label_informacije_o_izgubljenoj_stvari">Mesto:  <?php print "$izgubljeno->mesto" ?></div>
                 <div class="label_informacije_o_izgubljenoj_stvari">Datum:  <?php print "$izgubljeno->datum" ?></div>

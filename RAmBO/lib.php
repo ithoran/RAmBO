@@ -239,6 +239,99 @@ function dodaj_izgubljeno(Izgubljeno $izgubljeno) {
     }
 }
 
+function dodaj_nadjeno(Nadjeno $nadjeno) {
+    
+    $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
+    
+    $konekcija->set_charset('utf8');
+    if ($konekcija->connect_errno) {
+
+        print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
+    } else {
+         $korisnik_id_res = $konekcija->query("SELECT ID AS ID FROM korisnik WHERE USERNAME = '$nadjeno->korisnik' ");
+         $red = [];
+         if ($red = $korisnik_id_res->fetch_assoc()) {
+                $korisnik_id = $red['ID'];
+            }
+            
+         $rezultat = $konekcija->query("INSERT INTO objava (NAZIV, TIP,  MESTO, DATUM, DATUM_OBJAVE, FNADJENO, KORISNIK_ID) VALUES ('$nadjeno->naziv', '$nadjeno->tip', '$nadjeno->mesto', "
+                 . " '$nadjeno->datum' , NOW(), 1, $korisnik_id)");
+
+        if ($rezultat) {
+
+            $konekcija->close();
+        }
+        else{
+            if ($konekcija->errno) {
+                print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");
+            } else {
+                print ("Nepoznata greška pri izvrsenju upita");
+            }
+        }
+    }
+}
+
+function izmeni_izgubljeno($izgubljeno_za_izmenu, $izgubljeno){
+    
+    $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
+    
+    $konekcija->set_charset('utf8');
+    if ($konekcija->connect_errno) {
+
+        print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
+    } else {
+                
+//        $tekst_upita = "UPDATE objava SET NAZIV = '$izgubljeno->naziv', TIP = '$izgubljeno->tip',  MESTO = '$izgubljeno->mesto', DATUM = '$izgubljeno->datum', NAGRADA = '$izgubljeno->nagrada'";
+        $tekst_upita = "UPDATE objava O "
+                . "JOIN korisnik K ON O.KORISNIK_ID = K.ID "
+                . "SET O.NAZIV = '$izgubljeno->naziv', O.TIP = '$izgubljeno->tip',  O.MESTO = '$izgubljeno->mesto', O.DATUM = '$izgubljeno->datum', O.NAGRADA = '$izgubljeno->nagrada'"
+                . "WHERE NAZIV = '$izgubljeno_za_izmenu->naziv' AND USERNAME = '$izgubljeno_za_izmenu->korisnik' AND FIZGUBLJENO  = 1";
+        $rezultat = $konekcija->query($tekst_upita);
+        
+        if ($rezultat) {
+
+            $konekcija->close();
+        }
+        else{
+            if ($konekcija->errno) {
+                print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");
+            } else {
+                print ("Nepoznata greška pri izvrsenju upita");
+            }
+        }
+    }
+}
+
+function izmeni_nadjeno($nadjeno_za_izmenu, $nadjeno){
+    
+    $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
+    
+    $konekcija->set_charset('utf8');
+    if ($konekcija->connect_errno) {
+
+        print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
+    } else {
+                
+        $tekst_upita = "UPDATE objava O "
+                . "JOIN korisnik K ON O.KORISNIK_ID = K.ID "
+                . "SET O.NAZIV = '$nadjeno->naziv', O.TIP = '$nadjeno->tip',  O.MESTO = '$nadjeno->mesto', O.DATUM = '$nadjeno->datum'"
+                . "WHERE NAZIV = '$nadjeno_za_izmenu->naziv' AND USERNAME = '$nadjeno_za_izmenu->korisnik' AND FNADJENO = 1";
+        $rezultat = $konekcija->query($tekst_upita);
+        
+        if ($rezultat) {
+
+            $konekcija->close();
+        }
+        else{
+            if ($konekcija->errno) {
+                print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");
+            } else {
+                print ("Nepoznata greška pri izvrsenju upita");
+            }
+        }
+    }
+}
+
 function vrati_objavu($naziv, $korisnik, $f_izgubljeno) {
 
     $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
@@ -275,7 +368,7 @@ function vrati_objavu($naziv, $korisnik, $f_izgubljeno) {
     }
 }
 
-function vrati_sve_objave_filter($naziv, $tip, $lokacija, $datum_od, $datum_do, $f_izgubljeno) {
+function vrati_sve_objave_filter($naziv, $tip, $lokacija, $datum_od, $f_izgubljeno) {
 
     $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
 
@@ -287,7 +380,8 @@ function vrati_sve_objave_filter($naziv, $tip, $lokacija, $datum_od, $datum_do, 
    
         $rezultat = $konekcija->query("SELECT * "
                                     . "FROM objava "
-                                    . "WHERE NAZIV LIKE '%$naziv%' AND TIP LIKE '%$tip%' AND MESTO LIKE '%$lokacija%' AND FIZGUBLJENO = '$f_izgubljeno' "
+                                    . "WHERE NAZIV LIKE '%$naziv%' AND TIP LIKE '%$tip%' AND MESTO LIKE '%$lokacija%' AND FIZGUBLJENO = '$f_izgubljeno'"
+                                    . "AND DATUM > '$datum_od' "
                                     . "ORDER BY DATUM_OBJAVE DESC");
             
         if ($rezultat) {

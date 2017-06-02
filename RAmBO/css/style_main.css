@@ -261,7 +261,7 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    color: white;
+    color: #f4511e;
     height: 60px;
     text-align: center;
     font-size: 20px;
@@ -276,6 +276,7 @@ footer {
 
 
 #row3{
+    overflow: auto;
     position: relative;
     height: 400px;
     background-color: black;
@@ -285,7 +286,7 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    color: white;
+    color: #3cc2e8;
     height: 60px;
     text-align: center;
     font-size: 20px;
@@ -359,7 +360,7 @@ a{
     text-decoration: none;
 }
 
-.informacije_o_izgubljenoj_stvari_wrapper{
+.informacije_o_stvari_wrapper{
     width: 70%;
     margin: 100px auto;
     background-color: #d8d8d8;
@@ -367,7 +368,7 @@ a{
     
 }
 
-.informacije_o_izgubljenoj_stvari{
+.informacije_o_stvari{
 
     padding: 10px 20px 20px 20px;
     position: relative;
@@ -428,7 +429,7 @@ a{
 .informacije_profil{
     position: relative;
     height: 390px;
-    padding: 10px 20px 0 20px;
+    padding-top: 10px;
     
 
 }
@@ -438,7 +439,7 @@ a{
     margin-bottom: 30px;
 }
 
-.btn_profil{
+.btn_moje_objave{
     
     border: 2px solid transparent;
     background: #3498DB;
@@ -447,19 +448,35 @@ a{
     padding: 10px 0;
     transition: 0.25s;
     display: inline-block;
-    width: 220px;
+    width: 100%;
     margin-right:5px;
 
 }
 
-.btn_profil:hover{
+.btn_moje_objave:hover{
     background-color: #2980B9;
 }
 
-.btn_profil_div{
+.btn_izmeni_profil{
+    border: 2px solid transparent;
+    background: #3498DB;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 10px 0;
+    transition: 0.25s;
+    display: inline-block;
+    width: 100%;
+    margin-right:5px;
+}
+
+.btn_moje_objave:hover{
+    background-color: #2980B9;
+}
+
+.btn_moje_objave_div{
     position: absolute;
     bottom: 0;
-    
+    width:100%;
 }
 
 

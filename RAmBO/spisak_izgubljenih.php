@@ -14,10 +14,9 @@ if(isset($_POST['filter_submit'])){
     $naziv = $_POST['filter_naziv'];
     $lokacija = $_POST['filter_lokacija'];
     $tip = $_POST['filter_tip'];
-    $datum_od = $_POST['filter_datum_do'];
-    $datum_do = $_POST['filter_datum_do'];
+    $datum_od = $_POST['filter_datum_od'];
     
-    $lista_izg = vrati_sve_objave_filter($naziv, $tip, $lokacija, $datum_od, $datum_do, 1);
+    $lista_izg = vrati_sve_objave_filter($naziv, $tip, $lokacija, $datum_od, 1);
 }
  else {
     $lista_izg = vrati_sve_objave(1);
@@ -69,9 +68,7 @@ if(isset($_POST['filter_submit'])){
                 
                 <div class="filter_group">
                     Datum od: <br> 
-                    <input type="date" value="" name="filter_datum_od" class="filter_input">
-                    Datum do: <br> 
-                    <input type="date" value="" name="filter_datum_do" class="filter_input">                          
+                    <input type="date" value="" name="filter_datum_od" class="filter_input">                      
                 </div>
                 
                 <input type="submit" value="Pretrazi" name="filter_submit" class="button filter_button">

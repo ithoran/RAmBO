@@ -1,6 +1,8 @@
 <?php
 include_once 'lib.php';
 include_once 'klase/listaIzgubljenih.php';
+include_once 'klase/listaNadjenih.php';
+
 
 session_start();
 
@@ -11,7 +13,9 @@ if (isset($_GET['naziv_del'])){
     obrisi_objavu($naziv, $korisnik);
 }
 
-$lista_objava = vrati_sve_objave_korisnik($korisnik, 1);
+$lista_izgubljenih = vrati_sve_objave_korisnik($korisnik, 1);
+$lista_nadjenih = vrati_sve_objave_korisnik($korisnik, 0);
+
 
 
 ?>
@@ -57,7 +61,7 @@ $lista_objava = vrati_sve_objave_korisnik($korisnik, 1);
                 </tr>
                 </thead>
                 <tbody class="table-hover">
-<?php foreach ($lista_objava->lista as $izgubljeno) { ?>
+<?php foreach ($lista_izgubljenih->lista as $izgubljeno) { ?>
                 <tr class="tr">
                 <td class="td text-left"><?php print "$izgubljeno->naziv" ?></td>
                 <td class="td text-left"><?php print "$izgubljeno->datum" ?></td>
@@ -68,6 +72,18 @@ $lista_objava = vrati_sve_objave_korisnik($korisnik, 1);
                 <td class="td text-left"><a href="dodajIzgubljeno.php?naziv_izmena=<?php print "$izgubljeno->naziv"?>&korisnik_izmena=<?php print "$izgubljeno->korisnik"?>"><span style="color: green;"> Izmeni objavu</span></a></td>
                 </tr>
 <?php } ?>
+<?php foreach ($lista_nadjenih->lista as $nadjeno) { ?>
+                <tr class="tr">
+                <td class="td text-left"><?php print "$nadjeno->naziv" ?></td>
+                <td class="td text-left"><?php print "$nadjeno->datum" ?></td>
+                <td class="td text-left"><?php print "$nadjeno->mesto" ?></td>
+                <td class="td text-left"><?php print "$nadjeno->tip" ?></td>
+                <td class="td text-left">/</td>
+                <td class="td text-left"><a href="svoje_objave.php?naziv_del=<?php print "$nadjeno->naziv"?>"><span style="color:red;"> Obrisi objavu</span></a></td>
+                <td class="td text-left"><a href="dodajNadjeno.php?naziv_izmena=<?php print "$nadjeno->naziv"?>&korisnik_izmena=<?php print "$nadjeno->korisnik"?>"><span style="color: green;"> Izmeni objavu</span></a></td>
+                </tr>
+<?php } ?>
+
                 </tbody>
                 </table>
         </div>

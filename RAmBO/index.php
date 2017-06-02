@@ -2,14 +2,16 @@
 
 include_once 'lib.php';
 include_once 'klase/listaIzgubljenih.php';
+include_once 'klase/listaNadjenih.php';
 session_start();
 $lista_izg = vrati_n_objava(5, 1);
+$lista_nadj = vrati_n_objava(5, 0);
 
 ?>
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=97">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=67">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
 </head>
@@ -60,7 +62,22 @@ $lista_izg = vrati_n_objava(5, 1);
             </a>
         </div>
         <div id="row3">
-            <a  href="mapa.php">
+            <div class="izgubljeni_home_naslov">
+                Najskorije dodate nadjene stvari
+            </div>
+            <div class="stvari_u_listi_home_wrapper"> 
+            <?php foreach($lista_nadj->lista as $nadjeno){?>
+            <a href="nadjena_stvar.php?naziv=<?php echo $nadjeno->naziv ?>&korisnik=<?php echo $nadjeno->korisnik ?>">
+            <div class="stvar_u_listi_home">
+                <div class="label_stvar_u_listi_home label_stvar_u_listi_naziv"> <?php print "$nadjeno->naziv" ?></div><br>
+                <div class="label_stvar_u_listi_home">Mesto: <?php print "$nadjeno->mesto" ?></div><br>
+                <div class="label_stvar_u_listi_home">Datum: <?php print "$nadjeno->datum" ?></div><br>            
+            </div>
+             </a>
+            <?php } ?>
+                <div class='clear'></div>
+            </div>
+            <a  href="spisak_nadjenih.php">
             <div class="prikazi_sve_nadjene_div">
                 Prikazi sve nadjene stvari
             </div>
