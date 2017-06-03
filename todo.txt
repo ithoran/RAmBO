@@ -1,9 +1,9 @@
 To do list:
-1.	Promena jezika
+1.	Promena jezika - boza
 2.	Slika predmeta
-3.	Poruke
-4.	Google maps
-5.	Datum
+3.	Poruke - seki
+4.	Google maps - marko
+5.	Datum - boza
 6.	Azuriranje objava
 7.	Prikaz poslednjih resenih slucajeva
 8.	REPORTERED
