@@ -4,7 +4,6 @@ To do list:
 3.	Poruke - seki
 4.	Google maps - marko
 5.	Datum - boza
-6.	Azuriranje objava
+6.	Azuriranje objava - seki
 7.	Prikaz poslednjih resenih slucajeva
 8.	REPORTERED - marko
-9.	Pregled objava po autoru
