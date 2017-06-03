@@ -6,5 +6,5 @@ To do list:
 5.	Datum - boza
 6.	Azuriranje objava
 7.	Prikaz poslednjih resenih slucajeva
-8.	REPORTERED
+8.	REPORTERED - marko
 9.	Pregled objava po autoru
