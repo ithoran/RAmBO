@@ -437,6 +437,7 @@ a{
 .label_profil{
     font-weight: bold;
     margin-bottom: 30px;
+    margin-left: 20px;
 }
 
 .btn_moje_objave{
@@ -459,18 +460,11 @@ a{
 
 .btn_izmeni_profil{
     border: 2px solid transparent;
-    background: #3498DB;
-    color: #ffffff;
-    font-size: 16px;
-    padding: 10px 0;
-    transition: 0.25s;
-    display: inline-block;
-    width: 100%;
-    margin-right:5px;
-}
-
-.btn_moje_objave:hover{
-    background-color: #2980B9;
+    width: 48px;
+    height: 48px;
+    background: url('../images/Edit-icon.png');
+    background-position:center;
+    background-repeat:no-repeat;
 }
 
 .btn_moje_objave_div{
@@ -479,6 +473,11 @@ a{
     width:100%;
 }
 
+.btn_izmeni_profil_div{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
 
 h2{
     display: inline-block;

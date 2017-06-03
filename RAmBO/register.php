@@ -5,7 +5,7 @@
    session_start();
    $error = "";
    
-   if(isset($_POST['izmeni'])){
+   if(isset($_GET['izmeni'])){
    
        $username = $_SESSION['login_user'];
        $korisnik = vrati_korisnika($username);
@@ -80,7 +80,7 @@
         <div style="height:50px; background-color: transparent"></div>
         <div class="login">
 		
-            <?php if(isset($_POST['izmeni'])){ ?>
+            <?php if(isset($_GET['izmeni'])){ ?>
             
                 <div class="login-screen">
 			<div class="form-title">
