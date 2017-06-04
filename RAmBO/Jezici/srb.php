@@ -71,5 +71,9 @@ $L_NAGUNOS='Nagrada (nije obavezno):';
 $L_PRIKCLAN='Prikaži listu članova';
 $L_LOGOUT='Odjavi se';        
 
+//report.php
+
+$L_RAZLOGP='Razlog prijave (opciono)';
+$L_PRIJAVI='Prijavi';
 
 ?>

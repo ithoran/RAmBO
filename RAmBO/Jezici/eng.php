@@ -71,7 +71,10 @@ $L_NAGUNOS='Prize (optional):';
 $L_PRIKCLAN='Show all users';
 $L_LOGOUT='Logout';    
         
+//report.php
 
+$L_RAZLOGP='Reason (optional)';
+$L_PRIJAVI='Report';
 
 
 ?>
