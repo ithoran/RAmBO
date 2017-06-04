@@ -64,7 +64,7 @@ $izgubljeno = vrati_objavu($naziv, $korisnik, 1);
                     <input type="submit" name="obrisi_izgubljeno" value='<?php echo $L_DELOBJ ?>' class="button obrisi_objavu_button">
                 </form>
                 
-                <?php } else{ ?>
+                <?php } else if(isset($_SESSION['login_user'])){ ?>
                 
                 <form class="obrisi_objavu_btn_form" action="report.php?naziv=<?php echo $izgubljeno->naziv ?>&korisnik=<?php echo $izgubljeno->korisnik ?>&lang=<?php echo $lang?>" method="post">
                     <input type="submit" name="prijavi" value='<?php echo $L_PRIJAVI ?>' class="button obrisi_objavu_button">
