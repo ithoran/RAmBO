@@ -44,23 +44,16 @@
             var gmapsLng;
             var drawingManager;
 
-            function deleteSelectedShape () {
-                gmapsLat = null;
-                gmapsLng = null;
-                initialize();
-            }
-
             function initialize () {
                 var map = new google.maps.Map(document.getElementById('map'), {
                     zoom: 13,
-                    center: new google.maps.LatLng(44.10943599214824, 20.723862648010254),
+                    center: new google.maps.LatLng(44.10943599214824, 20.723862648010254), // Treba da se ucitaju kordinate i tu postave
                     mapTypeId: google.maps.MapTypeId.roadmap,
                     disableDefaultUI: true,
                     zoomControl: true
                 });
 
                 drawingManager = new google.maps.drawing.DrawingManager({
-                    //drawingMode: google.maps.drawing.OverlayType.MARKER,
                     markerOptions: {
                         draggable: false
                     },
@@ -71,7 +64,7 @@
                 });
                 
                 new google.maps.Marker({
-                    position: new google.maps.LatLng(44.10943599214824, 20.723862648010254),
+                    position: new google.maps.LatLng(44.10943599214824, 20.723862648010254), // i ovde isto
                     map: map,
                     title: 'Hello World!'
                 });
@@ -83,9 +76,6 @@
     <body>
         <div id="panel">
             <div id="color-palette"></div>
-            <div>
-                <button id="delete-button">Delete Selected Shape</button>
-            </div>
         </div>
         <div id="map"></div>
     </body>
