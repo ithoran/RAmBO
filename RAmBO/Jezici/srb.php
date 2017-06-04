@@ -59,6 +59,7 @@ $L_UDEL='Obriši člana';
 //dodajNadjeno.php i dodajIzgubljeno.php
 
 $L_IZM='Izmeni';
+$L_CNF='Potvrdi';
 $L_NADIZM='Izmeni informacije o nađenoj stvari';
 $L_NADREP='Prijavi nađenu stvar';
 $L_IZGIZM='Izmeni informacije o izgubljenoj stvari';

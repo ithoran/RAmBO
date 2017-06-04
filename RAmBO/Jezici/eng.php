@@ -59,6 +59,7 @@ $L_UDEL='Delete user';
 //dodajNadjeno.php i dodajIzgubljeno.php
 
 $L_IZM='Edit';
+$L_CNF='Confirm';
 $L_NADIZM='Edit found thing info';
 $L_NADREP='Report found thing';
 $L_IZGIZM='Edit lost thing info';
