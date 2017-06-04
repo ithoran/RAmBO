@@ -669,6 +669,7 @@ div.table-title {
     font-size: 16px;
     font-family: "verdana";
     padding-left: 5px;
+    resize: none;
 }
 
 .report_btnsubmit {
