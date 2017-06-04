@@ -42,10 +42,10 @@ $lista_nadj = vrati_n_objava(5, 0);
         <div id="row1">
         <div id="lost_found_buttons_div">
             
-            <form style="display: inline-block;" action="dodajIzgubljeno.php" method="post">
+            <form style="display: inline-block;" action="dodajIzgubljeno.php?lang=<?php echo $lang?>" method="post">
                 <input type="submit" name="dodajIzgubljeno" value='<?php echo $L_IZG ?>' class="button button_lost"/>
             </form>
-            <form style="display: inline-block;" action="dodajNadjeno.php" method="post">
+            <form style="display: inline-block;" action="dodajNadjeno.php?lang=<?php echo $lang?>" method="post">
                 <input type="submit" name="dodajNadjeno" value='<?php echo $L_NDJ ?>' class="button button_found"/>
             </form>
         
@@ -58,7 +58,7 @@ $lista_nadj = vrati_n_objava(5, 0);
             </div>
             <div class="stvari_u_listi_home_wrapper"> 
             <?php foreach($lista_izg->lista as $izgubljeno){?>
-            <a href="izgubljena_stvar.php?naziv=<?php echo $izgubljeno->naziv ?>&korisnik=<?php echo $izgubljeno->korisnik ?>">
+            <a href="izgubljena_stvar.php?naziv=<?php echo $izgubljeno->naziv ?>&korisnik=<?php echo $izgubljeno->korisnik ?>&lang=<?php echo $lang?>">
             <div class="stvar_u_listi_home">
                 <div class="label_stvar_u_listi_home label_stvar_u_listi_naziv"> <?php print "$izgubljeno->naziv" ?></div><br>
                 <div class="label_stvar_u_listi_home"><?php echo $L_MESTO ?> <?php print "$izgubljeno->mesto" ?></div><br>
@@ -68,7 +68,7 @@ $lista_nadj = vrati_n_objava(5, 0);
             <?php } ?>
                 <div class='clear'></div>
             </div>
-            <a  href="spisak_izgubljenih.php">
+            <a  href="spisak_izgubljenih.php?lang=<?php echo $lang?>">
             
             <div class="prikazi_sve_izgubljene_div">
                 <?php echo $L_PSI ?>
@@ -81,7 +81,7 @@ $lista_nadj = vrati_n_objava(5, 0);
             </div>
             <div class="stvari_u_listi_home_wrapper"> 
             <?php foreach($lista_nadj->lista as $nadjeno){?>
-            <a href="nadjena_stvar.php?naziv=<?php echo $nadjeno->naziv ?>&korisnik=<?php echo $nadjeno->korisnik ?>">
+            <a href="nadjena_stvar.php?naziv=<?php echo $nadjeno->naziv ?>&korisnik=<?php echo $nadjeno->korisnik ?>&lang=<?php echo $lang?>">
             <div class="stvar_u_listi_home">
                 <div class="label_stvar_u_listi_home label_stvar_u_listi_naziv"> <?php print "$nadjeno->naziv" ?></div><br>
                 <div class="label_stvar_u_listi_home"><?php echo $L_MESTO ?> <?php print "$nadjeno->mesto" ?></div><br>
@@ -91,7 +91,7 @@ $lista_nadj = vrati_n_objava(5, 0);
             <?php } ?>
                 <div class='clear'></div>
             </div>
-            <a  href="spisak_nadjenih.php">
+            <a  href="spisak_nadjenih.php?lang=<?php echo $lang?>">
             <div class="prikazi_sve_nadjene_div">
                 <?php echo $L_PSN ?>
             </div>

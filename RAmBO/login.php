@@ -1,4 +1,18 @@
 <?php
+if(isset($_REQUEST['lang'])){
+    if($_REQUEST['lang'] == 'eng'){
+        $lang = 'eng';
+        include 'Jezici/eng.php';
+    }
+    else{
+        $lang = 'srb';
+        include 'Jezici/srb.php';
+    }
+}
+else{
+    $lang = 'srb';
+    include 'Jezici/srb.php';
+}
    include_once 'lib.php';
    
    session_start();
@@ -13,7 +27,7 @@
       if($res->count == 1) {
          $_SESSION['login_user'] = $myusername;
          $_SESSION['f_admin'] = $res->f_admin;
-         header("location: index.php");
+         header("location: index.php?lang=$lang");
       }else {
          $error = "Pogresni podaci za login.";
       }
@@ -40,7 +54,7 @@
     </div>
     
     <header>
-        <a href="index.php">
+        <a href="index.php?lang=<?php echo $lang?>">
         <h1 id="glavniNaslov">RAmBO <span id="lost">Lost</span>&<span id="found" >Found</span></h1>
         </a>
     </header>
@@ -50,24 +64,24 @@
         <div class="login">
 		<div class="login-screen">
 			<div class="form-title">
-				<h1>Prijava</h1>
+				<h1><?php echo $L_LOG ?></h1>
 			</div>
-                    <form action="login.php" method="post">
+                    <form action="login.php?lang=<?php echo $lang?>" method="post">
                         <input type="hidden" name="login_hdn">
 			<div class="login-form">
 				<div class="control-group">
-				<input type="text" class="login-field" name="username" value="" placeholder="korisničko ime">
+				<input type="text" class="login-field" name="username" value="" placeholder="<?php echo $L_UNAM ?>">
 
 				</div>
 
 				<div class="control-group error_message">
-				<input type="password" class="login-field" name="password" value="" placeholder="lozinka">
+				<input type="password" class="login-field" name="password" value="" placeholder="<?php echo $L_PASS ?>">
 
 				</div>
                             <div class="error_message">
                             <?php print("$error"); ?>
                             </div>
-                            <input type="submit" class="btn" value="Prijavi se" name="login_submit">
+                            <input type="submit" class="btn" value="<?php echo $L_LOGSE ?>" name="login_submit">
 
 			</div>
                     </form>

@@ -1,5 +1,5 @@
 <header>
-        <a href="index.php">
+        <a href="index.php?lang=<?php echo $lang?>">
         <h1 id="glavniNaslov">RAmBO <span id="lost">Lost</span>&<span id="found" >Found</span></h1>
         </a>
         
@@ -31,7 +31,7 @@
         </div>
     
         <div class="header_username">
-            <a href="profil_clana.php">
+            <a href="profil_clana.php?lang=<?php echo $lang?>">
             <?php print($_SESSION['login_user']) ?>
             </a>
     

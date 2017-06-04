@@ -1,4 +1,18 @@
 <?php
+if(isset($_REQUEST['lang'])){
+    if($_REQUEST['lang'] == 'eng'){
+        $lang = 'eng';
+        include 'Jezici/eng.php';
+    }
+    else{
+        $lang = 'srb';
+        include 'Jezici/srb.php';
+    }
+}
+else{
+    $lang = 'srb';
+    include 'Jezici/srb.php';
+}
 include_once 'lib.php';
 include_once 'klase/listaKorisnika.php';
 
@@ -40,13 +54,13 @@ $lista_korisnika = vrati_sve_korisnike();
         <div class="clanovi_wrapper">
 
             <div class="table-title">
-                <h3>Lista clanova</h3>
+                <h3><?php echo $L_ULIST ?></h3>
                 </div>
                 <table class="table table-fill">
                 <thead>
                 <tr class="tr">
-                <th class="th text-left">Korisnicko ime</th>
-                <th class="th text-left">Drzava</th>
+                <th class="th text-left"><?php echo $L_UNAM ?></th>
+                <th class="th text-left"><?php echo $L_DRZAVA ?></th>
                 <th class="th text-left">E-mail</th>
                 <th class="th text-left"></th>
                 </tr>
@@ -57,7 +71,7 @@ $lista_korisnika = vrati_sve_korisnike();
                 <td class="td text-left"><?php print "$korisnik->username" ?></td>
                 <td class="td text-left"><?php print "$korisnik->drzava" ?></td>
                 <td class="td text-left"><?php print "$korisnik->email" ?></td>
-                <td class="td text-left"><a href="lista_clanova?username_del=<?php print "$korisnik->username"?>"><span style="color:red;"> Obrisi clana</span></a></td>
+                <td class="td text-left"><a href="lista_clanova?username_del=<?php print "$korisnik->username"?>&lang=<?php echo $lang?>"><span style="color:red;"> <?php echo $L_UDEL ?></span></a></td>
                 </tr>
 <?php } ?>
                 </tbody>

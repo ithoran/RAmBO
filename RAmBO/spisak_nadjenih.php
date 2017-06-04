@@ -1,4 +1,18 @@
 <?php
+if(isset($_REQUEST['lang'])){
+    if($_REQUEST['lang'] == 'eng'){
+        $lang = 'eng';
+        include 'Jezici/eng.php';
+    }
+    else{
+        $lang = 'srb';
+        include 'Jezici/srb.php';
+    }
+}
+else{
+    $lang = 'srb';
+    include 'Jezici/srb.php';
+}
 include_once 'lib.php';
 include_once 'klase/listaNadjenih.php';
 
@@ -44,34 +58,34 @@ if(isset($_POST['filter_submit'])){
     <div id="main"> 
         <div class="left_filter_div">
             <form action="" method="post">
-			
+		 <input type="hidden" name="lang" value="<?php echo $lang ?>">	
                 <div class="filter_group">
-                    Naziv nadjene stvari: <br> 
+                    <?php echo $L_NADNAM ?>: <br> 
                     <input type="text" value="" name="filter_naziv" class="filter_input">                  
                 </div>
                 
                 <div class="filter_group">
-                    Lokacija: <br> 
+                    <?php echo $L_LOK ?> <br> 
                     <input type="text" value="" name="filter_lokacija" class="filter_input">                  
                 </div>
                 
                 <div class="filter_group">
-                    Tip: <br> 
+                    <?php echo $L_TIP ?>: <br> 
                     <select class="filter_input" name="filter_tip" size="1">
                         <option value=""> </option>
-                        <option value="zivotinja"> Životinja </option>
-                        <option value="dokument"> Lični dokument </option>
-                        <option value="uredjaj"> Elektronski uredjaj </option>
-                        <option value="ostalo"> Ostalo </option>
+                        <option value="zivotinja"> <?php echo $L_ZIV ?> </option>
+                        <option value="dokument"> <?php echo $L_DOK ?> </option>
+                        <option value="uredjaj"> <?php echo $L_ELU ?> </option>
+                        <option value="ostalo"> <?php echo $L_OST ?> </option>
                     </select>
                 </div>
                 
                 <div class="filter_group">
-                    Datum od: <br> 
+                    <?php echo $L_DATOD ?> <br> 
                     <input type="date" value="" name="filter_datum_od" class="filter_input">
                 </div>
                 
-                <input type="submit" value="Pretrazi" name="filter_submit" class="button filter_button">
+                <input type="submit" value="<?php echo $L_PRETRAZI ?>" name="filter_submit" class="button filter_button">
             </form>
         </div>
 
@@ -79,11 +93,11 @@ if(isset($_POST['filter_submit'])){
         
         <div class="content-list">
             <?php foreach($lista_nadj->lista as $nadjeno){?>
-             <a href="nadjena_stvar.php?naziv=<?php echo $nadjeno->naziv ?>&korisnik=<?php echo $nadjeno->korisnik ?>">
+             <a href="nadjena_stvar.php?naziv=<?php echo $nadjeno->naziv ?>&korisnik=<?php echo $nadjeno->korisnik ?>&lang=<?php echo $lang?>">
             <div class="stvar_u_listi">
                 <div class="label_stvar_u_listi label_stvar_u_listi_naziv"> <?php print "$nadjeno->naziv" ?></div>
-                <div class="label_stvar_u_listi">Mesto: <?php print "$nadjeno->mesto" ?></div>
-                <div class="label_stvar_u_listi">Datum: <?php print "$nadjeno->datum" ?></div>            
+                <div class="label_stvar_u_listi"><?php echo $L_LOK ?> <?php print "$nadjeno->mesto" ?></div>
+                <div class="label_stvar_u_listi"><?php echo $L_DATUM ?> <?php print "$nadjeno->datum" ?></div>            
             </div>
              </a>
             <?php } ?>

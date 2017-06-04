@@ -403,7 +403,7 @@ function vrati_sve_objave_filter($naziv, $tip, $lokacija, $datum_od, $f_izgublje
                 $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $korisnik));
                 }
                 else{
-                $niz->dodaj(new Nadjeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['USERNAME']));    
+                $niz->dodaj(new Nadjeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $korisnik));    
                 }
             }
             // zatvaranje objekta koji čuva rezultat

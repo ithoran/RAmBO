@@ -1,4 +1,18 @@
 <?php
+if(isset($_REQUEST['lang'])){
+    if($_REQUEST['lang'] == 'eng'){
+        $lang = 'eng';
+        include 'Jezici/eng.php';
+    }
+    else{
+        $lang = 'srb';
+        include 'Jezici/srb.php';
+    }
+}
+else{
+    $lang = 'srb';
+    include 'Jezici/srb.php';
+}
 
  include_once 'lib.php';
  include_once 'klase/izgubljeno.php';
@@ -19,9 +33,9 @@
         if ($naziv != "" && $tip != NULL && $lokacija != "" && $datum != NULL){
             $izgubljeno = new Izgubljeno($naziv, $tip, $lokacija, $datum, $nagrada, $korisnik);
             izmeni_izgubljeno($izgubljeno_za_izmenu, $izgubljeno);
-            header("location: index.php");
+            header("location: index.php?lang=$lang");
       }else {
-         $error = "Pogresni podaci za login.";
+         $error = "Pogresni podaci";
       }
            }
        
@@ -41,9 +55,9 @@
       if ($naziv != "" && $tip != NULL && $lokacija != "" && $datum != NULL){
         $izgubljeno = new Izgubljeno($naziv, $tip, $lokacija, $datum, $nagrada, $korisnik);
         dodaj_izgubljeno($izgubljeno);
-        header("location: index.php");
+        header("location: index.php?lang=$lang");
       }else {
-         $error = "Pogresni podaci za login.";
+         $error = "Pogresni podaci";
       }
    }
    }
@@ -68,7 +82,7 @@
     </div>
     
     <header>
-        <a href="index.php">
+        <a href="index.php?lang=<?php echo $lang?>">
         <h1 id="glavniNaslov">RAmBO <span id="lost">Lost</span>&<span id="found" >Found</span></h1>
         </a>
     </header>
@@ -80,45 +94,45 @@
             <?php if(isset($_GET['naziv_izmena'])){ ?>
             <div class="login-screen">
 			<div class="form-title dodaj_izgubljeno_title">
-				<h1>Izmeni informacije o izgubljenoj stvari</h1>
+				<h1><?php echo $L_IZGIZM ?></h1>
 			</div>
                     <form action="" method="post">
 			<div class="login-form">
 		
                                 <input type="hidden" name="izmeni_hdn">
                             
-                                <div class="form_label">Naziv izgubljene stvari:</div>
+                                <div class="form_label"><?php echo $L_NAZ ?></div>
                                 <div class="control-group">
                                 <input type="text" class="login-field" name="naziv" value="<?php print $izgubljeno_za_izmenu->naziv ?>">
 				</div>
                                 
-                                <div class="form_label">Izaberite tip izgubljene stvari:</div>
+                                <div class="form_label"><?php echo $L_TIP ?>:</div>
 				<div class="control-group">
 				<select class="select_forma" name="tip" size="1">
-                                <option value="zivotinja" <?php if($izgubljeno_za_izmenu->tip == 'zivotinja') echo"selected"; ?>> Životinja </option>
-                                    <option value="dokument" <?php if($izgubljeno_za_izmenu->tip == 'dokument') echo"selected"; ?>> Lični dokument </option>
-                                    <option value="uredjaj" <?php if($izgubljeno_za_izmenu->tip == 'uredjaj') echo"selected"; ?>> Elektronski uredjaj </option>
-                                    <option value="ostalo" <?php if($izgubljeno_za_izmenu->tip == 'ostalo') echo"selected"; ?>> Ostalo </option>
+                                <option value="zivotinja" <?php if($izgubljeno_za_izmenu->tip == 'zivotinja') echo"selected"; ?>> <?php echo $L_ZIV ?> </option>
+                                    <option value="dokument" <?php if($izgubljeno_za_izmenu->tip == 'dokument') echo"selected"; ?>> <?php echo $L_DOK ?> </option>
+                                    <option value="uredjaj" <?php if($izgubljeno_za_izmenu->tip == 'uredjaj') echo"selected"; ?>> <?php echo $L_ELU ?> </option>
+                                    <option value="ostalo" <?php if($izgubljeno_za_izmenu->tip == 'ostalo') echo"selected"; ?>> <?php echo $L_OST ?> </option>
                                 </select>
 				</div>
                                 
-                                <div class="form_label">Unesite lokaciju:</div>
+                                <div class="form_label"><?php echo $L_LOK ?></div>
                                 <div class="control-group">
                                     <input type="text" class="login-field" name="lokacija" value="<?php print $izgubljeno_za_izmenu->mesto ?>">
 				</div>
                                 
-                                <div class="form_label">Unesite datum:</div>
+                                <div class="form_label"><?php echo $L_DATUM ?></div>
                                 <div class="control-group">
                                     <input type="date" class="login-field" name="datum" value="<?php print $izgubljeno_za_izmenu->datum ?>">
 				</div>
                                 
-                                <div class="form_label">Unesite nagradu (opciono):</div>
+                                <div class="form_label"><?php echo $L_NAGUNOS ?></div>
                                 <div class="control-group">
                                    <input type="text" class="login-field" name="nagrada" value="<?php print $izgubljeno_za_izmenu->nagrada ?>">
 				</div>
                                 
            
-                            <input type="submit" class="btn btn_dodaj_izgubljeno" value="Izmeni" name="izmeniIzgubljeno">
+                            <input type="submit" class="btn btn_dodaj_izgubljeno" value='<?php echo $L_IZM ?>' name="izmeniIzgubljeno">
 
 			</div>
                     </form>
@@ -126,46 +140,46 @@
             <?php } else { ?>
             <div class="login-screen">
 			<div class="form-title dodaj_izgubljeno_title">
-				<h1>Prijavi izgubljenu stvar</h1>
+				<h1><?php echo $L_IZGREP ?></h1>
 			</div>
                     <form action="" method="post">
 			<div class="login-form">
 		
                                 <input type="hidden" name="dodaj_hdn">
                             
-                                <div class="form_label">Naziv izgubljene stvari:</div>
+                                <div class="form_label"><?php echo $L_IZGNAM ?>:</div>
                                 <div class="control-group">
                                 <input type="text" class="login-field" name="naziv" value="">
 				</div>
                                 
-                                <div class="form_label">Izaberite tip izgubljene stvari:</div>
+                                <div class="form_label"><?php echo $L_TIP ?>:</div>
 				<div class="control-group">
 				<select class="select_forma" name="tip" size="1">
                                     <option value=""></option>
-                                    <option value="zivotinja"> Životinja </option>
-                                    <option value="dokument"> Lični dokument </option>
-                                    <option value="uredjaj"> Elektronski uredjaj </option>
-                                    <option value="ostalo"> Ostalo </option>
+                                    <option value="zivotinja"> <?php echo $L_ZIV ?> </option>
+                                    <option value="dokument"> <?php echo $L_DOK ?> </option>
+                                    <option value="uredjaj"> <?php echo $L_ELU ?> </option>
+                                    <option value="ostalo"> <?php echo $L_OST ?> </option>
                                 </select>
 				</div>
                                 
-                                <div class="form_label">Unesite lokaciju:</div>
+                                <div class="form_label"><?php echo $L_LOK ?></div>
                                 <div class="control-group">
                                     <input type="text" class="login-field" name="lokacija" value="">
 				</div>
                                 
-                                <div class="form_label">Unesite datum:</div>
+                                <div class="form_label"><?php echo $L_DATUM ?></div>
                                 <div class="control-group">
                                     <input type="date" class="login-field" name="datum" value="">
 				</div>
                                 
-                                <div class="form_label">Unesite nagradu (opciono):</div>
+                                <div class="form_label"><?php echo $L_NAGUNOS ?></div>
                                 <div class="control-group">
                                    <input type="text" class="login-field" name="nagrada" value="">
 				</div>
                                 
            
-                            <input type="submit" class="btn btn_dodaj_izgubljeno" value="Potvrdi" name="dodajIzgubljeno">
+                            <input type="submit" class="btn btn_dodaj_izgubljeno" value='<?php echo $L_CNF ?>' name="dodajIzgubljeno">
 
 			</div>
                     </form>

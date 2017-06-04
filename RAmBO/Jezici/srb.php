@@ -35,7 +35,7 @@ $L_DOK='Dokument';
 $L_ZIV='Životinja';
 $L_ELU='Elektronski uređaj';
 $L_OST='Ostalo';
-
+$L_PRETRAZI='Pretrazi';
 $L_DATOD='Datum od:';   //DATUM OD??????
 $L_MESTO='Mesto:';
 $L_DATUM='Datum:';

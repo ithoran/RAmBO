@@ -35,7 +35,7 @@ $L_DOK='Document';
 $L_ZIV='Animal';
 $L_ELU='Electronic device';
 $L_OST='Other';
-
+$L_PRETRAZI='Search';
 $L_DATOD='Date from:';   //DATUM OD??????
 $L_MESTO='Place:';
 $L_DATUM='Date:';

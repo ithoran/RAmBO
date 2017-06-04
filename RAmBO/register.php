@@ -1,4 +1,18 @@
 <?php
+if(isset($_REQUEST['lang'])){
+    if($_REQUEST['lang'] == 'eng'){
+        $lang = 'eng';
+        include 'Jezici/eng.php';
+    }
+    else{
+        $lang = 'srb';
+        include 'Jezici/srb.php';
+    }
+}
+else{
+    $lang = 'srb';
+    include 'Jezici/srb.php';
+}
    include_once 'lib.php';
    include_once 'klase/korisnik.php';
    
@@ -24,7 +38,7 @@
               if($count == 0 && $password==$password2 && $password!="" && $username!="" && $email!="") {
                  izmeni_korisnika($stari_username, $username, $password, $email);
                  $_SESSION['login_user'] = $username;
-                 header("location: profil_clana.php");
+                 header("location: profil_clana.php?lang=$lang");
               }else {
                  $error = "Neuspesna izmena";
               }
@@ -46,7 +60,7 @@
               if($count == 0 && $password==$password2 && $password!="" && $username!="" && $email!="") {
                  register($username, $password, $email, $drzava);
 
-                 header("location: login.php");
+                 header("location: login.php?lang=$lang");
               }else {
                  $error = "Neuspesna registracija";
               }
@@ -71,7 +85,7 @@
     </div>
     
     <header>
-        <a href="index.php">
+        <a href="index.php?lang=<?php echo $lang?>">
         <h1 id="glavniNaslov">RAmBO <span id="lost">Lost</span>&<span id="found" >Found</span></h1>
         </a>
     </header>
@@ -84,31 +98,31 @@
             
                 <div class="login-screen">
 			<div class="form-title">
-				<h1>Izmeni profil</h1>
+				<h1><?php echo $L_CHACC ?></h1>
 			</div>
                     <form action="" method="post">
 			<div class="login-form">
                             <input type="hidden" name="izmeni_hdn">
-                            <div class="form_label">Korisnicko ime:</div>    
+                            <div class="form_label"><?php echo $L_UNAM ?>:</div>    
                             <div class="control-group">
 				<input type="text" class="login-field" name="username" value="<?php print $korisnik->username ?>">
 				</div>
-                            <div class="form_label">Nova lozinka:</div>
+                            <div class="form_label"><?php echo $L_PASS ?>:</div>
 				<div class="control-group">
 				<input type="password" class="login-field" name="password" value="">
 				</div>
-                            <div class="form_label">Potvrda nove lozinke:</div>
+                            <div class="form_label"><?php echo $L_PASSVER ?>:</div>
                                 <div class="control-group">
 				<input type="password" class="login-field" name="password2" value="">
 				</div>
-                            <div class="form_label">E-mail adresa:</div>
+                            <div class="form_label">E-mail:</div>
                                 <div class="control-group">
 				<input type="text" class="login-field" name="email" value="<?php print $korisnik->email ?>">
 				</div>
                              <div class="error_message">
                             <?php print("$error"); ?>
                             </div>                                   
-                            <input type="submit" class="btn btn_reg" value="Sacuvaj izmene" name="izmeni">
+                            <input type="submit" class="btn btn_reg" value="<?php echo $L_IZM ?>" name="izmeni">
 
 			</div>
                     </form>
@@ -116,28 +130,28 @@
             <?php } else { ?>
                 <div class="login-screen">
 			<div class="form-title">
-				<h1>Registracija</h1>
+				<h1><?php echo $L_REGIST ?></h1>
 			</div>
                     <form action="" method="post">
 			<div class="login-form">
                             <input type="hidden" name="register_hdn">
                                 <div class="control-group">
-				<input type="text" class="login-field" name="username" value="" placeholder="unesite korisničko ime">
+				<input type="text" class="login-field" name="username" value="" placeholder="<?php echo $L_UNAM ?>">
 				</div>
 
 				<div class="control-group">
-				<input type="password" class="login-field" name="password" value="" placeholder="unesite lozinku">
+				<input type="password" class="login-field" name="password" value="" placeholder="<?php echo $L_PASS ?>">
 				</div>
                             
                                 <div class="control-group">
-				<input type="password" class="login-field" name="password2" value="" placeholder="potvrdite lozinku">
+				<input type="password" class="login-field" name="password2" value="" placeholder="<?php echo $L_PASS ?>">
 				</div>
                             
                                 <div class="control-group">
-				<input type="text" class="login-field" name="email" value="" placeholder="unesite e-mail adresu">
+				<input type="text" class="login-field" name="email" value="" placeholder="e-mail">
 				</div>
                                 
-                                <div class="form_label">Drzava:</div>
+                                <div class="form_label"><?php echo $L_DRZAVA ?>:</div>
 				<div class="control-group">
                                 <select class="select_forma" name="drzava" size="1">
                                     <option value=""></option>
@@ -396,7 +410,7 @@
                              <div class="error_message">
                             <?php print("$error"); ?>
                             </div>  
-                            <input type="submit" class="btn btn_reg" value="Registruj se" name="register">
+                            <input type="submit" class="btn btn_reg" value="<?php echo $L_REGSE ?>" name="register">
 
 			</div>
                     </form>

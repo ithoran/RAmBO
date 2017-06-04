@@ -1,5 +1,18 @@
 <?php
-
+if(isset($_REQUEST['lang'])){
+    if($_REQUEST['lang'] == 'eng'){
+        $lang = 'eng';
+        include 'Jezici/eng.php';
+    }
+    else{
+        $lang = 'srb';
+        include 'Jezici/srb.php';
+    }
+}
+else{
+    $lang = 'srb';
+    include 'Jezici/srb.php';
+}
 include_once 'lib.php';
 include_once 'klase/korisnik.php';
 session_start();
@@ -29,7 +42,7 @@ $korisnik = vrati_korisnika($username);
     </div>
     
     <header>
-        <a href="index.php">
+        <a href="index.php?lang=<?php echo $lang ?>">
         <h1 id="glavniNaslov">RAmBO <span id="lost">Lost</span>&<span id="found" >Found</span></h1>
         </a>
         <?php 
@@ -48,15 +61,15 @@ $korisnik = vrati_korisnika($username);
             <div class="informacije_profil">
                 
                 <div class="label_profil"><h2><?php print "$korisnik->username" ?></h2></div>
-                <div class="label_profil">Drzava:  <?php print "$korisnik->drzava" ?></div>
-                <div class="label_profil">Email:  <?php print "$korisnik->email" ?></div>
+                <div class="label_profil"><?php echo $L_DRZAVA ?>:  <?php print "$korisnik->drzava" ?></div>
+                <div class="label_profil">E-mail:  <?php print "$korisnik->email" ?></div>
                     <div class="btn_moje_objave_div">            
-                    <form action="svoje_objave.php" method="post">
-                        <input type="submit" class="btn_moje_objave" value="Moje objave">
+                    <form action="svoje_objave.php?lang=<?php echo $lang?>" method="post">
+                        <input type="submit" class="btn_moje_objave" value="<?php echo $L_MYOBJ ?>">
                     </form>  
                     </div>
                     <div class="btn_izmeni_profil_div">
-                        <a href="register.php?izmeni=1" title="Izmeni podatke">
+                        <a href="register.php?izmeni=1&lang=<?php echo $lang?>" title="<?php echo $L_CHACC ?>">
                             <div class="btn_izmeni_profil">
                                 
                             </div>
