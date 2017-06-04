@@ -581,7 +581,7 @@ function vrati_sve_objave_korisnik($korisnik, $f_izgubljeno) {
     }
 }
 
-function report_korisnika($usernameP, $usernameR, $imeObjave, $text) {
+function report_korisnika($usernameP, $usernameR, $imeObjave, $tekst) {
     
     $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
     
@@ -633,8 +633,8 @@ function proveri_tip_objave($username, $imeObjave) {
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
          $red = [];
-         $objava = $konekcija->query("SELECT * FROM objava O, korisnik K WHERE O.KORISNIK_ID = K.ID AND K.USERNAME = '$username' AND O.NAZIV= '$imeObjave' ");
-         if ($red = $objava->fetch_assoc()) {
+         $rezultat = $konekcija->query("SELECT * FROM objava O, korisnik K WHERE O.KORISNIK_ID = K.ID AND K.USERNAME = '$username' AND O.NAZIV= '$imeObjave' ");
+         if ($red = $rezultat->fetch_assoc()) {
                 $tip = $red['FIZGUBLJENO'];
             }
 
