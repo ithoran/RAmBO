@@ -1,3 +1,7 @@
+    <script src="js/jquery-3.2.1.min.js"></script> 
+    <script src="js/moment.js"></script> 
+    <script src="js/combodate.js"></script> 
+
 <?php
 if(isset($_REQUEST['lang'])){
     if($_REQUEST['lang'] == 'eng'){
@@ -83,7 +87,13 @@ if(isset($_POST['filter_submit'])){
                 
                 <div class="filter_group">
                      <?php echo $L_DATOD ?> <br> 
-                    <input type="date" value="" name="filter_datum_od" class="filter_input">                      
+                    <input id="date" type="text" value="" name="filter_datum_od" class="filter_input" value="<?php echo date('Y-m-d');?>" data-format="YYYY-MM-DD" data-template="D MMM YYYY">
+                                    <script>
+                                      $('#date').combodate({
+                                            minYear: 1975,
+                                            maxYear: 2017
+                                        });   
+                                    </script>
                 </div>
                 
                 <input type="submit" value="<?php echo $L_PRETRAZI ?>" name="filter_submit" class="button filter_button">

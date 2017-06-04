@@ -1,3 +1,7 @@
+    <script src="js/jquery-3.2.1.min.js"></script> 
+    <script src="js/moment.js"></script> 
+    <script src="js/combodate.js"></script> 
+
 <?php
 if(isset($_REQUEST['lang'])){
     if($_REQUEST['lang'] == 'eng'){
@@ -109,7 +113,7 @@ else{
                                 <div class="form_label"><?php echo $L_TIP ?>:</div>
 				<div class="control-group">
 				<select class="select_forma" name="tip" size="1">
-                                <option value="zivotinja" <?php if($izgubljeno_za_izmenu->tip == 'zivotinja') echo"selected"; ?>> <?php echo $L_ZIV ?> </option>
+                                    <option value="zivotinja" <?php if($izgubljeno_za_izmenu->tip == 'zivotinja') echo"selected"; ?>> <?php echo $L_ZIV ?> </option>
                                     <option value="dokument" <?php if($izgubljeno_za_izmenu->tip == 'dokument') echo"selected"; ?>> <?php echo $L_DOK ?> </option>
                                     <option value="uredjaj" <?php if($izgubljeno_za_izmenu->tip == 'uredjaj') echo"selected"; ?>> <?php echo $L_ELU ?> </option>
                                     <option value="ostalo" <?php if($izgubljeno_za_izmenu->tip == 'ostalo') echo"selected"; ?>> <?php echo $L_OST ?> </option>
@@ -123,7 +127,13 @@ else{
                                 
                                 <div class="form_label"><?php echo $L_DATUM ?></div>
                                 <div class="control-group">
-                                    <input type="date" class="login-field" name="datum" value="<?php print $izgubljeno_za_izmenu->datum ?>">
+                                  <input id="date" name="datum"  data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="text"  class="login-field" value="<?php print $izgubljeno_za_izmenu->datum ?>"> 
+                                    <script>
+                                      $('#date').combodate({
+                                            minYear: 1975,
+                                            maxYear: 2017
+                                        });   
+                                    </script>
 				</div>
                                 
                                 <div class="form_label"><?php echo $L_NAGUNOS ?></div>
@@ -168,9 +178,15 @@ else{
                                     <input type="text" class="login-field" name="lokacija" value="">
 				</div>
                                 
-                                <div class="form_label"><?php echo $L_DATUM ?></div>
+                                <div ><?php echo $L_DATUM ?></div>
                                 <div class="control-group">
-                                    <input type="date" class="login-field" name="datum" value="">
+                                    <input id="date" name="datum"  data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="text"  class="login-field" value="<?php echo date('Y-m-d'); ?>"> 
+                                    <script>
+                                      $('#date').combodate({
+                                            minYear: 1975,
+                                            maxYear: 2017
+                                        });   
+                                    </script>
 				</div>
                                 
                                 <div class="form_label"><?php echo $L_NAGUNOS ?></div>

@@ -1,3 +1,7 @@
+    <script src="js/jquery-3.2.1.min.js"></script> 
+    <script src="js/moment.js"></script> 
+    <script src="js/combodate.js"></script> 
+
 <?php
 if(isset($_REQUEST['lang'])){
     if($_REQUEST['lang'] == 'eng'){
@@ -118,7 +122,13 @@ else{
                                 
                                 <div class="form_label"><?php echo $L_DATUM ?></div>
                                 <div class="control-group">
-                                    <input type="date" class="login-field" name="datum" value="<?php print $nadjeno_za_izmenu->datum ?>">
+                                     <input id="date" name="datum"  data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="text"  class="login-field" value="<?php print $nadjeno_za_izmenu->datum ?>"> 
+                                    <script>
+                                      $('#date').combodate({
+                                            minYear: 1975,
+                                            maxYear: 2017
+                                        });   
+                                    </script>
 				</div>
                                 
            
@@ -158,7 +168,13 @@ else{
                                 
                                 <div class="form_label"><?php echo $L_DATUM ?></div>
                                 <div class="control-group">
-                                    <input type="date" class="login-field" name="datum" value="">
+                                     <input id="date" name="datum"  data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="text"  class="login-field" value="<?php echo date('Y-m-d'); ?>"> 
+                                    <script>
+                                      $('#date').combodate({
+                                            minYear: 1975,
+                                            maxYear: 2017
+                                        });   
+                                    </script>
 				</div>
                                 
            
