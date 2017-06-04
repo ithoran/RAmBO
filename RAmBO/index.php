@@ -1,5 +1,19 @@
 <?php
 
+if(isset($_REQUEST['lang'])){
+    if($_REQUEST['lang'] == 'eng'){
+        $lang = 'eng';
+        include 'Jezici/eng.php';
+    }
+    else{
+        $lang = 'srb';
+        include 'Jezici/srb.php';
+    }
+}
+else{
+    $lang = 'srb';
+    include 'Jezici/srb.php';
+}
 include_once 'lib.php';
 include_once 'klase/listaIzgubljenih.php';
 include_once 'klase/listaNadjenih.php';
@@ -29,10 +43,10 @@ $lista_nadj = vrati_n_objava(5, 0);
         <div id="lost_found_buttons_div">
             
             <form style="display: inline-block;" action="dodajIzgubljeno.php" method="post">
-                <input type="submit" name="dodajIzgubljeno" value="IZGUBILI STE NEŠTO" class="button button_lost"/>
+                <input type="submit" name="dodajIzgubljeno" value='<?php echo $L_IZG ?>' class="button button_lost"/>
             </form>
             <form style="display: inline-block;" action="dodajNadjeno.php" method="post">
-                <input type="submit" name="dodajNadjeno" value="NAŠLI STE NEŠTO" class="button button_found"/>
+                <input type="submit" name="dodajNadjeno" value='<?php echo $L_NDJ ?>' class="button button_found"/>
             </form>
         
         </div>
@@ -40,15 +54,15 @@ $lista_nadj = vrati_n_objava(5, 0);
 
         <div id="row2">
             <div class="izgubljeni_home_naslov">
-                Najskorije dodate izgubljene stvari
+                <?php echo $L_NDI ?>
             </div>
             <div class="stvari_u_listi_home_wrapper"> 
             <?php foreach($lista_izg->lista as $izgubljeno){?>
             <a href="izgubljena_stvar.php?naziv=<?php echo $izgubljeno->naziv ?>&korisnik=<?php echo $izgubljeno->korisnik ?>">
             <div class="stvar_u_listi_home">
                 <div class="label_stvar_u_listi_home label_stvar_u_listi_naziv"> <?php print "$izgubljeno->naziv" ?></div><br>
-                <div class="label_stvar_u_listi_home">Mesto: <?php print "$izgubljeno->mesto" ?></div><br>
-                <div class="label_stvar_u_listi_home">Datum: <?php print "$izgubljeno->datum" ?></div><br>            
+                <div class="label_stvar_u_listi_home"><?php echo $L_MESTO ?> <?php print "$izgubljeno->mesto" ?></div><br>
+                <div class="label_stvar_u_listi_home"><?php echo $L_DATUM ?> <?php print "$izgubljeno->datum" ?></div><br>            
             </div>
              </a>
             <?php } ?>
@@ -57,21 +71,21 @@ $lista_nadj = vrati_n_objava(5, 0);
             <a  href="spisak_izgubljenih.php">
             
             <div class="prikazi_sve_izgubljene_div">
-                Prikazi sve izgubljene stvari
+                <?php echo $L_PSI ?>
             </div> 
             </a>
         </div>
         <div id="row3">
             <div class="izgubljeni_home_naslov">
-                Najskorije dodate nadjene stvari
+                <?php echo $L_NDN ?>
             </div>
             <div class="stvari_u_listi_home_wrapper"> 
             <?php foreach($lista_nadj->lista as $nadjeno){?>
             <a href="nadjena_stvar.php?naziv=<?php echo $nadjeno->naziv ?>&korisnik=<?php echo $nadjeno->korisnik ?>">
             <div class="stvar_u_listi_home">
                 <div class="label_stvar_u_listi_home label_stvar_u_listi_naziv"> <?php print "$nadjeno->naziv" ?></div><br>
-                <div class="label_stvar_u_listi_home">Mesto: <?php print "$nadjeno->mesto" ?></div><br>
-                <div class="label_stvar_u_listi_home">Datum: <?php print "$nadjeno->datum" ?></div><br>            
+                <div class="label_stvar_u_listi_home"><?php echo $L_MESTO ?> <?php print "$nadjeno->mesto" ?></div><br>
+                <div class="label_stvar_u_listi_home"><?php echo $L_DATUM ?> "$nadjeno->datum" ?></div><br>            
             </div>
              </a>
             <?php } ?>
@@ -79,7 +93,7 @@ $lista_nadj = vrati_n_objava(5, 0);
             </div>
             <a  href="spisak_nadjenih.php">
             <div class="prikazi_sve_nadjene_div">
-                Prikazi sve nadjene stvari
+                <?php echo $L_PSN ?>
             </div>
             </a>
         </div>

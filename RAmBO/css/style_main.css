@@ -59,6 +59,31 @@ header{
 
 }
 
+.btn_jezik_srb{
+    border: 2px solid transparent;
+    width: 48px;
+    height: 48px;
+    background: url('../images/Serbia-icon.png');
+    background-position:center;
+    background-repeat:no-repeat;
+    cursor: pointer;
+}
+
+.btn_jezik_eng{
+    border: 2px solid transparent;
+    width: 48px;
+    height: 48px;
+    background: url('../images/United-Kingdom-icon.png');
+    background-position:center;
+    background-repeat:no-repeat;
+    cursor: pointer;
+}
+
+.zastava{
+    display: inline-block;
+    margin-left: 20px;
+}
+
 #found{
     color: #3cc2e8;
 }

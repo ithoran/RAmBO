@@ -2,6 +2,17 @@
         <a href="index.php">
         <h1 id="glavniNaslov">RAmBO <span id="lost">Lost</span>&<span id="found" >Found</span></h1>
         </a>
+        
+    <form class="zastava" action="" method="post">
+        <input type="hidden" name="lang" value="srb">
+        <input type="submit" name="lang_submit" value="" class="btn_jezik_srb">
+    </form>
+    <form class="zastava" action="" method="post">
+        <input type="hidden" name="lang" value="eng">
+        <input type="submit" name="lang_submit" value="" class="btn_jezik_eng">
+    </form>
+        
+    
         <?php 
             if (isset($_SESSION['login_user'])){
                include("elementi/logout_btn.php");
@@ -17,7 +28,6 @@
         ?>
         
         <div class="header_right message_icon">
-<!--                <img source="../images/poruka.png" style="max-height: 100%; max-width: 100%"/>-->
         </div>
     
         <div class="header_username">
