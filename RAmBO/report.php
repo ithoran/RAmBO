@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(isset($_REQUEST['lang'])){
     if($_REQUEST['lang'] == 'eng'){
         $lang = 'eng';
@@ -19,7 +20,7 @@ include_once 'lib.php';
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=72">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=444">
     <link rel="stylesheet" href="css/style_forme.css?version=88">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
@@ -52,7 +53,7 @@ include_once 'lib.php';
     <div id="main"> 
 
         <div class="report_wrapper">
-            <div class="report_label"><h2><?php echo $$L_RAZLOGP ?>:</h2></div>
+            <div class="report_label"><h2><?php echo $L_RAZLOGP ?>:</h2></div>
             <form method="post">
                 <div class="report_txtbox">
                     <textarea class="report_txt" wrap="soft" maxlength="150"></textarea>

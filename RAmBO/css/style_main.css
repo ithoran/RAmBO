@@ -678,7 +678,7 @@ div.table-title {
 
 .btn_submit_report {
     border: 2px solid transparent;
-    background: #f4511e;
+    background: #d61919;
     color: #ffffff;
     font-size: 16px;
     line-height: 25px;
@@ -690,5 +690,5 @@ div.table-title {
 }
 
 .btn_submit_report:hover {
-    background-color: #c14119
+    background-color: #a01111
 }

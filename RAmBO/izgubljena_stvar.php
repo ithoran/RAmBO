@@ -57,10 +57,19 @@ $izgubljeno = vrati_objavu($naziv, $korisnik, 1);
                 <?php if ($izgubljeno->nagrada != ""){ ?>
                 <div class="label_nagrada"><?php echo $L_NAGRADALONG ?> <span class="label_nagrada_broj"><?php print "$izgubljeno->nagrada" ?></span></div><br> 
                 <?php } ?>
+                
                 <?php if (isset($_SESSION['f_admin']) && $_SESSION['f_admin'] == 1 || isset($_SESSION['login_user']) && $_SESSION['login_user'] == $_GET['korisnik']){?>
+                
                 <form class="obrisi_objavu_btn_form" action="spisak_izgubljenih.php?naziv_del=<?php echo $izgubljeno->naziv ?>&korisnik_del=<?php echo $izgubljeno->korisnik ?>&lang=<?php echo $lang?>" method="post">
                     <input type="submit" name="obrisi_izgubljeno" value='<?php echo $L_DELOBJ ?>' class="button obrisi_objavu_button">
                 </form>
+                
+                <?php } else{ ?>
+                
+                <form class="obrisi_objavu_btn_form" action="report.php?naziv=<?php echo $izgubljeno->naziv ?>&korisnik=<?php echo $izgubljeno->korisnik ?>&lang=<?php echo $lang?>" method="post">
+                    <input type="submit" name="prijavi" value='<?php echo $L_PRIJAVI ?>' class="button obrisi_objavu_button">
+                </form>
+                
                 <?php } ?>
             </div>
         </div>
