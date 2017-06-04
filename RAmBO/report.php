@@ -16,6 +16,20 @@ else{
 }
 include_once 'lib.php';
 
+if (isset($_POST['report_submit']))
+{
+    report_korisnika($_SESSION['login_user'], $_POST['korisnik'], $_POST['naziv'], htmlspecialchars($_POST['report_text']));
+    $pom = proveri_tip_objave($_POST['korisnik'], $_POST['naziv']);
+    if ($pom == 1)
+    {
+        header("location: spisak_izgubljenih.php?lang=$lang&pom=$pom");
+    }
+    else
+    {
+        header("location: spisak_nadjenih.php?lang=$lang&pom=$pom");
+    }
+}
+
 ?>
 
 <html>
@@ -54,9 +68,17 @@ include_once 'lib.php';
 
         <div class="report_wrapper">
             <div class="report_label"><h2><?php echo $L_RAZLOGP ?>:</h2></div>
-            <form method="post">
+            <form method="post" name="report_form" action="report.php?lang=<?php echo $lang ?>">
+                <input type="hidden" name="report_submit">
+                
+                <input type="hidden" name="korisnik" value="<?php echo $_GET['korisnik'] ?>">
+                
+                <input type="hidden" name="naziv" value="<?php echo $_GET['naziv'] ?>">
+                
                 <div class="report_txtbox">
-                    <textarea class="report_txt" wrap="soft" maxlength="150"></textarea>
+                    
+                    <textarea class="report_txt" wrap="soft" name="report_text" form="report_form" maxlength="150"></textarea>
+                    
                 </div>
                 <div class="report_btnsubmit">
                     <input type="submit" class="btn_submit_report" value="<?php echo $L_PRIJAVI ?>">
