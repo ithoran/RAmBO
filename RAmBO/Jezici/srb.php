@@ -64,9 +64,10 @@ $L_IZGIZM='Izmeni informacije o izgubljenoj stvari';
 $L_IZGREP='Prijavi izgubljenu stvar';
 $L_NAGUNOS='Nagrada (nije obavezno):';
 
+//elementi
 
-        
-
+$L_PRIKCLAN='Prikaži listu članova';
+$L_LOGOUT='Odjavi se';        
 
 
 ?>

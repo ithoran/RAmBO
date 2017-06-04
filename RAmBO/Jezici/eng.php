@@ -8,8 +8,8 @@ $L_IZG='Lost something?';
 $L_NDJ='Found something?';
 
 
-$L_NDI='Latest things that were lost';
-$L_NDN='Latest things that were found';
+$L_NDI='Latest lost things';
+$L_NDN='Latest found things';
 $L_PSI='Show all lost things';
 $L_PSN='Show all found things';
 
@@ -58,13 +58,16 @@ $L_UDEL='Delete user';
 
 //dodajNadjeno.php i dodajIzgubljeno.php
 
-$L_NADIZM='Edit information about found thing';
+$L_NADIZM='Edit found thing info';
 $L_NADREP='Report found thing';
-$L_IZGIZM='Edit information about lost thing';
+$L_IZGIZM='Edit lost thing info';
 $L_IZGREP='Report lost thing';
 $L_NAGUNOS='Prize (optional):';
 
+//elementi
 
+$L_PRIKCLAN='Show all users';
+$L_LOGOUT='Logout';    
         
 
 
