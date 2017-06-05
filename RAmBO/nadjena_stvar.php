@@ -81,7 +81,7 @@ $nadjeno = vrati_objavu($naziv, $korisnik, 0);
                 </form>
                 <?php } else if(isset($_SESSION['login_user'])){ ?>
                 
-                <a href="kreiranje_poruke.php?naziv=<?php echo $izgubljeno->naziv ?>&korisnik=<?php echo $izgubljeno->korisnik ?>&lang=<?php echo $lang?>" title="<?php echo $L_POSAUTORU?>">
+                <a href="kreiranje_poruke.php?naziv=<?php echo $nadjeno->naziv ?>&korisnik=<?php echo $nadjeno->korisnik ?>&lang=<?php echo $lang?>" title="<?php echo $L_POSAUTORU?>">
                 <div class="posalji_poruku_icon">
                 </div>
                 </a>
