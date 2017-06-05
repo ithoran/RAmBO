@@ -500,7 +500,7 @@ a{
 .label_informacije_o_izgubljenoj_stvari_opis{
     margin-top: 50px;
     width: 350px;
-    heigth:150px;
+    height:150px;
     display:inline-block;
 
     margin-left: 20px;
@@ -515,8 +515,24 @@ a{
     bottom: 20px;
 }
 
+
+
 .label_nagrada_broj{
     color: red;
+}
+
+.posalji_poruku_icon{
+    position: absolute;
+    top: 23px;
+    right: 110px;
+    display: inline-block;
+    background-image: url("../images/message.ico");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 40px;
+    
+    
 }
 
 .filter_input{
