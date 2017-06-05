@@ -26,8 +26,8 @@ $korisnik = vrati_korisnika($username);
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=74">
-    <link rel="stylesheet" href="css/style_forme.css?version=88">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=44">
+    <link rel="stylesheet" href="css/style_forme.css?version=48">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
 </head>
@@ -68,7 +68,7 @@ $korisnik = vrati_korisnika($username);
                         <input type="submit" class="btn_moje_objave" value="<?php echo $L_MYOBJ ?>">
                     </form>  
                     </div>
-                    <div class="btn_izmeni_profil_div">
+                    <div class="btn_izmeni_profil_div bold_font">
                         <a href="register.php?izmeni=1&lang=<?php echo $lang?>" title="<?php echo $L_CHACC ?>">
                             <div class="btn_izmeni_profil">
                                 

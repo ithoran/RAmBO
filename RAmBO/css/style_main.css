@@ -459,6 +459,10 @@ a{
     height: 370px;
 }
 
+.informacije_o_stvari h2{
+    margin-left: 20px;
+}
+
 .slika_objave_wrapper{
     padding: 10px;
     width:400px;
@@ -490,7 +494,7 @@ a{
 
     margin-top: 20px;
     display:inline-block;
-    margin-right: 100px;
+    margin-right: 60px;
     margin-left: 20px;
 }
 
@@ -550,8 +554,8 @@ a{
 
 .informacije_profil{
     position: relative;
-    height: 390px;
-    padding-top: 10px;
+    height: 400px;
+
     
 
 }
@@ -563,16 +567,16 @@ a{
 }
 
 .btn_moje_objave{
-    
+    font-weight: bold;
     border: 2px solid transparent;
     background: #3498DB;
     color: #ffffff;
     font-size: 16px;
-    padding: 10px 0;
+    padding: 20px 0;
     transition: 0.25s;
     display: inline-block;
     width: 100%;
-    margin-right:5px;
+    margin-bottom: 0;
 
 }
 
@@ -602,9 +606,11 @@ a{
     right: 25px;
 }
 
+
+
 h2{
     display: inline-block;
-    margin-left: 20px;
+ 
 }
 
 div.table-title {

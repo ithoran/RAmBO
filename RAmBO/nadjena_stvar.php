@@ -85,6 +85,10 @@ $nadjeno = vrati_objavu($naziv, $korisnik, 0);
                     <input type="submit" name="prijavi" value='<?php echo $L_PRIJAVI ?>' class="button obrisi_objavu_button">
                 </form>
                 
+                <form class="obrisi_objavu_btn_form" action="report.php?naziv=<?php echo $nadjeno->naziv ?>&korisnik=<?php echo $nadjeno->korisnik ?>&lang=<?php echo $lang?>" method="post">
+                    <input type="submit" name="prijavi" value='<?php echo $L_PRIJAVI ?>' class="button obrisi_objavu_button">
+                </form>
+                
                 <?php } ?>
             </div>
         </div>

@@ -113,8 +113,11 @@ else{
 
 <html>
 <head>
+     <script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=drawing&key=AIzaSyB1fcu7wpjL0yYdF2OJqwCs2wFLcasVvMI"></script>
+    <script type="text/javascript" src="js/google_maps_kreiranje.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style_main.css?version=77">
     <link rel="stylesheet" href="css/style_forme.css?version=445">
+    <link rel="stylesheet" href="css/style_forme_googlemaps.css?version=113">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
 </head>
@@ -249,6 +252,7 @@ else{
                             <textarea class="opis_txt" wrap="soft" name="opis" maxlength="150"></textarea>
                     
                             </div>
+                            <div id="map"></div>
                             <input type="submit" class="btn" value='<?php echo $L_CNF ?>' name="dodajNadjeno">
                   
                         </div>
