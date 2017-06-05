@@ -78,10 +78,21 @@ $L_LOGOUT='Logout';
 $L_RAZLOGP='Reason (optional)';
 $L_PRIJAVI='Report';
 
+//sve_prijave.php
+
+$L_SVEPRIJAVE='All reports';
+$L_PRIJAVILAC='Reporter';
+$L_PRIJAVLJENI='Reported';
+$L_OBJAVA='Notice';
+$L_RAZLOGTEKST='Reason';
+$L_DELPRIJAVA='Delete report';
+$L_DELPRIJAVILAC='Delete reporter';
+$L_DELPRIJAVLJENI='Delete reported';
+
+
 //poruka.php
 $L_PRIM='Receiver:';
 $L_POSL='Sender:';
 $L_VREME='Time:';
-
 
 ?>
