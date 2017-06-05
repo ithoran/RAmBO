@@ -85,7 +85,10 @@ $izgubljeno = vrati_objavu($naziv, $korisnik, 1);
                 </form>
                 
                 <?php } else if(isset($_SESSION['login_user'])){ ?>
-                
+                <a href="kreiranje_poruke.php?naziv=<?php echo $izgubljeno->naziv ?>&korisnik=<?php echo $izgubljeno->korisnik ?>&lang=<?php echo $lang?>" title="<?php echo $L_POSAUTORU?>">
+                <div class="posalji_poruku_icon">
+                </div>
+                </a>
                 <form class="obrisi_objavu_btn_form" action="report.php?naziv=<?php echo $izgubljeno->naziv ?>&korisnik=<?php echo $izgubljeno->korisnik ?>&lang=<?php echo $lang?>" method="post">
                     <input type="submit" name="prijavi" value='<?php echo $L_PRIJAVI ?>' class="button obrisi_objavu_button">
                 </form>
