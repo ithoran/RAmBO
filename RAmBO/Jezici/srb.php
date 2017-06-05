@@ -35,7 +35,7 @@ $L_DOK='Dokument';
 $L_ZIV='Životinja';
 $L_ELU='Elektronski uređaj';
 $L_OST='Ostalo';
-$L_PRETRAZI='Pretraži';
+$L_PRETRAZI='Pretrazi';
 $L_DATOD='Datum od:';   //DATUM OD??????
 $L_MESTO='Mesto:';
 $L_DATUM='Datum:';
@@ -93,6 +93,9 @@ $L_DELPRIJAVLJENI='Obrisi prijavljenog';
 $L_PRIM='Primalac:';
 $L_POSL='Pošaljilac:';
 $L_VREME='Vreme:';
+$L_SADRZAJ='Unesite sadržaj poruke:';
+$L_POSALJI='Pošalji';
+$L_POSAUTORU='POšaljite poruku autoru';
 
 
 ?>

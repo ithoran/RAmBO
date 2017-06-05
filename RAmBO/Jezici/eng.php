@@ -94,5 +94,8 @@ $L_DELPRIJAVLJENI='Delete reported';
 $L_PRIM='Receiver:';
 $L_POSL='Sender:';
 $L_VREME='Time:';
+$L_SADRZAJ='Message content:';
+$L_POSALJI='Send';
+$L_POSAUTORU='Send message to author';
 
 ?>
