@@ -98,7 +98,6 @@ header{
     overflow: auto;
     font-family: "verdana";
     margin-top: 80px;
-    display: flex;
     width: 100%;
 }
 
@@ -632,7 +631,6 @@ div.table-title {
    text-transform:uppercase;
 }
 
-
 /*** Tabele **/
 
 .table-fill {
@@ -648,8 +646,8 @@ div.table-title {
 }
  
 .th {
-  color:#D5DDE5;;
-  background:#1b1e24;
+  color:#D5DDE5;
+  background:black;
   border-bottom:4px solid #9ea7af;
   border-right: 1px solid #343a45;
   font-size:23px;
