@@ -1,5 +1,5 @@
 INSERT INTO KORISNIK VALUES (NULL,0,1,'mirko','mirko','mirko@gmail.com','Andorra');
-INSERT INTO KORISNIK VALUES (NULL,1,1,'admin','admin','admin@gmail.com','Serbia');
+INSERT INTO KORISNIK VALUES (NULL,1,0,'admin','admin','admin@gmail.com','Serbia');
 INSERT INTO KORISNIK VALUES (NULL,0,1,'perica','perica','perica@gmail.com','Italy'); 
 
 INSERT INTO `objava` (`ID`, `NAZIV`, `TIP`, `DATUM`, `DATUM_OBJAVE`, `MESTO`, `FIZGUBLJENO`, `FNADJENO`, `OPIS`, `NAGRADA`, `STANJE`, `SLIKA`, `LAT`, `LNG`, `KORISNIK_ID`) VALUES
