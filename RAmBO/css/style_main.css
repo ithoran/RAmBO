@@ -98,7 +98,7 @@ header{
     overflow: auto;
     font-family: "verdana";
     margin-top: 80px;
-
+    display: flex;
     width: 100%;
 }
 
@@ -136,6 +136,10 @@ footer {
   font-family: "verdana";
   color: gray;
 }
+
+
+
+
 
 #row1{
     margin-top: 80px;
@@ -195,7 +199,7 @@ footer {
 .obrisi_objavu_btn_form{
     display: inline-block;
     position: absolute;
-    bottom: 0;
+    top: 0;
     right: 0;
 }
 
@@ -239,6 +243,11 @@ footer {
     width: 600px;
 }
 
+
+
+
+
+
 #row2{
     overflow: auto;
     position: relative;
@@ -257,21 +266,38 @@ footer {
 
 .stvari_u_listi_home_wrapper{
     width: fit-content;
-    margin: 30px auto 0 auto;
+    margin: 50px auto 0 auto;
 }
 
 .stvar_u_listi_home{
     float: left;
     color: black;
     font-family: "verdana";
-    padding: 20px 20px;
+    padding: 10px 10px 10px 10px;
     margin-left: 20px;
     margin-top: 10px;
     margin-right: 10px;
-    width: 250px;
-    height: 120px;
+    width: 300px;
+    height: 100px;
     background-color: #d8d8d8;
+    
 
+}
+
+.blue_border{
+    border: 2px solid #3cc2e8;
+}
+
+.orange_border{
+    border: 2px solid #f4511e;
+}
+
+.blue{
+    color: #3cc2e8;
+}
+
+.orange{
+    color: #f4511e;
 }
 
 .stvar_u_listi_home:hover{
@@ -280,6 +306,31 @@ footer {
 
 .label_stvar_u_listi_home{
     margin-bottom: 20px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.slika_objave_wrapper_home{
+    width:100px;
+    float:left;
+}
+
+.slika_objave_home{
+    height: 100px;
+    width: 100px;
+    display:table-cell; 
+    vertical-align:middle; 
+    text-align:center;
+    background-color: #858687;
+   
+    
+}
+
+.slika_objave_home img{
+    max-height: 100%;
+    max-width: 100%;
+
+
 }
 
 .prikazi_sve_izgubljene_div{
@@ -297,6 +348,10 @@ footer {
 .prikazi_sve_izgubljene_div:hover{
    background: linear-gradient(rgba(0,0,0,0), rgba(255,255,255,0.1));
 }
+
+
+
+
 
 
 
@@ -324,6 +379,10 @@ footer {
 .prikazi_sve_nadjene_div:hover{
     background: linear-gradient(rgba(0,0,0,0), rgba(255,255,255,0.1));
 }
+
+
+
+
 
 
 #row4{
@@ -400,19 +459,57 @@ a{
     height: 370px;
 }
 
+.slika_objave_wrapper{
+    padding: 10px;
+    width:400px;
+    float:left;
+}
+
+.slika_objave{
+    height: 380px;
+    width: 380px;
+    display:table-cell; 
+    vertical-align:middle; 
+    text-align:center;
+    background-color: #858687;
+    
+}
+
+.slika_objave img{
+    max-width: 100%;
+    max-height: 100%;
+
+
+}
+
+.bold_font{
+  font-weight: bold;
+}
+
 .label_informacije_o_izgubljenoj_stvari{
-    font-weight: bold;
+
     margin-top: 20px;
     display:inline-block;
-    margin-right: 150px;
+    margin-right: 100px;
+    margin-left: 20px;
+}
 
+.label_informacije_o_izgubljenoj_stvari_opis{
+    margin-top: 50px;
+    width: 350px;
+    heigth:150px;
+    display:inline-block;
+
+    margin-left: 20px;
+    
 }
 
 .label_nagrada{
     font-size: 20px;
     font-weight: bold;
     position: absolute;
-    bottom: 5%;
+    left: 440px;
+    bottom: 20px;
 }
 
 .label_nagrada_broj{
@@ -485,11 +582,12 @@ a{
 
 .btn_izmeni_profil{
     border: 2px solid transparent;
-    width: 48px;
-    height: 48px;
+    width: 32px;
+    height: 32px;
     background: url('../images/Edit-icon.png');
     background-position:center;
     background-repeat:no-repeat;
+    background-size: contain;
 }
 
 .btn_moje_objave_div{
@@ -500,12 +598,13 @@ a{
 
 .btn_izmeni_profil_div{
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 25px;
+    right: 25px;
 }
 
 h2{
     display: inline-block;
+    margin-left: 20px;
 }
 
 div.table-title {
@@ -691,4 +790,19 @@ div.table-title {
 
 .btn_submit_report:hover {
     background-color: #a01111
+}
+
+.opis_txt{
+    width: 550px;
+    height: 100px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: "verdana";
+    padding-left: 5px;
+    resize: none;
+    background-color: #ECF0F1;
+}
+
+.opis_txtbox{
+    
 }

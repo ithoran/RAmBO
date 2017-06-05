@@ -5,10 +5,22 @@
     width: 400px;
 }
 
+.login-dodaj{
+    font-family: "verdana";
+    margin: 20px auto;
+    width: 650px;
+}
+
 .login-screen {
     background-color: #FFF;
     padding: 20px;
-    border-radius: 5px
+    border-radius: 5px;
+}
+
+.login-screen-dodaj{
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 5px;
 }
 
 .form-title {
@@ -31,8 +43,30 @@
 .control-group {
     margin-bottom: 20px;
 }
+.control-group-dodaj {
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.form_left{
+    float: left;
+    margin-left: 30px;
+}
+
+.form_right{
+    float:right;
+    margin-right: 30px;
+
+}
 
 .form_label{
+    padding-top: 15px;
+    font-family: "verdana";
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.form_label_dodaj{
     padding-top: 15px;
     font-family: "verdana";
     font-weight: bold;
@@ -83,6 +117,7 @@
 }
 
 .btn_dodaj_izgubljeno{
+
     background: #f4511e;
 }
 
@@ -108,3 +143,6 @@
     font-size: 14px;
 }
 
+#date{
+    width:60px;
+}

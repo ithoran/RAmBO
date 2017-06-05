@@ -65,6 +65,8 @@ $L_NADREP='Report found thing';
 $L_IZGIZM='Edit lost thing info';
 $L_IZGREP='Report lost thing';
 $L_NAGUNOS='Prize (optional):';
+$L_IZABERISLIKU='Select image to upload:';
+$L_OPIS='Description';
 
 //elementi
 

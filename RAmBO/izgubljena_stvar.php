@@ -28,8 +28,11 @@ $izgubljeno = vrati_objavu($naziv, $korisnik, 1);
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=45">
-    <link rel="stylesheet" href="css/style_forme.css?version=3">
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=drawing&key=AIzaSyB1fcu7wpjL0yYdF2OJqwCs2wFLcasVvMI"></script>
+    <script type="text/javascript" src="js/google_maps_kreiranje.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=555">
+    <link rel="stylesheet" href="css/style_forme.css?version=11">
+    <link rel="stylesheet" href="css/style_googlemaps.css?version=113">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
 </head>
@@ -49,14 +52,31 @@ $izgubljeno = vrati_objavu($naziv, $korisnik, 1);
     
     <div id="main"> 
         <div class="informacije_o_stvari_wrapper">
+            <div class="slika_objave_wrapper">
+                 <div class="slika_objave">
+                    <?php if($izgubljeno->slika == ""){ ?>
+                     <img src="images/placeholder.jpg">
+                     <?php } else{ ?>
+                     <img src="uploads/<?php echo $izgubljeno->slika ?>">
+                     <?php } ?>
+                </div>
+            </div>
+            
             <div class="informacije_o_stvari">
                 <h2><?php print "$izgubljeno->naziv" ?></h2><hr>
-                <div class="label_informacije_o_izgubljenoj_stvari"><?php echo $L_LOK ?>  <?php print "$izgubljeno->mesto" ?></div>
-                <div class="label_informacije_o_izgubljenoj_stvari"><?php echo $L_DATUM ?>  <?php print "$izgubljeno->datum" ?></div>
-                <div class="label_informacije_o_izgubljenoj_stvari"><?php echo $L_TIP ?>: <?php print "$izgubljeno->tip" ?></div><br>
+                <div class="label_informacije_o_izgubljenoj_stvari">  <span class="bold_font"><?php echo $L_LOK ?></span>    <?php print "$izgubljeno->mesto" ?></div>
+                <div class="label_informacije_o_izgubljenoj_stvari">  <span class="bold_font"><?php echo $L_DATUM ?></span>    <?php print "$izgubljeno->datum" ?></div><br>
+                <div class="label_informacije_o_izgubljenoj_stvari">  <span class="bold_font"><?php echo $L_TIP ?>:</span>   <?php print "$izgubljeno->tip" ?></div><br>
+                <div class="label_informacije_o_izgubljenoj_stvari_opis">  <span class="bold_font"><?php echo $L_OPIS ?>:</span>  <br> <?php print "$izgubljeno->opis" ?></div><br>
+                
                 <?php if ($izgubljeno->nagrada != ""){ ?>
                 <div class="label_nagrada"><?php echo $L_NAGRADALONG ?> <span class="label_nagrada_broj"><?php print "$izgubljeno->nagrada" ?></span></div><br> 
                 <?php } ?>
+           
+                <div id="panel">
+                <div id="color-palette"></div>
+                </div>
+                <div id="map"></div>
                 
                 <?php if (isset($_SESSION['f_admin']) && $_SESSION['f_admin'] == 1 || isset($_SESSION['login_user']) && $_SESSION['login_user'] == $_GET['korisnik']){?>
                 

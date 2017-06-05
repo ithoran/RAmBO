@@ -1,50 +1,3 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-        <meta charset="UTF-8">
-        <title>Drawing Tools</title>
-        <script type="text/javascript"
-        src="http://maps.google.com/maps/api/js?libraries=drawing&key=AIzaSyB1fcu7wpjL0yYdF2OJqwCs2wFLcasVvMI"></script>
-        <style type="text/css">
-            #map, html, body {
-                padding: 0;
-                margin: 0;
-                width: 960px;
-                height: 700px;
-            }
-
-            #panel {
-                width: 200px;
-                font-family: Arial, sans-serif;
-                font-size: 13px;
-                float: right;
-                margin: 10px;
-            }
-
-            #color-palette {
-                clear: both;
-            }
-
-            .color-button {
-                width: 14px;
-                height: 14px;
-                font-size: 0;
-                margin: 2px;
-                float: left;
-                cursor: pointer;
-            }
-
-            #delete-button {
-                margin-top: 5px;
-            }
-			
-			#map {
-				height: 400px;
-				width: 400px;
-			}
-        </style>
-        <script type="text/javascript">
             var gmapsLat;
             var gmapsLng;
             var drawingManager;
@@ -100,15 +53,4 @@
                 google.maps.event.addDomListener(document.getElementById('delete-button'), 'click', deleteSelectedShape);
             }
             google.maps.event.addDomListener(window, 'load', initialize);
-        </script>
-    </head>
-    <body>
-        <div id="panel">
-            <div id="color-palette"></div>
-            <div>
-                <button id="delete-button">Delete Selected Shape</button>
-            </div>
-        </div>
-        <div id="map"></div>
-    </body>
-</html>
+

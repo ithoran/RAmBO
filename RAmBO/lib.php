@@ -142,10 +142,10 @@ function vrati_sve_objave($f_izgubljeno) {
             while ($red = $rezultat->fetch_assoc()) {
                 
                 if($f_izgubljeno){
-                $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $red['USERNAME']));
+                $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $red['OPIS'], $red['USERNAME'], $red['SLIKA'], $red['LAT'], $red['LNG']));
                 }
                 else{    
-                $niz->dodaj(new Nadjeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['USERNAME']));    
+                $niz->dodaj(new Nadjeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['USERNAME'], $red['OPIS'], $red['SLIKA'], $red['LAT'], $red['LNG']));    
                 }
             }
             // zatvaranje objekta koji čuva rezultat
@@ -185,10 +185,10 @@ function vrati_n_objava($broj, $f_izgubljeno) {
             while ($red = $rezultat->fetch_assoc()) {
                 
                 if($f_izgubljeno){
-                $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $red['USERNAME']));
+                $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $red['OPIS'], $red['USERNAME'], $red['SLIKA'], $red['LAT'], $red['LNG']));
                 }
                 else{
-                $niz->dodaj(new Nadjeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['USERNAME']));    
+                $niz->dodaj(new Nadjeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['USERNAME'], $red['OPIS'], $red['SLIKA'], $red['LAT'], $red['LNG']));    
                 }
 
             }
@@ -222,8 +222,8 @@ function dodaj_izgubljeno(Izgubljeno $izgubljeno) {
                 $korisnik_id = $red['ID'];
             }
             
-         $rezultat = $konekcija->query("INSERT INTO objava (NAZIV, TIP,  MESTO, DATUM, DATUM_OBJAVE, NAGRADA, FIZGUBLJENO, KORISNIK_ID) VALUES ('$izgubljeno->naziv', '$izgubljeno->tip', '$izgubljeno->mesto', "
-                 . " '$izgubljeno->datum' , NOW(), '$izgubljeno->nagrada', 1, $korisnik_id)");
+         $rezultat = $konekcija->query("INSERT INTO objava (NAZIV, TIP,  MESTO, DATUM, DATUM_OBJAVE, NAGRADA, OPIS, FIZGUBLJENO, KORISNIK_ID, SLIKA, LAT, LNG) VALUES ('$izgubljeno->naziv', '$izgubljeno->tip', '$izgubljeno->mesto', "
+                 . " '$izgubljeno->datum' , NOW(), '$izgubljeno->nagrada', '$izgubljeno->opis', 1, $korisnik_id, '$izgubljeno->slika', '$izgubljeno->lat', '$izgubljeno->lng')");
 
         if ($rezultat) {
 
@@ -254,8 +254,8 @@ function dodaj_nadjeno(Nadjeno $nadjeno) {
                 $korisnik_id = $red['ID'];
             }
             
-         $rezultat = $konekcija->query("INSERT INTO objava (NAZIV, TIP,  MESTO, DATUM, DATUM_OBJAVE, FNADJENO, KORISNIK_ID) VALUES ('$nadjeno->naziv', '$nadjeno->tip', '$nadjeno->mesto', "
-                 . " '$nadjeno->datum' , NOW(), 1, $korisnik_id)");
+         $rezultat = $konekcija->query("INSERT INTO objava (NAZIV, TIP,  MESTO, DATUM, DATUM_OBJAVE, OPIS, FNADJENO, KORISNIK_ID, SLIKA, LAT, LNG) VALUES ('$nadjeno->naziv', '$nadjeno->tip', '$nadjeno->mesto', "
+                 . " '$nadjeno->datum' , NOW(), '$nadjeno->opis', 1, $korisnik_id, '$nadjeno->slika', '$nadjeno->lat', '$nadjeno->lng')");
 
         if ($rezultat) {
 
@@ -347,10 +347,10 @@ function vrati_objavu($naziv, $korisnik, $f_izgubljeno) {
         if ($rezultat) {   
             if ($red = $rezultat->fetch_assoc()) {
                 if($f_izgubljeno){
-                $to_return = new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $korisnik);
+                $to_return = new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $red['OPIS'], $korisnik, $red['SLIKA'], $red['LAT'], $red['LNG']);
                 }
                 else{
-                $to_return = new Nadjeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['USERNAME']);    
+                $to_return = new Nadjeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['USERNAME'], $red['OPIS'], $red['SLIKA'], $red['LAT'], $red['LNG']);    
                 }
             }
             // zatvaranje objekta koji čuva rezultat
@@ -400,10 +400,10 @@ function vrati_sve_objave_filter($naziv, $tip, $lokacija, $datum_od, $f_izgublje
                     $korisnik = $red2['USERNAME'];
                 }
                 if($f_izgubljeno){
-                $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $korisnik));
+                $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $red['OPIS'], $korisnik), $red['SLIKA'], $red['LAT'], $red['LNG']);
                 }
                 else{
-                $niz->dodaj(new Nadjeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $korisnik));    
+                $niz->dodaj(new Nadjeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $korisnik), $red['OPIS'], $red['SLIKA'], $red['LAT'], $red['LNG']);    
                 }
             }
             // zatvaranje objekta koji čuva rezultat
@@ -560,10 +560,10 @@ function vrati_sve_objave_korisnik($korisnik, $f_izgubljeno) {
             while ($red = $rezultat->fetch_assoc()) {
 
                 if($f_izgubljeno){
-                $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $red['USERNAME']));
+                $niz->dodaj(new Izgubljeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['NAGRADA'], $red['OPIS'], $red['USERNAME'], $red['SLIKA'], $red['LAT'], $red['LNG']));
                 }
                 else{    
-                $niz->dodaj(new Nadjeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['USERNAME']));    
+                $niz->dodaj(new Nadjeno($red['NAZIV'], $red['TIP'], $red['MESTO'], $red['DATUM'], $red['USERNAME'], $red['OPIS'], $red['SLIKA'], $red['LAT'], $red['LNG']));    
                 }
             }
             // zatvaranje objekta koji čuva rezultat

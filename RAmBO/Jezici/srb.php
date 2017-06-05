@@ -65,6 +65,8 @@ $L_NADREP='Prijavi nađenu stvar';
 $L_IZGIZM='Izmeni informacije o izgubljenoj stvari';
 $L_IZGREP='Prijavi izgubljenu stvar';
 $L_NAGUNOS='Nagrada (nije obavezno):';
+$L_IZABERISLIKU='Izaberite sliku za upload:';
+$L_OPIS='Opis';
 
 //elementi
 

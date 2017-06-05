@@ -46,14 +46,60 @@ else{
    else{
    if(isset($_POST['dodaj_hdn']) && isset($_POST['tip'])) {
       
+                       $target_dir = "uploads/";
+                $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+                $uploadOk = 1;
+                $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+                // Check if image file is a actual image or fake image
+                
+                    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+                    if($check !== false) {
+                        echo "File is an image - " . $check["mime"] . ".";
+                        $uploadOk = 1;
+                    } else {
+                        echo "File is not an image.";
+                        $uploadOk = 0;
+                    }
+                
+                // Check if file already exists
+                if (file_exists($target_file)) {
+                    echo "Sorry, file already exists.";
+                    $uploadOk = 0;
+                }
+                // Check file size
+                if ($_FILES["fileToUpload"]["size"] > 5000000) {
+                    echo "Sorry, your file is too large.";
+                    $uploadOk = 0;
+                }
+                // Allow certain file formats
+                if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                && $imageFileType != "gif" ) {
+                    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                    $uploadOk = 0;
+                }
+                // Check if $uploadOk is set to 0 by an error
+                if ($uploadOk == 0) {
+                    echo "Sorry, your file was not uploaded.";
+                // if everything is ok, try to upload file
+                } else {
+                    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+                    } else {
+                        echo "Sorry, there was an error uploading your file.";
+                    }
+                }
+       
+       
       $naziv = $_POST['naziv'];
       $tip = $_POST['tip']; 
       $lokacija = $_POST['lokacija'];
       $datum = $_POST['datum'];
       $korisnik = $_SESSION['login_user'];
+      $opis = $_POST['opis'];
+      $slika = basename( $_FILES["fileToUpload"]["name"]);
       
       if ($naziv != "" && $tip != NULL && $lokacija != "" && $datum != NULL){
-        $nadjeno = new Nadjeno($naziv, $tip, $lokacija, $datum, $korisnik);
+        $nadjeno = new Nadjeno($naziv, $tip, $lokacija, $datum, $korisnik, $opis, $slika, 0, 0);
         dodaj_nadjeno($nadjeno);
         header("location: index.php?lang=$lang");
       }else {
@@ -67,8 +113,8 @@ else{
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1">
-    <link rel="stylesheet" href="css/style_forme.css?version=2">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=77">
+    <link rel="stylesheet" href="css/style_forme.css?version=445">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
 </head>
@@ -89,9 +135,11 @@ else{
     
     <div id="main"> 
         <div style="height:50px; background-color: transparent"></div>
+        
+        <?php if(isset($_GET['naziv_izmena'])){ ?>
         <div class="login">
             
-            <?php if(isset($_GET['naziv_izmena'])){ ?>
+            
 		<div class="login-screen">
 			<div class="form-title dodaj_nadjeno_title">
 				<h1><?php echo $L_NADIZM ?></h1>
@@ -136,21 +184,28 @@ else{
                    </div>
                     </form>
 		</div>
+        </div>
              <?php } else { ?>
-            <div class="login-screen">
+        <div class="login-dodaj">
+            <div class="login-screen-dodaj">
 			<div class="form-title dodaj_nadjeno_title">
 				<h1><?php echo $L_NADREP ?></h1>
 			</div>
-                    <form action="" method="post">
+                    <form action="" method="post" enctype="multipart/form-data">
 			<div class="login-form">
+                            
+                            
+                            <div class="form_left">
+                                
+                                
                                 <input type="hidden" name="dodaj_hdn">
                             
-                                <div class="form_label"><?php echo $L_NADNAM ?></div>
+                                <div class="form_label_dodaj"><?php echo $L_NADNAM ?></div>
                                 <div class="control-group">
                                 <input type="text" class="login-field" name="naziv" value="">
 				</div>
                                 
-                                <div class="form_label"><?php echo $L_TIP ?>:</div>
+                                <div class="form_label_dodaj"><?php echo $L_TIP ?>:</div>
 				<div class="control-group">
 				<select class="select_forma" name="tip" size="1">
                                     <option value=""></option>
@@ -161,12 +216,15 @@ else{
                                 </select>
 				</div>
                                 
-                                <div class="form_label"><?php echo $L_LOK ?>:</div>
+                            </div>
+                            <div class="form_right">
+                                
+                                <div class="form_label_dodaj"><?php echo $L_LOK ?></div>
                                 <div class="control-group">
                                     <input type="text" class="login-field" name="lokacija" value="">
 				</div>
                                 
-                                <div class="form_label"><?php echo $L_DATUM ?></div>
+                                <div class="form_label_dodaj"><?php echo $L_DATUM ?></div>
                                 <div class="control-group">
                                      <input id="date" name="datum"  data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="text"  class="login-field" value="<?php echo date('Y-m-d'); ?>"> 
                                     <script>
@@ -176,14 +234,29 @@ else{
                                         });   
                                     </script>
 				</div>
+                            <div class="form_label_dodaj"><?php echo $L_IZABERISLIKU ?></div>
+                                <input type="file" class="login-field" name="fileToUpload" id="fileToUpload">
+                                <input type="hidden" name="upload_image>">
+                            
+                            </div>
+                            
+                            
                                 
-           
+                                <div class='clear'></div>
+                            <div class="form_label_dodaj"><?php echo $L_OPIS ?></div>
+                            <div class="opis_txtbox">
+                    
+                            <textarea class="opis_txt" wrap="soft" name="opis" maxlength="150"></textarea>
+                    
+                            </div>
                             <input type="submit" class="btn" value='<?php echo $L_CNF ?>' name="dodajNadjeno">
-                   </div>
+                  
+                        </div>
                     </form>
 		</div>
+            </div>
              <?php } ?>
-	</div>
+	
     </div>   
     
     
