@@ -652,3 +652,125 @@ function proveri_tip_objave($username, $imeObjave) {
         }
     }
 }
+
+function vrati_sve_prijave() {
+
+    $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
+
+    $konekcija->set_charset('utf8');
+    if ($konekcija->connect_errno) {
+
+        print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
+    } else {
+
+        $rezultat = $konekcija->query("SELECT * FROM prijava P");
+        if ($rezultat) {
+            $niz = new listaPrijava();
+            
+            while ($red = $rezultat->fetch_assoc()) {
+                $niz->dodaj(new Prijava($red['IDP'], $red['IDR'], $red['IDO'], $red['TEKST'], $red['ID']));
+            }
+            // zatvaranje objekta koji čuva rezultat
+            $rezultat->close();
+            // zatvaranje konekcije
+            $konekcija->close();
+            return $niz;
+        } else if ($konekcija->errno) {
+            // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
+            print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");
+        } else {
+            // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
+            print ("Nepoznata greška pri izvrsenju upita");
+        }
+    }
+}
+
+function vrati_ime_korisnika($id) {
+
+    $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
+
+    $konekcija->set_charset('utf8');
+    if ($konekcija->connect_errno) {
+
+        print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
+    } else {
+
+        $rezultat = $konekcija->query("SELECT * FROM korisnik WHERE ID = '$id' ");
+        if ($rezultat) {   
+            if ($red = $rezultat->fetch_assoc()) {
+                
+            $korisnik = red['USERNAME'];
+            }
+            // zatvaranje objekta koji čuva rezultat
+            $rezultat->close();
+            // zatvaranje konekcije
+            $konekcija->close();
+            return $korisnik;
+        } else if ($konekcija->errno) {
+            // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
+            print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");
+        } else {
+            // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
+            print ("Nepoznata greška pri izvrsenju upita");
+        }
+    }
+}
+
+function vrati_naziv_objave($id) {
+    
+    $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
+
+    $konekcija->set_charset('utf8');
+    if ($konekcija->connect_errno) {
+
+        print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
+    } else {
+
+        $rezultat = $konekcija->query("SELECT * FROM objava WHERE ID = '$id' ");
+        if ($rezultat) {   
+            if ($red = $rezultat->fetch_assoc()) {
+                
+            $korisnik = red['NAZIV'];
+            }
+            // zatvaranje objekta koji čuva rezultat
+            $rezultat->close();
+            // zatvaranje konekcije
+            $konekcija->close();
+            return $korisnik;
+        } else if ($konekcija->errno) {
+            // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
+            print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");
+        } else {
+            // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
+            print ("Nepoznata greška pri izvrsenju upita");
+        }
+    }
+}
+
+function obrisi_prijavu($id) {
+    
+    $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
+    
+    $konekcija->set_charset('utf8');
+    if ($konekcija->connect_errno) {
+
+        print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
+    } else {
+
+        $tekst_upita = "DELETE FROM prijava WHERE ID = '$id'";
+        $rezultat = $konekcija->query($tekst_upita);
+        
+        if ($rezultat) {
+
+            $konekcija->close();
+        }
+        else{
+            if ($konekcija->errno) {
+                print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");
+            } else {
+                print ("Nepoznata greška pri izvrsenju upita");
+            }
+        }
+    }
+}
+
