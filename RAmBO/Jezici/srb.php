@@ -35,7 +35,7 @@ $L_DOK='Dokument';
 $L_ZIV='Životinja';
 $L_ELU='Elektronski uređaj';
 $L_OST='Ostalo';
-$L_PRETRAZI='Pretrazi';
+$L_PRETRAZI='Pretraži';
 $L_DATOD='Datum od:';   //DATUM OD??????
 $L_MESTO='Mesto:';
 $L_DATUM='Datum:';
@@ -78,15 +78,9 @@ $L_LOGOUT='Odjavi se';
 $L_RAZLOGP='Razlog prijave (opciono)';
 $L_PRIJAVI='Prijavi';
 
-//sve_prijave.php
-
-$L_SVEPRIJAVE='Sve prijave';
-$L_PRIJAVILAC='Prijavilac';
-$L_PRIJAVLJENI='Prijavljeni';
-$L_OBJAVA='Objava';
-$L_RAZLOGTEKST='Razlog prijave';
-$L_DELPRIJAVA='Obrisi prijavu';
-$L_DELPRIJAVILAC='Obrisi prijavioca';
-$L_DELPRIJAVLJENI='Obrisi prijavljenog';
+//poruka.php
+$L_PRIM='Primalac:';
+$L_POSL='Pošaljilac:';
+$L_VREME='Vreme:';
 
 ?>

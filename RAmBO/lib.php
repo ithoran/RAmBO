@@ -860,6 +860,38 @@ function vrati_sve_poslate_poruke($korisnik_ime) {
     }
 }
 
+function vrati_poruku($id_poruke) {
+
+    $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
+
+    $konekcija->set_charset('utf8');
+    if ($konekcija->connect_errno) {
+
+        print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
+    } else {
+
+        $rezultat = $konekcija->query("SELECT * FROM poruka WHERE ID = '$id_poruke' ");
+        if ($rezultat) {
+            if ($red = $rezultat->fetch_assoc()) {
+
+                $poruka = new Poruka($red['ID'], $red['CONTENT'], $red['VREME'], $red['READ'], $red['OBJAVA_ID'], $red['SENDER_ID'], $red['RECEIVER_ID']);
+            }
+            // zatvaranje objekta koji čuva rezultat
+            $rezultat->close();
+            // zatvaranje konekcije
+            $konekcija->close();
+            return $poruka;
+        } else if ($konekcija->errno) {
+            // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
+            print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");
+        } else {
+            // u slucaju greške pri izvršenju upita odštampati odgovarajucu poruku
+            print ("Nepoznata greška pri izvrsenju upita");
+        }
+    }
+}
+
+
 function obrisi_poruku($id) {
 
     $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
