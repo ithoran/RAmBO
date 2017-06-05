@@ -1,0 +1,18 @@
+INSERT INTO KORISNIK VALUES (NULL,0,1,'mirko','mirko','mirko@gmail.com','Andorra');
+INSERT INTO KORISNIK VALUES (NULL,1,1,'admin','admin','admin@gmail.com','Serbia');
+INSERT INTO KORISNIK VALUES (NULL,0,1,'perica','perica','perica@gmail.com','Italy'); 
+
+INSERT INTO objava VALUES (NULL,'Prsten','ostalo','2017-05-03',NOW(),'Nis',1,0,'Izgubljen ispred zgrade','100e','U toku',NULL,NULL,NULL,100001);
+INSERT INTO objava VALUES (NULL,'Macka','zivotinja','2017-05-14',NOW(),'Nis',1,0,'Izgubio sam moju milu macu kad sam se igrao u parku','50e','U toku',NULL,NULL,NULL,100001); 
+INSERT INTO objava VALUES (NULL,'Mobilni K510','uredjaj','2017-03-24',NOW(),'Nis',1,0,'Nov, zaboravio ga u skoli','10e','U toku',NULL,NULL,NULL,100001); 
+INSERT INTO objava VALUES (NULL,'Sat','ostalo','2017-06-01',NOW(),'Nis',1,0,'Nestao mi je u birou za nezaposlene','300 din','U toku',NULL,NULL,NULL,100003); 
+INSERT INTO objava VALUES (NULL,'Licna Karta','dokument','2017-04-03',NOW(),'Nis',1,0,'Ispao mi u opstini, ime:Stepa Stepanovic',NULL,'U toku',NULL,NULL,NULL,100003); 
+INSERT INTO objava VALUES (NULL,'Zec','zivotinja','2017-05-25',NOW(),'Nis',1,0,'Istrcao na ulicu, ne znam gde je nestao','Moje beskrajne zahvale','U toku',NULL,NULL,NULL,100003); 
+
+
+INSERT INTO objava VALUES (NULL,'Kljucevi','ostalo','2017-06-04',NOW(),'Nis',0,1,'Naso sam ispred kola u Paliluli',NULL,'U toku',NULL,NULL,NULL,100001);
+INSERT INTO objava VALUES (NULL,'Papiga','zivotinja','2017-06-03',NOW(),'Nis',0,1,'Sleteo mi na prozor, pizda mu materina',NULL,'U toku',NULL,NULL,NULL,100001); 
+INSERT INTO objava VALUES (NULL,'Rolex','uredjaj','2017-06-02',NOW(),'Nis',0,1,'Naso sam u sali za fizicko Ratko Vukicevic',NULL,'U toku',NULL,NULL,NULL,100001); 
+INSERT INTO objava VALUES (NULL,'Ogrlica','ostalo','2016-03-01',NOW(),'Nis',0,1,'ispao mi na nisavskom mostu',NULL,'U toku',NULL,NULL,NULL,100003); 
+INSERT INTO objava VALUES (NULL,'Pasos','dokument','2017-06-01',NOW(),'Nis',0,1,'Zadnji put vidjen u durlanu, moje ime je Nikola Grbic',NULL,'U toku',NULL,NULL,NULL,100003); 
+INSERT INTO objava VALUES (NULL,'Kornjaca','zivotinja','2017-05-31',NOW(),'Nis',0,1,'Nema je od nocas, nije mogla daleko da ode',NULL,'U toku',NULL,NULL,NULL,100003);   
