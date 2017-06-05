@@ -95,7 +95,7 @@ $L_POSL='Pošaljilac:';
 $L_VREME='Vreme:';
 $L_SADRZAJ='Unesite sadržaj poruke:';
 $L_POSALJI='Pošalji';
-$L_POSAUTORU='POšaljite poruku autoru';
+$L_POSAUTORU='Pošaljite poruku autoru';
 
 
 ?>
