@@ -44,7 +44,7 @@ if(isset($_POST['filter_submit'])){
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="css/style_main.css?version=54">
-    <link rel="stylesheet" href="css/style_forme.css?version=6">
+    <link rel="stylesheet" href="css/style_forme.css?version=5">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
 </head>
@@ -105,6 +105,15 @@ if(isset($_POST['filter_submit'])){
             <?php foreach($lista_nadj->lista as $nadjeno){?>
              <a href="nadjena_stvar.php?naziv=<?php echo $nadjeno->naziv ?>&korisnik=<?php echo $nadjeno->korisnik ?>&lang=<?php echo $lang?>">
             <div class="stvar_u_listi">
+                 <div class="slika_objave_wrapper_lista">
+                                <div class="slika_objave_lista">
+                <?php if ($nadjeno->slika == "") { ?>
+                                        <img src="images/placeholder.jpg">
+                <?php } else { ?>
+                                        <img src="uploads/<?php echo $nadjeno->slika ?>">
+                                    <?php } ?>
+                                </div>
+                            </div>
                 <div class="label_stvar_u_listi label_stvar_u_listi_naziv"> <?php print "$nadjeno->naziv" ?></div>
                 <div class="label_stvar_u_listi"><?php echo $L_LOK ?> <?php print "$nadjeno->mesto" ?></div>
                 <div class="label_stvar_u_listi"><?php echo $L_DATUM ?> <?php print "$nadjeno->datum" ?></div>            

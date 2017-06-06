@@ -412,9 +412,10 @@ footer {
 .left_filter_div{
     padding: 50px;
     float:left;
-    height: 100%;
+    max-height: 100%;
     width: 300px;
     background-color: #d8d8d8;
+
 
 }
 
@@ -427,11 +428,11 @@ footer {
 
     color: black;
     font-family: "verdana";
-    padding: 20px 20px;
+    padding: 5px;
     margin-left: 50px;
     margin-top: 20px;
     min-width: 600px;
-    height: 30px;
+    height: 80px;
     background-color: #d8d8d8;
 
 }
@@ -440,11 +441,32 @@ footer {
     background-color: #a5a5a5;
 }
 
+.slika_objave_wrapper_lista{
+    width:100px;
+    float:left;
+}
 
+.slika_objave_lista{
+    height: 80px;
+    width: 80px;
+    display: table-cell; 
+    vertical-align: middle; 
+    text-align: center;
+    background-color: #858687;
+    
+}
+.slika_objave_lista img{
+    max-height: 100%;
+    max-width: 100%;
+
+
+}
 
 .label_stvar_u_listi{
     display: inline-block;
     margin-right: 50px;
+    margin-top: 25px;
+    
 
 }
 

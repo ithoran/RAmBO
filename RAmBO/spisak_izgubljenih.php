@@ -43,8 +43,8 @@ if(isset($_POST['filter_submit'])){
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=54">
-    <link rel="stylesheet" href="css/style_forme.css?version=6">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=884">
+    <link rel="stylesheet" href="css/style_forme.css?version=585">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
 </head>
@@ -100,12 +100,21 @@ if(isset($_POST['filter_submit'])){
             </form>
         </div>
 
-        
+      
         
         <div class="content-list">
             <?php foreach($lista_izg->lista as $izgubljeno){?>
              <a href="izgubljena_stvar.php?naziv=<?php echo $izgubljeno->naziv ?>&korisnik=<?php echo $izgubljeno->korisnik ?>&lang=<?php echo $lang?>">
             <div class="stvar_u_listi">
+                <div class="slika_objave_wrapper_lista">
+                                <div class="slika_objave_lista">
+    <?php if ($izgubljeno->slika == "") { ?>
+                                        <img src="images/placeholder.jpg">
+    <?php } else { ?>
+                                        <img src="uploads/<?php echo $izgubljeno->slika ?>">
+                                    <?php } ?>
+                                </div>
+                            </div>
                 <div class="label_stvar_u_listi label_stvar_u_listi_naziv"> <?php print "$izgubljeno->naziv" ?></div>
                 <div class="label_stvar_u_listi"><?php echo $L_LOK ?> <?php print "$izgubljeno->mesto" ?></div>
                 <div class="label_stvar_u_listi"><?php echo $L_DATUM ?> <?php print "$izgubljeno->datum" ?></div>            
@@ -113,9 +122,8 @@ if(isset($_POST['filter_submit'])){
              </a>
             <?php } ?>
         </div>
-        <div class='clear'></div>
     </div>   
-    
+      <div class='clear'></div>
     
     <footer>
         RAmBO © 2017 | All rights reserved.
