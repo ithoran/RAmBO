@@ -25,7 +25,7 @@ CREATE TABLE `objava` (
  `FNADJENO` tinyint(1) NOT NULL DEFAULT '0',
  `OPIS` text DEFAULT NULL,
  `NAGRADA` varchar(30) DEFAULT NULL,
- `STANJE` enum('Uspesno','U toku','Otkazano') DEFAULT NULL,
+ `STANJE` enum('Uspesno','U toku','Otkazano') DEFAULT 'U toku',
  `SLIKA` varchar(100) DEFAULT NULL,
  `LAT` double DEFAULT NULL,
  `LNG` double DEFAULT NULL,
