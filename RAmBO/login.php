@@ -39,8 +39,8 @@ else{
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=15">
-    <link rel="stylesheet" href="css/style_forme.css?version=25">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=159">
+    <link rel="stylesheet" href="css/style_forme.css?version=29">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
 </head>
@@ -79,7 +79,7 @@ else{
 
 				</div>
                             <a href="register.php?lang=$lang">
-                                <div class="error_message blue">
+                                <div class="nemate_nalog">
                                     <?php echo $L_NEMATENALOG ?>
                                 </div>
                             </a>
