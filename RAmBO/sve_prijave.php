@@ -61,7 +61,7 @@ $lista_prijava = vrati_sve_prijave();
         <div class="clanovi_wrapper">
 
             <div class="table-title">
-                <h3><?php echo $L_MYOBJ ?></h3>
+                <h3><?php echo $L_LISTAPRIJAVA ?></h3>
                 </div>
                 <table class="table table-fill">
                 <thead>
@@ -80,11 +80,11 @@ $lista_prijava = vrati_sve_prijave();
                 <tr class="tr">
                     <td class="td text-left"><?php echo vrati_ime_korisnika($prijava->idP) ?></td>
                 <td class="td text-left"><?php echo vrati_naziv_objave($prijava->idO) ?></td>
-                <td class="td text-left"><?php echo vrati_ime_korisnika($prijava->idP) ?></td>
+                <td class="td text-left"><?php echo vrati_ime_korisnika($prijava->idR) ?></td>
                 <td class="td text-left"><?php echo "$prijava->tekst" ?></td>
                 <td class="td text-left"><a href="sve_prijave.php?prijava_del=<?php print "$prijava->id"?>&lang=<?php echo $lang?>"><span style="color:red;"> <?php echo $L_DELPRIJAVA ?></span></a></td>
-                <td class="td text-left"><a href="sve_prijave.php?user_del=<?php echo vrati_ime_korisnika($prijava->idR) ?>&lang=<?php echo $lang?>"><span style="color: green;"> <?php echo $L_DELPRIJAVLJENI ?></span></a></td>
-                <td class="td text-left"><a href="sve_prijave.php?user_del=<?php echo vrati_ime_korisnika($prijava->idP) ?>&lang=<?php echo $lang?>"><span style="color: green;"> <?php echo $L_DELPRIJAVILAC ?></span></a></td>
+                <td class="td text-left"><a href="sve_prijave.php?user_del=<?php echo vrati_ime_korisnika($prijava->idR) ?>&lang=<?php echo $lang?>"><span style="color: red;"> <?php echo $L_DELPRIJAVLJENI ?></span></a></td>
+                <td class="td text-left"><a href="sve_prijave.php?user_del=<?php echo vrati_ime_korisnika($prijava->idP) ?>&lang=<?php echo $lang?>"><span style="color: red;"> <?php echo $L_DELPRIJAVILAC ?></span></a></td>
                 </tr>
 <?php } ?>
                 

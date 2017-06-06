@@ -39,8 +39,8 @@ else{
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1">
-    <link rel="stylesheet" href="css/style_forme.css?version=2">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=15">
+    <link rel="stylesheet" href="css/style_forme.css?version=25">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
 </head>
@@ -78,6 +78,11 @@ else{
 				<input type="password" class="login-field" name="password" value="" placeholder="<?php echo $L_PASS ?>">
 
 				</div>
+                            <a href="register.php?lang=$lang">
+                                <div class="error_message blue">
+                                    <?php echo $L_NEMATENALOG ?>
+                                </div>
+                            </a>
                             <div class="error_message">
                             <?php print("$error"); ?>
                             </div>

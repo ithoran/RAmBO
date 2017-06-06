@@ -17,7 +17,8 @@
             if (isset($_SESSION['login_user'])){
                include("elementi/logout_btn.php");
                if ($_SESSION['f_admin'] == 1){
-                   include("elementi/lista_clanova_btn.php"); ?>
+                   include("elementi/lista_clanova_btn.php"); 
+                   include("elementi/lista_prijava_btn.php"); ?>
         
                         <div class="header_username">
                             <span style="font-size: 20px;"> Administrator:</span> <?php print($_SESSION['login_user']) ?>
