@@ -775,7 +775,7 @@ function posalji_poruku($sender, $receiver, $imeObjave, $content) {
             $objava_id = $red3['ID'];
         }
 
-        $rezultat = $konekcija->query("INSERT INTO poruka (CONTENT,OBJAVA_ID,SENDER_ID,RECEIVER_ID,VREME,READ) VALUES ('$content','$objava_id','$sender_id','$receiver_id',NOW(),0) ");
+        $rezultat = $konekcija->query("INSERT INTO poruka (`CONTENT`,OBJAVA_ID,SENDER_ID,RECEIVER_ID,VREME,`READ`) VALUES ('$content','$objava_id','$sender_id','$receiver_id',NOW(),0) ");
 
         if ($rezultat) {
 
@@ -931,7 +931,7 @@ function proveri_poruke($korisnik_ime) {
 
         $kor_id = $konekcija->query("SELECT ID FROM korisnik K where K.USERNAME='$korisnik_ime'");
 
-        $broj = $konekcija->query("SELECT COUNT(*) FROM poruka P WHERE P.RECEIVER_ID='$kor_id' AND P.READ=0 ");
+        $broj = $konekcija->query("SELECT COUNT(*) FROM poruka P WHERE P.RECEIVER_ID='$kor_id' AND P.`READ`=0 ");
 
         return $broj;
 
@@ -958,7 +958,7 @@ function oznaci_kao_procitano($korisnik_ime) {
 
 
         $rezultat = $konekcija->query("UPDATE poruka P "
-                . "SET READ=1"
+                . "SET `READ`=1"
                 . "where P.RECEIVER_ID='$kor_id'");
 
         if ($rezultat) {
