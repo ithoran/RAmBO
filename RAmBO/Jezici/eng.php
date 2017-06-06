@@ -97,5 +97,9 @@ $L_VREME='Time:';
 $L_SADRZAJ='Message content:';
 $L_POSALJI='Send';
 $L_POSAUTORU='Send message to author';
+$L_OBRISIPOR='Delete message';
+$L_PRIMPOR='Received messages';
+$L_POSLPOR='Sent messages';
+$L_ODGOVORI='Reply';
 
 ?>

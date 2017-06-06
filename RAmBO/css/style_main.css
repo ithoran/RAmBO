@@ -31,8 +31,25 @@ header{
     float:right;
 }
 
+.header_right_broj{
+    float:right;
+    font-size: 20px;
+    margin-top: 32px;
+    margin-right: 5px;
+}
+
 .message_icon{
     background-image: url("../images/poruka.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-top: 29px;
+    margin-right: 40px;
+    height: 28px;
+    width: 40px;
+}
+
+.new_message_icon{
+     background-image: url("../images/nova_poruka.png");
     background-size: contain;
     background-repeat: no-repeat;
     margin-top: 29px;
@@ -696,7 +713,7 @@ div.table-title {
   background:#848484;
   color:#FFFFFF;
   border-top: 1px solid #848484;
-  border-bottom: 1px solid #848484;
+/*  border-bottom: 1px solid #848484;*/
 }
  
 .tr:first-child {
@@ -825,4 +842,51 @@ div.table-title {
 
 .opis_txtbox{
     
+}
+
+.prikaz_poruke_wrapper{
+   
+    margin: 100px auto;
+    width: 80%;
+}
+
+.prikaz_poruke_sadrzaj{
+    position:relative;
+ overflow: auto;
+    width:80%;
+    height: 400px;
+    background: #d8d8d8;
+    margin: 0 auto;
+
+}
+
+.prikaz_poruke_sadrzaj_inner{
+    position: absolute;
+    right: 15px;
+    left: 15px;
+    margin: 10px auto;
+ height: 320px;
+    background: white;
+    padding: 10px 10px 0 10px;
+}
+.btn_submit_reply {
+    border: 2px solid transparent;
+    background: #d61919;
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 25px;
+    border-radius: 3px;
+    transition: 0.25s;
+    display: block;
+    width: 100px;
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+}
+
+.btn_submit_reply:hover {
+    background-color: #a01111
 }

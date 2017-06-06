@@ -25,10 +25,27 @@
         <?php     
                }
                else{
-        ?>
         
+                   $count = proveri_poruke($_SESSION['login_user']);           
+        ?>
+       
+        <?php if($count > 0){?>        
+    
+    <a href="inbox.php?lang=<?php echo $lang?>">
+        <div class="header_right new_message_icon">
+        </div>
+        </a>
+    <div class="header_right_broj">
+        <?php echo $count; ?>
+        </div>    
+        <?php } else{?>
+    <a href="inbox.php?lang=<?php echo $lang?>">
         <div class="header_right message_icon">
         </div>
+        </a>
+        <?php }?>
+        
+        
     
         <div class="header_username">
             <a href="profil_clana.php?lang=<?php echo $lang?>">

@@ -281,7 +281,9 @@ else{
                             <textarea class="opis_txt" wrap="soft" name="opis" maxlength="150"></textarea>
                     
                             </div>
+                            
                             <div id="map"></div>
+                            
                             <input type="submit" class="btn btn_dodaj_izgubljeno" value='<?php echo $L_CNF ?>' name="dodajIzgubljeno">
 			</div>
                     </form>

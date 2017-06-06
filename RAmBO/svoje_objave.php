@@ -37,8 +37,8 @@ $lista_nadjenih = vrati_sve_objave_korisnik($korisnik, 0);
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=44">
-    <link rel="stylesheet" href="css/style_forme.css?version=88">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=74">
+    <link rel="stylesheet" href="css/style_forme.css?version=87">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
 </head>

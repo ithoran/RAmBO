@@ -35,6 +35,7 @@ $lista_prijava = vrati_sve_prijave();
 ?>
 
 
+
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=44">
@@ -78,7 +79,7 @@ $lista_prijava = vrati_sve_prijave();
 <?php foreach ($lista_prijava->lista as $prijava) { ?>
                 <tr class="tr">
                     <td class="td text-left"><?php echo vrati_ime_korisnika($prijava->idP) ?></td>
-                <td class="td text-left"><?php echo vrati_ime_korisnika($prijava->idR) ?></td>
+                <td class="td text-left"><?php echo vrati_naziv_objave($prijava->idO) ?></td>
                 <td class="td text-left"><?php echo vrati_ime_korisnika($prijava->idP) ?></td>
                 <td class="td text-left"><?php echo "$prijava->tekst" ?></td>
                 <td class="td text-left"><a href="sve_prijave.php?prijava_del=<?php print "$prijava->id"?>&lang=<?php echo $lang?>"><span style="color:red;"> <?php echo $L_DELPRIJAVA ?></span></a></td>

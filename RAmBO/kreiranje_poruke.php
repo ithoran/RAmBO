@@ -22,9 +22,16 @@ if (isset($_POST['posalji_hdn']))
     $receiver = $_POST['korisnik'];
     $imeObjave = $_POST['naziv'];
     $sadrzaj = htmlspecialchars($_POST['sadrzaj_text']);
+    echo $sender . $receiver . $imeObjave . $sadrzaj;
     posalji_poruku($sender, $receiver, $imeObjave, $sadrzaj);
     $pom = proveri_tip_objave($_POST['korisnik'], $_POST['naziv']);
-    if ($pom == 1)
+    
+    if(isset($_POST['odgovori'])){
+        header("location: inbox.php?lang=$lang");
+        
+    }
+    
+    else if ($pom == 1)
     {
         header("location: izgubljena_stvar.php?korisnik=$receiver&naziv=$imeObjave&lang=$lang");
     }
@@ -35,6 +42,7 @@ if (isset($_POST['posalji_hdn']))
 }
 
 ?>
+
 
 <html>
 <head>
@@ -79,6 +87,10 @@ if (isset($_POST['posalji_hdn']))
                 
                 <input type="hidden" name="naziv" value="<?php echo htmlspecialchars($_GET['naziv']) ?>">
                 
+                <?php if(isset($_POST['odgovori'])){ ?>
+                <input type="hidden" name="odgovori">
+                <?php }?>
+                
                 <div class="report_txtbox">
                     
                     <textarea class="report_txt" wrap="soft" name="sadrzaj_text" maxlength="150"></textarea>
@@ -98,7 +110,6 @@ if (isset($_POST['posalji_hdn']))
 
 </body>
 </html>
-
 
 
 

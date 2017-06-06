@@ -18,12 +18,21 @@ include_once 'klase/poruka.php';
 session_start();
 
 $id_poruke = $_GET['id_poruke'];
-$korisnik = $_GET['korisnik']; // mozda i nece treba
+//$korisnik = $_GET['korisnik']; // mozda i nece treba
 $por = vrati_poruku($id_poruke);
+
+
 
 $objava= vrati_naziv_objave($por->objava_id);
 $sender= vrati_ime_korisnika($por->sender_id);
 $receiver= vrati_ime_korisnika($por->receiver_id);
+
+if($_SESSION['login_user'] != $sender){
+$primljena = 1;
+}
+else{
+$primljena = 0;
+}
 
 ?>
 
@@ -32,9 +41,9 @@ $receiver= vrati_ime_korisnika($por->receiver_id);
 
 <html>
 <head>
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=drawing&key=AIzaSyB1fcu7wpjL0yYdF2OJqwCs2wFLcasVvMI"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=drawing&key=AIzaSyB1fcu7wpjL0yYdF2OJqwCs2wFLcasVvMI"></script>
     <script type="text/javascript" src="js/google_maps_kreiranje.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=45">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=87">
     <link rel="stylesheet" href="css/style_forme.css?version=3">
     <link rel="stylesheet" href="css/style_googlemaps.css?version=113">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
@@ -55,25 +64,41 @@ $receiver= vrati_ime_korisnika($por->receiver_id);
     
     
     <div id="main"> 
-        <div class="informacije_o_stvari_wrapper">
-            
-           
-            
-            <div class="informacije_o_stvari">
-                <h2><?php print "$objava" ?></h2><hr>
-                <div class="label_informacije_o_izgubljenoj_stvari">  <span class="bold_font"> <?php echo $L_POSL ?></span>   <?php print "$sender" ?></div>
-                <div class="label_informacije_o_izgubljenoj_stvari">  <span class="bold_font"><?php echo $L_PRIM ?></span>   <?php print "$receiver" ?></div><br>
-                <div class="label_informacije_o_izgubljenoj_stvari">  <span class="bold_font"><?php echo Text ?>:</span>   <?php print "$por->content" ?></div><br>
-                <div class="label_informacije_o_izgubljenoj_stvari_opis">  <span class="bold_font"><?php echo $L_VREME ?>:</span>  <br> <?php print "$por->vreme" ?></div><br>
-                
-                <div id="panel">
-                <div id="color-palette"></div>
+        <div class="prikaz_poruke_wrapper">
+        <table class="table table-fill">
+                <thead>
+                <tr class="tr">
+                <?php if($primljena == 1){?>
+                <th class="th text-left"><?php echo $L_POSL ?> <?php print "$sender" ?></span></th>
+                <?php }else{?>
+                <th class="th text-left"><?php echo $L_POSL ?> <?php print "$receiver" ?></span></th>
+                <?php } ?>
+                <th class="th text-left"><?php echo $L_OBJAVA ?>: <?php print "$objava" ?></th>
+                <th class="th text-left"><?php echo $L_VREME ?> <?php print "$por->vreme" ?></th>
+
+
+                </tr>
+                </thead>
+
+        </table>
+            <div class="prikaz_poruke_sadrzaj">
+                <div class="prikaz_poruke_sadrzaj_inner">
+                    <?php print "$por->content" ?>
                 </div>
-               
-                
-           
+                <?php if($primljena == 1){?>
+                <form action="kreiranje_poruke.php?naziv=<?php echo $objava ?>&korisnik=<?php echo $sender ?>&lang=<?php echo $lang?>" method="post">
+                <div class="reply_btnsubmit">
+                    <input type="hidden" name="odgovori" value="odgovori">
+                    <input type="submit" class="btn_submit_reply" name="odgovori_submit" value="<?php echo $L_ODGOVORI ?>">
+                </div>
+                </form>
+                <?php } ?>
+            </div>
+            
             </div>
         </div>
+    </div>
+        
     </div>
          
    

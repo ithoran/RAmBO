@@ -770,7 +770,7 @@ function posalji_poruku($sender, $receiver, $imeObjave, $content) {
             $receiver_id = $red2['ID'];
         }
         $red3 = [];
-        $objava = $konekcija->query("SELECT O.ID AS ID FROM objava O, korisnik K WHERE K.ID = O.KORISNIK_ID AND K.USERNAME = '$receiver' AND O.NAZIV= '$imeObjave' ");
+        $objava = $konekcija->query("SELECT O.ID AS ID FROM objava O, korisnik K WHERE K.ID = O.KORISNIK_ID AND O.NAZIV= '$imeObjave' ");
         if ($red3 = $objava->fetch_assoc()) {
             $objava_id = $red3['ID'];
         }
@@ -800,8 +800,11 @@ function vrati_sve_primljene_poruke($korisnik_ime) {
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
 
-        $kor_id = $konekcija->query("SELECT ID FROM korisnik K where K.USERNAME='$korisnik_ime'");
-
+        $kor_id_res = $konekcija->query("SELECT ID FROM korisnik K where K.USERNAME='$korisnik_ime'");
+        $red1 = [];
+        if ($red1 = $kor_id_res->fetch_assoc()) {
+            $kor_id = $red1['ID'];
+        }
 
         $rezultat = $konekcija->query("SELECT * FROM poruka P where P.RECEIVER_ID='$kor_id'");
         if ($rezultat) {
@@ -835,8 +838,11 @@ function vrati_sve_poslate_poruke($korisnik_ime) {
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
 
-        $kor_id = $konekcija->query("SELECT ID FROM korisnik K where K.USERNAME='$korisnik_ime'");
-
+        $kor_id_res = $konekcija->query("SELECT ID FROM korisnik K where K.USERNAME='$korisnik_ime'");
+        $red1 = [];
+        if ($red1 = $kor_id_res->fetch_assoc()) {
+            $kor_id = $red1['ID'];
+        }
 
         $rezultat = $konekcija->query("SELECT * FROM poruka P where P.SENDER_ID='$kor_id'");
         if ($rezultat) {
@@ -859,6 +865,7 @@ function vrati_sve_poslate_poruke($korisnik_ime) {
         }
     }
 }
+
 
 function vrati_poruku($id_poruke) {
 
@@ -929,10 +936,17 @@ function proveri_poruke($korisnik_ime) {
     } else {
         //ovo se zove na index.php dok je korisnik ulogovan da bi proverio koliko ima poruke
 
-        $kor_id = $konekcija->query("SELECT ID FROM korisnik K where K.USERNAME='$korisnik_ime'");
+        $kor_id_res = $konekcija->query("SELECT ID FROM korisnik K where K.USERNAME='$korisnik_ime'");
+        $red1 = [];
+        if ($red1 = $kor_id_res->fetch_assoc()) {
+            $kor_id = $red1['ID'];
+        }
 
-        $broj = $konekcija->query("SELECT COUNT(*) FROM poruka P WHERE P.RECEIVER_ID='$kor_id' AND P.`READ`=0 ");
-
+        $broj_res = $konekcija->query("SELECT COUNT(*) AS CNT FROM poruka P WHERE P.RECEIVER_ID='$kor_id' AND P.`READ`=0 ");
+        $red2 = [];
+        if ($red2 = $broj_res->fetch_assoc()) {
+            $broj = $red2['CNT'];
+        }
         return $broj;
 
         if ($konekcija->errno) {
@@ -954,12 +968,14 @@ function oznaci_kao_procitano($korisnik_ime) {
     } else {
         //ovo se zove kada korisnik udje u inbox, svim porukama READ udara na keca
 
-        $kor_id = $konekcija->query("SELECT ID FROM korisnik K where K.USERNAME='$korisnik_ime'");
+        $kor_id_res = $konekcija->query("SELECT ID FROM korisnik K where K.USERNAME='$korisnik_ime'");
+        $red1 = [];
+        if ($red1 = $kor_id_res->fetch_assoc()) {
+            $kor_id = $red1['ID'];
+        }
 
 
-        $rezultat = $konekcija->query("UPDATE poruka P "
-                . "SET `READ`=1"
-                . "where P.RECEIVER_ID='$kor_id'");
+        $rezultat = $konekcija->query("UPDATE `poruka` SET `READ`= 1 WHERE RECEIVER_ID = '$kor_id'");  
 
         if ($rezultat) {
 

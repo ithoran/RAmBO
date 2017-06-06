@@ -91,11 +91,15 @@ $L_DELPRIJAVLJENI='Obrisi prijavljenog';
 
 //poruka.php
 $L_PRIM='Primalac:';
-$L_POSL='Pošaljilac:';
+$L_POSL='Pošiljalac:';
 $L_VREME='Vreme:';
 $L_SADRZAJ='Unesite sadržaj poruke:';
 $L_POSALJI='Pošalji';
 $L_POSAUTORU='Pošaljite poruku autoru';
+$L_OBRISIPOR='Obriši poruku';
+$L_PRIMPOR='Primljene poruke';
+$L_POSLPOR='Poslate poruke';
+$L_ODGOVORI='Odgovori';
 
 
 ?>
