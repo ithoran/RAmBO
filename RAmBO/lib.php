@@ -125,7 +125,7 @@ function vrati_sve_objave($f_izgubljeno) {
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
 
-        $rezultat = $konekcija->query("SELECT * FROM objava O, korisnik K WHERE O.KORISNIK_ID = K.ID AND O.FIZGUBLJENO = '$f_izgubljeno' ORDER BY DATUM_OBJAVE DESC");
+        $rezultat = $konekcija->query("SELECT * FROM objava O, korisnik K WHERE O.KORISNIK_ID = K.ID AND O.STANJE = 'U toku' AND O.FIZGUBLJENO = '$f_izgubljeno' ORDER BY DATUM_OBJAVE DESC");
         if ($rezultat) {
             if ($f_izgubljeno) {
                 $niz = new ListaIzgubljenih();
@@ -165,7 +165,7 @@ function vrati_n_objava($broj, $f_izgubljeno) {
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
 
-        $rezultat = $konekcija->query("SELECT * FROM objava O, korisnik K WHERE O.KORISNIK_ID = K.ID AND O.FIZGUBLJENO = '$f_izgubljeno' ORDER BY DATUM_OBJAVE DESC LIMIT $broj");
+        $rezultat = $konekcija->query("SELECT * FROM objava O, korisnik K WHERE O.KORISNIK_ID = K.ID AND O.STANJE = 'U toku' AND O.FIZGUBLJENO = '$f_izgubljeno' ORDER BY DATUM_OBJAVE DESC LIMIT $broj");
         if ($rezultat) {
             if ($f_izgubljeno) {
                 $niz = new ListaIzgubljenih();
@@ -258,7 +258,7 @@ function dodaj_nadjeno(Nadjeno $nadjeno) {
     }
 }
 
-function oznaci_reseno($imeObjave) {
+function oznaci_reseno($imeObjave, $korisnik) {
 
     $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
 
@@ -267,10 +267,10 @@ function oznaci_reseno($imeObjave) {
 
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
-        $red3 = [];
-        $objava = $konekcija->query("SELECT O.ID AS ID FROM objava O WHERE O.NAZIV= '$imeObjave' ");
-        if ($red3 = $objava->fetch_assoc()) {
-            $objava_id = $red3['ID'];
+        $red = [];
+        $rezultat = $konekcija->query("SELECT O.ID AS ID FROM objava O, korisnik K WHERE O.KORISNIK_ID = K.ID AND K.USERNAME = '$korisnik' AND O.NAZIV= '$imeObjave' ");
+        if ($red = $rezultat->fetch_assoc()) {
+            $objava_id = $red['ID'];
         }
 
         $rezultat = $konekcija->query("UPDATE objava SET STANJE='Uspesno' WHERE ID='$objava_id'");
@@ -364,7 +364,7 @@ function vrati_sve_objave_filter($naziv, $tip, $lokacija, $datum_od, $f_izgublje
 
         $rezultat = $konekcija->query("SELECT * "
                 . "FROM objava "
-                . "WHERE NAZIV LIKE '%$naziv%' AND TIP LIKE '%$tip%' AND MESTO LIKE '%$lokacija%' AND FIZGUBLJENO = '$f_izgubljeno'"
+                . "WHERE NAZIV LIKE '%$naziv%' AND TIP LIKE '%$tip%' AND STANJE = 'U toku' AND MESTO LIKE '%$lokacija%' AND FIZGUBLJENO = '$f_izgubljeno'"
                 . "AND DATUM > '$datum_od' "
                 . "ORDER BY DATUM_OBJAVE DESC");
 
@@ -528,7 +528,7 @@ function vrati_sve_objave_korisnik($korisnik, $f_izgubljeno) {
 
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
-        $rezultat = $konekcija->query("SELECT * FROM objava O, korisnik K WHERE O.KORISNIK_ID = K.ID AND O.FIZGUBLJENO = '$f_izgubljeno' AND K.USERNAME = '$korisnik'");
+        $rezultat = $konekcija->query("SELECT * FROM objava O, korisnik K WHERE O.KORISNIK_ID = K.ID AND O.STANJE = 'U toku' AND  O.FIZGUBLJENO = '$f_izgubljeno' AND K.USERNAME = '$korisnik'");
         if ($rezultat) {
             if ($f_izgubljeno) {
                 $niz = new ListaIzgubljenih();
@@ -988,7 +988,7 @@ function oznaci_kao_procitano($korisnik_ime) {
     }
 }
 
-function izbroji_reseno($korisnik_ime) {
+function izbroji_reseno() {
 
     $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
 
@@ -1016,3 +1016,5 @@ function izbroji_reseno($korisnik_ime) {
         }
     }
 }
+
+
