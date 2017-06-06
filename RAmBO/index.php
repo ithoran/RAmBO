@@ -17,11 +17,13 @@ include_once 'klase/listaNadjenih.php';
 session_start();
 $lista_izg = vrati_n_objava(5, 1);
 $lista_nadj = vrati_n_objava(5, 0);
+$broj_resenih = izbroji_reseno();
+
 ?>
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="css/style_main.css?version=57">
+        <link rel="stylesheet" type="text/css" href="css/style_main.css?version=56">
         <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
         <title>RAmBO L&F</title>
     </head>
@@ -55,8 +57,11 @@ if (isset($_SESSION['login_user'])) {
             </div>
         </div>
 
+        
+        
+        
         <div id="row2">
-            <div class="izgubljeni_home_naslov">
+            <div class="izgubljeni_home_naslov orange">
 <?php echo $L_NDI ?>
             </div>
             <div class="stvari_u_listi_home_wrapper"> 
@@ -91,8 +96,12 @@ if (isset($_SESSION['login_user'])) {
         </div>
 
 
+        
+        
+        
+        
         <div id="row3">
-            <div class="izgubljeni_home_naslov">
+            <div class="izgubljeni_home_naslov blue">
 <?php echo $L_NDN ?>
             </div>
             <div class="stvari_u_listi_home_wrapper"> 
@@ -125,8 +134,14 @@ if (isset($_SESSION['login_user'])) {
                 </div>
             </a>
         </div>
+        
+        
+        
         <div id="row4">
 
+            <div class="broj_uspesnih_wrapper">
+                <?php echo $L_BRUSPESNIH . " " . $broj_resenih?>
+            </div>
         </div>
 
 

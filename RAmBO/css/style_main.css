@@ -219,6 +219,7 @@ footer {
     right: 0;
 }
 
+
 .button_lost {
     padding: 16px 32px;
     font-size: 16px;
@@ -301,11 +302,11 @@ footer {
 }
 
 .blue_border{
-    border: 2px solid #3cc2e8;
+    border: 5px outset #3cc2e8;
 }
 
 .orange_border{
-    border: 2px solid #f4511e;
+    border: 4px outset #f4511e;
 }
 
 .blue{
@@ -314,6 +315,14 @@ footer {
 
 .orange{
     color: #f4511e;
+}
+
+.blue_bgr{
+    background-color: #3cc2e8;
+}
+
+.orange_bgr{
+    background-color: #f4511e;
 }
 
 .stvar_u_listi_home:hover{
@@ -371,6 +380,9 @@ footer {
 
 
 
+
+
+
 #row3{
     overflow: auto;
     position: relative;
@@ -401,12 +413,35 @@ footer {
 
 
 
+
+
 #row4{
+    overflow: hidden;
     position: relative;
     height: 300px;
     background-color: #003842;
     opacity: 0.9;
 }
+
+.broj_uspesnih_wrapper{
+    font-family: "verdana";
+    margin: 100px auto;
+    font-size: 50px;
+    color:white;
+    font-weight: bold;
+    text-align: center;
+
+}
+
+
+
+
+
+
+
+
+
+
 
 
 .left_filter_div{
