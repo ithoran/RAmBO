@@ -167,7 +167,7 @@ else{
                             
                                 <div class="form_label"><?php echo $L_NAZ ?></div>
                                 <div class="control-group">
-                                <input type="text" class="login-field" name="naziv" value="<?php print $izgubljeno_za_izmenu->naziv ?>">
+                                <input maxlength="20" type="text" class="login-field" name="naziv" value="<?php print $izgubljeno_za_izmenu->naziv ?>">
 				</div>
                                 
                                 <div class="form_label"><?php echo $L_TIP ?>:</div>
@@ -182,7 +182,7 @@ else{
                                 
                                 <div class="form_label"><?php echo $L_LOK ?></div>
                                 <div class="control-group">
-                                    <input type="text" class="login-field" name="lokacija" value="<?php print $izgubljeno_za_izmenu->mesto ?>">
+                                    <input maxlength="20" type="text" class="login-field" name="lokacija" value="<?php print $izgubljeno_za_izmenu->mesto ?>">
 				</div>
                                 
                                 <div class="form_label"><?php echo $L_DATUM ?></div>
@@ -198,7 +198,7 @@ else{
                                 
                                 <div class="form_label"><?php echo $L_NAGUNOS ?></div>
                                 <div class="control-group">
-                                   <input type="text" class="login-field" name="nagrada" value="<?php print $izgubljeno_za_izmenu->nagrada ?>">
+                                   <input maxlength="20" type="text" class="login-field" name="nagrada" value="<?php print $izgubljeno_za_izmenu->nagrada ?>">
 				</div>
                                 
            
@@ -224,7 +224,7 @@ else{
                             
                                 <div class="form_label_dodaj"><?php echo $L_IZGNAM ?>:</div>
                                 <div class="control-group">
-                                <input type="text" class="login-field" name="naziv" value="">
+                                <input maxlength="20" type="text" class="login-field" name="naziv" value="">
 
 				</div>
                                 
@@ -259,12 +259,12 @@ else{
                
                                   <div class="form_label_dodaj"><?php echo $L_LOK ?></div>
                                 <div class="control-group">
-                                    <input type="text" class="login-field" name="lokacija" value="">
+                                    <input maxlength="20" type="text" class="login-field" name="lokacija" value="">
 				</div>
                                 
                                 <div class="form_label_dodaj"><?php echo $L_NAGUNOS ?></div>
                                 <div class="control-group">
-                                   <input type="text" class="login-field" name="nagrada" value="">
+                                   <input maxlength="20" type="text" class="login-field" name="nagrada" value="">
 				</div>
                                 
                                 <div class="form_label_dodaj"><?php echo $L_IZABERISLIKU ?></div>

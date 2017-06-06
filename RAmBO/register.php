@@ -105,19 +105,19 @@ else{
                             <input type="hidden" name="izmeni_hdn">
                             <div class="form_label"><?php echo $L_UNAM ?>:</div>    
                             <div class="control-group">
-				<input type="text" class="login-field" name="username" value="<?php print $korisnik->username ?>">
+				<input maxlength="20" type="text" class="login-field" name="username" value="<?php print $korisnik->username ?>">
 				</div>
                             <div class="form_label"><?php echo $L_PASS ?>:</div>
 				<div class="control-group">
-				<input type="password" class="login-field" name="password" value="">
+				<input maxlength="30" type="password" class="login-field" name="password" value="">
 				</div>
                             <div class="form_label"><?php echo $L_PASSVER ?>:</div>
                                 <div class="control-group">
-				<input type="password" class="login-field" name="password2" value="">
+				<input maxlength="30" type="password" class="login-field" name="password2" value="">
 				</div>
                             <div class="form_label">E-mail:</div>
                                 <div class="control-group">
-				<input type="text" class="login-field" name="email" value="<?php print $korisnik->email ?>">
+				<input maxlength="30" type="text" class="login-field" name="email" value="<?php print $korisnik->email ?>">
 				</div>
                              <div class="error_message">
                             <?php print("$error"); ?>
@@ -136,19 +136,19 @@ else{
 			<div class="login-form">
                             <input type="hidden" name="register_hdn">
                                 <div class="control-group">
-				<input type="text" class="login-field" name="username" value="" placeholder="<?php echo $L_UNAM ?>">
+				<input maxlength="20" type="text" class="login-field" name="username" value="" placeholder="<?php echo $L_UNAM ?>">
 				</div>
 
 				<div class="control-group">
-				<input type="password" class="login-field" name="password" value="" placeholder="<?php echo $L_PASS ?>">
+				<input maxlength="30" type="password" class="login-field" name="password" value="" placeholder="<?php echo $L_PASS ?>">
 				</div>
                             
                                 <div class="control-group">
-				<input type="password" class="login-field" name="password2" value="" placeholder="<?php echo $L_PASS ?>">
+				<input maxlength="30" type="password" class="login-field" name="password2" value="" placeholder="<?php echo $L_PASS ?>">
 				</div>
                             
                                 <div class="control-group">
-				<input type="text" class="login-field" name="email" value="" placeholder="e-mail">
+				<input maxlength="30" type="text" class="login-field" name="email" value="" placeholder="e-mail">
 				</div>
                                 
                                 <div class="form_label"><?php echo $L_DRZAVA ?>:</div>
