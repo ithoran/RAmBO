@@ -85,9 +85,9 @@ $L_PRIJAVILAC='Prijavilac';
 $L_PRIJAVLJENI='Prijavljeni';
 $L_OBJAVA='Objava';
 $L_RAZLOGTEKST='Razlog prijave';
-$L_DELPRIJAVA='Obrisi prijavu';
-$L_DELPRIJAVILAC='Obrisi prijavioca';
-$L_DELPRIJAVLJENI='Obrisi prijavljenog';
+$L_DELPRIJAVA='Obriši prijavu';
+$L_DELPRIJAVILAC='Obriši prijavioca';
+$L_DELPRIJAVLJENI='Obriši prijavljenog';
 
 //poruka.php
 $L_PRIM='Primalac:';
