@@ -1,6 +1,6 @@
-INSERT INTO KORISNIK VALUES (NULL,0,1,'mirko','mirko','mirko@gmail.com','Andorra');
-INSERT INTO KORISNIK VALUES (NULL,1,0,'admin','admin','admin@gmail.com','Serbia');
-INSERT INTO KORISNIK VALUES (NULL,0,1,'perica','perica','perica@gmail.com','Italy'); 
+INSERT INTO KORISNIK VALUES (NULL,0,1,'mirko','mirko','mirko@gmail.com',1);
+INSERT INTO KORISNIK VALUES (NULL,1,0,'admin','admin','admin@gmail.com',189);
+INSERT INTO KORISNIK VALUES (NULL,0,1,'perica','perica','perica@gmail.com',15); 
 
 INSERT INTO `objava` (`ID`, `NAZIV`, `TIP`, `DATUM`, `DATUM_OBJAVE`, `MESTO`, `FIZGUBLJENO`, `FNADJENO`, `OPIS`, `NAGRADA`, `STANJE`, `SLIKA`, `LAT`, `LNG`, `KORISNIK_ID`) VALUES
 (5000, 'Prsten', 'ostalo', '2017-05-03', '2017-06-05 00:45:47', 'Nis', 1, 0, 'Izgubljen ispred zgrade', '100e', 'U toku', '1.jpg', NULL, NULL, 100001),
