@@ -987,3 +987,32 @@ function oznaci_kao_procitano($korisnik_ime) {
         }
     }
 }
+
+function izbroji_reseno($korisnik_ime) {
+
+    $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
+
+    $konekcija->set_charset('utf8');
+    if ($konekcija->connect_errno) {
+
+        print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
+    } else {
+
+
+        $broj_resenih = $konekcija->query("SELECT COUNT(*) AS CNT FROM objava WHERE STANJE='Uspesno' ");
+        $red = [];
+        if ($red = $broj_resenih->fetch_assoc()) {
+            $broj = $red['CNT'];
+        }
+        return $broj;
+
+
+        $konekcija->close();
+
+        if ($konekcija->errno) {
+            print ("Greška pri izvrsenju upita ($konekcija->errno): $konekcija->error");
+        } else {
+            print ("Nepoznata greška pri izvrsenju upita");
+        }
+    }
+}
