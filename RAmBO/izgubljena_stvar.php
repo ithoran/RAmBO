@@ -43,7 +43,41 @@ switch ($izgubljeno->tip) {
 <html>
 <head>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=drawing&key=AIzaSyB1fcu7wpjL0yYdF2OJqwCs2wFLcasVvMI"></script>
-    <script type="text/javascript" src="js/google_maps_kreiranje.js"></script>
+    <script type="text/javascript">
+            var gmapsLat;
+            var gmapsLng;
+            var drawingManager;
+
+            function initialize () {
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 8,
+                    center: new google.maps.LatLng(document.getElementById('lat').value, document.getElementById('lng').value), // Treba da se ucitaju kordinate i tu postave
+                    mapTypeId: google.maps.MapTypeId.roadmap,
+                    disableDefaultUI: true,
+                    zoomControl: true,
+					maxZoom: 16,
+					minZoom: 8
+                });
+
+                drawingManager = new google.maps.drawing.DrawingManager({
+                    markerOptions: {
+                        draggable: false
+                    },
+                    drawingControlOptions: {
+                    drawingModes: []},
+                    drawingControl: false,
+                    map: map
+                });
+                
+                new google.maps.Marker({
+                    position: new google.maps.LatLng(document.getElementById('lat').value, document.getElementById('lng').value), // i ovde isto
+                    map: map,
+                    title: 'Hello World!'
+                });
+
+            }
+            google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
     <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=555">
     <link rel="stylesheet" href="css/style_forme.css?version=11">
     <link rel="stylesheet" href="css/style_googlemaps.css?version=113">
@@ -65,6 +99,8 @@ switch ($izgubljeno->tip) {
     
     
     <div id="main"> 
+    <input type="hidden" id="lat" name="lat" value="<?php echo $izgubljeno->lat ?>">
+    <input type="hidden" id="lng" name="lng" value="<?php echo $izgubljeno->lng ?>">
         <div class="informacije_o_stvari_wrapper">
             <div class="slika_objave_wrapper">
                  <div class="slika_objave">
@@ -116,6 +152,6 @@ switch ($izgubljeno->tip) {
     <footer>
         RAmBO © 2017 | All rights reserved.
     </footer>
-
+    
 </body>
 </html>
