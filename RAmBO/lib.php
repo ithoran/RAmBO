@@ -67,13 +67,13 @@ function register($username, $password, $email, $drzava) {
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
 
-        $drzava_res = $konekcija->query("SELECT name AS name FROM countries WHERE code = '$drzava' ");
+        $drzava_res = $konekcija->query("SELECT country_id AS country_id FROM countries WHERE code = '$drzava' ");
 
         if ($red = $drzava_res->fetch_assoc()) {
-            $drzava_naziv = $red['name'];
+            $drzava_id = $red['country_id'];
         }
 
-        $rezultat = $konekcija->query("INSERT INTO korisnik (FCLAN, USERNAME, PASSWORD, EMAIL, DRZAVA) VALUES (1,'$username', '$password', '$email', '$drzava_naziv')");
+        $rezultat = $konekcija->query("INSERT INTO korisnik (FCLAN, USERNAME, PASSWORD, EMAIL, DRZAVA_ID) VALUES (1,'$username', '$password', '$email', '$drzava_id')");
 
         if ($rezultat) {
 
@@ -413,11 +413,11 @@ function vrati_korisnika($username) {
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
 
-        $rezultat = $konekcija->query("SELECT * FROM korisnik WHERE USERNAME = '$username' ");
+        $rezultat = $konekcija->query("SELECT * FROM korisnik, countries WHERE DRZAVA_ID = country_id AND USERNAME = '$username' ");
         if ($rezultat) {
             if ($red = $rezultat->fetch_assoc()) {
 
-                $korisnik = new Korisnik($red['USERNAME'], $red['PASSWORD'], $red['EMAIL'], $red['DRZAVA'], $red['FADMINISTRATOR']);
+                $korisnik = new Korisnik($red['USERNAME'], $red['PASSWORD'], $red['EMAIL'], $red['name'], $red['FADMINISTRATOR']);
             }
             // zatvaranje objekta koji čuva rezultat
             $rezultat->close();
