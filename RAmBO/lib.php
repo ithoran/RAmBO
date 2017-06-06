@@ -258,7 +258,7 @@ function dodaj_nadjeno(Nadjeno $nadjeno) {
     }
 }
 
-function izmeni_izgubljeno($izgubljeno_za_izmenu, $izgubljeno) {
+function oznaci_reseno($imeObjave) {
 
     $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
 
@@ -267,13 +267,13 @@ function izmeni_izgubljeno($izgubljeno_za_izmenu, $izgubljeno) {
 
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
+        $red3 = [];
+        $objava = $konekcija->query("SELECT O.ID AS ID FROM objava O WHERE O.NAZIV= '$imeObjave' ");
+        if ($red3 = $objava->fetch_assoc()) {
+            $objava_id = $red3['ID'];
+        }
 
-//        $tekst_upita = "UPDATE objava SET NAZIV = '$izgubljeno->naziv', TIP = '$izgubljeno->tip',  MESTO = '$izgubljeno->mesto', DATUM = '$izgubljeno->datum', NAGRADA = '$izgubljeno->nagrada'";
-        $tekst_upita = "UPDATE objava O "
-                . "JOIN korisnik K ON O.KORISNIK_ID = K.ID "
-                . "SET O.NAZIV = '$izgubljeno->naziv', O.TIP = '$izgubljeno->tip',  O.MESTO = '$izgubljeno->mesto', O.DATUM = '$izgubljeno->datum', O.NAGRADA = '$izgubljeno->nagrada'"
-                . "WHERE NAZIV = '$izgubljeno_za_izmenu->naziv' AND USERNAME = '$izgubljeno_za_izmenu->korisnik' AND FIZGUBLJENO  = 1";
-        $rezultat = $konekcija->query($tekst_upita);
+        $rezultat = $konekcija->query("UPDATE objava SET STANJE='Uspesno' WHERE ID='$objava_id'");
 
         if ($rezultat) {
 
@@ -866,7 +866,6 @@ function vrati_sve_poslate_poruke($korisnik_ime) {
     }
 }
 
-
 function vrati_poruku($id_poruke) {
 
     $konekcija = new mysqli(db_host, db_korisnicko_ime, db_lozinka, db_ime_baze);
@@ -897,7 +896,6 @@ function vrati_poruku($id_poruke) {
         }
     }
 }
-
 
 function obrisi_poruku($id) {
 
@@ -975,7 +973,7 @@ function oznaci_kao_procitano($korisnik_ime) {
         }
 
 
-        $rezultat = $konekcija->query("UPDATE `poruka` SET `READ`= 1 WHERE RECEIVER_ID = '$kor_id'");  
+        $rezultat = $konekcija->query("UPDATE `poruka` SET `READ`= 1 WHERE RECEIVER_ID = '$kor_id'");
 
         if ($rezultat) {
 
