@@ -71,7 +71,7 @@ $L_OPIS='Opis';
 
 //elementi
 
-$L_PRIKCLAN='Prikaži listu članova';
+$L_PRIKCLAN='Prikaži sve članove';
 $L_LOGOUT='Odjavi se';        
 
 //report.php
@@ -80,7 +80,7 @@ $L_RAZLOGP='Razlog prijave (opciono)';
 $L_PRIJAVI='Prijavi';
 
 //sve_prijave.php
-
+$L_PRIKAZISVEPRIJAVE='Prikaži sve prijave';
 $L_SVEPRIJAVE='Sve prijave';
 $L_PRIJAVILAC='Prijavilac';
 $L_PRIJAVLJENI='Prijavljeni';
@@ -89,6 +89,7 @@ $L_RAZLOGTEKST='Razlog prijave';
 $L_DELPRIJAVA='Obriši prijavu';
 $L_DELPRIJAVILAC='Obriši prijavioca';
 $L_DELPRIJAVLJENI='Obriši prijavljenog';
+$L_LISTAPRIJAVA='Lista prijava';
 
 //poruka.php
 $L_PRIM='Primalac:';

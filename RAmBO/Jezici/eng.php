@@ -81,6 +81,7 @@ $L_PRIJAVI='Report';
 
 //sve_prijave.php
 
+$L_PRIKAZISVEPRIJAVE='Show all reports';
 $L_SVEPRIJAVE='All reports';
 $L_PRIJAVILAC='Reporter';
 $L_PRIJAVLJENI='Reported';
@@ -89,6 +90,7 @@ $L_RAZLOGTEKST='Reason';
 $L_DELPRIJAVA='Delete report';
 $L_DELPRIJAVILAC='Delete reporter';
 $L_DELPRIJAVLJENI='Delete reported';
+$L_LISTAPRIJAVA='Reports list';
 
 
 //poruka.php
