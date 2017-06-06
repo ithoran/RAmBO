@@ -25,6 +25,7 @@ $L_UNAM='Korisničko ime';
 $L_PASS='Lozinka';
 $L_PASSVER='Potvrda nove lozinke';
 $L_DRZAVA='Država';
+$L_NEMATENALOG='Niste registrovani? Registrujte se.';
 
 //spiskovi 
 

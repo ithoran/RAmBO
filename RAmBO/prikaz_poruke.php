@@ -43,7 +43,7 @@ $primljena = 0;
 <head>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?libraries=drawing&key=AIzaSyB1fcu7wpjL0yYdF2OJqwCs2wFLcasVvMI"></script>
     <script type="text/javascript" src="js/google_maps_kreiranje.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=87">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=897">
     <link rel="stylesheet" href="css/style_forme.css?version=3">
     <link rel="stylesheet" href="css/style_googlemaps.css?version=113">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
@@ -82,9 +82,7 @@ $primljena = 0;
 
         </table>
             <div class="prikaz_poruke_sadrzaj">
-                <div class="prikaz_poruke_sadrzaj_inner">
-                    <?php print "$por->content" ?>
-                </div>
+                <textarea class="prikaz_poruke_sadrzaj_inner" disabled><?php print "$por->content" ?></textarea>
                 <?php if($primljena == 1){?>
                 <form action="kreiranje_poruke.php?naziv=<?php echo $objava ?>&korisnik=<?php echo $sender ?>&lang=<?php echo $lang?>" method="post">
                 <div class="reply_btnsubmit">
@@ -97,9 +95,7 @@ $primljena = 0;
             
             </div>
         </div>
-    </div>
-        
-    </div>
+
          
    
     <footer>

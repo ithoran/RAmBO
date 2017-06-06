@@ -46,7 +46,7 @@ if (isset($_POST['posalji_hdn']))
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=444">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=480">
     <link rel="stylesheet" href="css/style_forme.css?version=88">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
@@ -75,12 +75,25 @@ if (isset($_POST['posalji_hdn']))
     </header>
 
     
-    
-    <div id="main"> 
+     <div id="main"> 
+        <div class="prikaz_poruke_wrapper">
+        <table class="table table-fill">
+                <thead>
+                <tr class="tr">
+                
+                <th class="th text-left"><?php echo $L_SADRZAJ ?></th>
 
-        <div class="report_wrapper">
-            <div class="report_label"><h2><?php echo $L_SADRZAJ ?></h2></div>
-            <form method="post" action="kreiranje_poruke.php?lang=<?php echo $lang ?>">
+
+                </tr>
+                </thead>
+
+        </table>
+            <div class="prikaz_poruke_sadrzaj">
+                <form action="kreiranje_poruke.php?lang=<?php echo $lang ?>" method="post">
+                
+                <textarea name="sadrzaj_text" maxlength="300" class="prikaz_poruke_sadrzaj_inner"></textarea>
+                      
+                <div class="reply_btnsubmit">
                 <input type="hidden" name="posalji_hdn">
                 
                 <input type="hidden" name="korisnik" value="<?php echo htmlspecialchars($_GET['korisnik']) ?>">
@@ -90,19 +103,14 @@ if (isset($_POST['posalji_hdn']))
                 <?php if(isset($_POST['odgovori'])){ ?>
                 <input type="hidden" name="odgovori">
                 <?php }?>
-                
-                <div class="report_txtbox">
-                    
-                    <textarea class="report_txt" wrap="soft" name="sadrzaj_text" maxlength="150"></textarea>
-                    
+                    <input type="submit" class="btn_submit_reply" name="odgovori_submit" value="<?php echo $L_POSALJI ?>">
                 </div>
-                <div class="report_btnsubmit">
-                    <input type="submit" class="btn_submit_report" value="<?php echo $L_POSALJI ?>">
-                </div>
-            </form>
+                </form>
+
+            </div>
+            
+            </div>
         </div>
-    </div>
-         
    
     <footer>
         RAmBO © 2017 | All rights reserved.

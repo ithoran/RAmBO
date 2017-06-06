@@ -25,6 +25,7 @@ $L_UNAM='Username';
 $L_PASS='Password';
 $L_PASSVER='Confirm password';
 $L_DRZAVA='Country';
+$L_NEMATENALOG="Don't have an account? Register now.";
 
 //spiskovi 
 
