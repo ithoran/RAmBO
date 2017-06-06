@@ -50,13 +50,13 @@ switch ($izgubljeno->tip) {
 
             function initialize () {
                 var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 8,
+                    zoom: 7,
                     center: new google.maps.LatLng(document.getElementById('lat').value, document.getElementById('lng').value), // Treba da se ucitaju kordinate i tu postave
                     mapTypeId: google.maps.MapTypeId.roadmap,
                     disableDefaultUI: true,
                     zoomControl: true,
 					maxZoom: 16,
-					minZoom: 8
+					minZoom: 7
                 });
 
                 drawingManager = new google.maps.drawing.DrawingManager({
@@ -99,8 +99,10 @@ switch ($izgubljeno->tip) {
     
     
     <div id="main"> 
-    <input type="hidden" id="lat" name="lat" value="<?php echo $izgubljeno->lat ?>">
-    <input type="hidden" id="lng" name="lng" value="<?php echo $izgubljeno->lng ?>">
+        <?php if($izgubljeno->lat != 0 && $izgubljeno->lng != 0) { ?>
+    <input type="hidden" id="lat" name="lat" value="<?php echo $izgubljeno->lat?>">
+    <input type="hidden" id="lng" name="lng" value="<?php echo $izgubljeno->lng?>">
+        <?php } ?>
         <div class="informacije_o_stvari_wrapper">
             <div class="slika_objave_wrapper">
                  <div class="slika_objave">

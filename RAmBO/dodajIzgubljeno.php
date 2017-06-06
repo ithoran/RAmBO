@@ -143,13 +143,13 @@ else{
 
             function initialize () {
                 var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 8,
+                    zoom: 7,
                     center: new google.maps.LatLng(44.10943599214824, 20.723862648010254),
                     mapTypeId: google.maps.MapTypeId.roadmap,
                     disableDefaultUI: true,
                     zoomControl: true,
 					maxZoom: 16,
-					minZoom: 8
+					minZoom: 7
                 });
 
                 drawingManager = new google.maps.drawing.DrawingManager({

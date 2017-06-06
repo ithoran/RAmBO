@@ -52,13 +52,13 @@ switch ($nadjeno->tip) {
 
             function initialize () {
                 var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 8,
+                    zoom: 7,
                     center: new google.maps.LatLng(document.getElementById('lat').value, document.getElementById('lng').value), // Treba da se ucitaju kordinate i tu postave
                     mapTypeId: google.maps.MapTypeId.roadmap,
                     disableDefaultUI: true,
                     zoomControl: true,
 					maxZoom: 16,
-					minZoom: 8
+					minZoom: 7
                 });
 
                 drawingManager = new google.maps.drawing.DrawingManager({
@@ -102,8 +102,8 @@ switch ($nadjeno->tip) {
     
     <div id="main"> 
         <?php if($nadjeno->lat != 0 && $nadjeno->lng != 0) { ?>
-    <input type="hidden" id="lat" name="lat" value="<?php if($nadjeno->lat != 0){ echo $nadjeno->lat; } ?>">
-    <input type="hidden" id="lng" name="lng" value="<?php if($nadjeno->lng != 0){ echo $nadjeno->lng; } ?>">
+    <input type="hidden" id="lat" name="lat" value="<?php echo $nadjeno->lat?>">
+    <input type="hidden" id="lng" name="lng" value="<?php echo $nadjeno->lng?>">
         <?php } ?>
         <div class="informacije_o_stvari_wrapper">
             

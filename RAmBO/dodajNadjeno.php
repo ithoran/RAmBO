@@ -97,9 +97,11 @@ else{
       $korisnik = $_SESSION['login_user'];
       $opis = $_POST['opis'];
       $slika = basename( $_FILES["fileToUpload"]["name"]);
+      $lat = $_POST['lat'];
+      $lng = $_POST['lng'];
       
       if ($naziv != "" && $tip != NULL && $lokacija != "" && $datum != NULL){
-        $nadjeno = new Nadjeno($naziv, $tip, $lokacija, $datum, $korisnik, $opis, $slika, 0, 0);
+        $nadjeno = new Nadjeno($naziv, $tip, $lokacija, $datum, $korisnik, $opis, $slika, $lat, $lng);
         dodaj_nadjeno($nadjeno);
         header("location: index.php?lang=$lang");
       }else {
@@ -127,13 +129,13 @@ else{
 
             function initialize () {
                 var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 8,
+                    zoom: 7,
                     center: new google.maps.LatLng(44.10943599214824, 20.723862648010254),
                     mapTypeId: google.maps.MapTypeId.roadmap,
                     disableDefaultUI: true,
                     zoomControl: true,
 					maxZoom: 16,
-					minZoom: 8
+					minZoom: 7
                 });
 
                 drawingManager = new google.maps.drawing.DrawingManager({
@@ -317,6 +319,7 @@ else{
                             
                             <input type="hidden" id="lat" value="" name="lat">
                             <input type="hidden" id="lng" value="" name="lng">
+                            
                             <input type="submit" class="btn" value='<?php echo $L_CNF ?>' name="dodajNadjeno">
                   
                         </div>
