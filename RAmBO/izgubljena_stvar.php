@@ -21,6 +21,20 @@ $naziv = $_GET['naziv'];
 $korisnik = $_GET['korisnik'];
 $izgubljeno = vrati_objavu($naziv, $korisnik, 1);
 
+switch ($izgubljeno->tip) {
+    case 'zivotinja':
+        $tiploc=$L_ZIV;
+        break;
+    case 'uredjaj':
+         $tiploc=$L_ELU;
+        break;
+    case 'dokument':
+        $tiploc=$L_DOK;
+        break;
+    case 'ostalo':
+        $tiploc=$L_OST;
+        break;
+}
 ?>
 
 
@@ -66,7 +80,7 @@ $izgubljeno = vrati_objavu($naziv, $korisnik, 1);
                 <h2><?php print "$izgubljeno->naziv" ?></h2><hr>
                 <div class="label_informacije_o_izgubljenoj_stvari">  <span class="bold_font"><?php echo $L_LOK ?></span>    <?php print "$izgubljeno->mesto" ?></div>
                 <div class="label_informacije_o_izgubljenoj_stvari">  <span class="bold_font"><?php echo $L_DATUM ?></span>    <?php print "$izgubljeno->datum" ?></div><br>
-                <div class="label_informacije_o_izgubljenoj_stvari">  <span class="bold_font"><?php echo $L_TIP ?>:</span>   <?php print "$izgubljeno->tip" ?></div><br>
+                <div class="label_informacije_o_izgubljenoj_stvari">  <span class="bold_font"><?php echo $L_TIP ?>:</span>   <?php print "$tiploc" ?></div><br>
                 <div class="label_informacije_o_izgubljenoj_stvari_opis">  <span class="bold_font"><?php echo $L_OPIS ?>:</span>  <br> <?php print "$izgubljeno->opis" ?></div><br>
                 
                 <?php if ($izgubljeno->nagrada != ""){ ?>
