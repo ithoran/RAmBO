@@ -444,13 +444,13 @@ function vrati_sve_korisnike() {
         print ("Greška pri povezivanju sa bazom podataka ($konekcija->connect_errno): $konekcija->connect_error");
     } else {
 
-        $rezultat = $konekcija->query("SELECT * FROM korisnik WHERE FCLAN = 1");
+        $rezultat = $konekcija->query("SELECT * FROM korisnik K, countries C WHERE FCLAN = 1 AND K.DRZAVA_ID = C.country_id");
         if ($rezultat) {
             $niz = new ListaKorisnika();
 
             while ($red = $rezultat->fetch_assoc()) {
 
-                $niz->dodaj(new Korisnik($red['USERNAME'], $red['PASSWORD'], $red['EMAIL'], $red['DRZAVA'], $red['FADMINISTRATOR']));
+                $niz->dodaj(new Korisnik($red['USERNAME'], $red['PASSWORD'], $red['EMAIL'], $red['name'], $red['FADMINISTRATOR']));
             }
             // zatvaranje objekta koji čuva rezultat
             $rezultat->close();
