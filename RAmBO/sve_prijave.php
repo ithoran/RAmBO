@@ -25,6 +25,12 @@ if (isset($_GET['prijava_del'])){
     obrisi_prijavu($prij);
 }
 
+if (isset($_GET['objava_del'])){
+    $objava_id = $_GET['objava_del'];
+    $korisnik_id = $_GET['korisnik_del'];
+    obrisi_objavu(vrati_naziv_objave($objava_id), vrati_ime_korisnika($korisnik_id));
+}
+
 if (isset($_GET['user_del'])){
     $user = $_GET['user_del'];
     obrisi_korisnika($user);
@@ -73,6 +79,8 @@ $lista_prijava = vrati_sve_prijave();
                 <th class="th text-left"></th>
                 <th class="th text-left"></th>
                 <th class="th text-left"></th>
+                <th class="th text-left"></th>
+
                 </tr>
                 </thead>
                 <tbody class="table-hover">
@@ -83,8 +91,10 @@ $lista_prijava = vrati_sve_prijave();
                 <td class="td text-left"><?php echo vrati_ime_korisnika($prijava->idR) ?></td>
                 <td class="td text-left"><?php echo "$prijava->tekst" ?></td>
                 <td class="td text-left"><a href="sve_prijave.php?prijava_del=<?php print "$prijava->id"?>&lang=<?php echo $lang?>"><span style="color:red;"> <?php echo $L_DELPRIJAVA ?></span></a></td>
+                <td class="td text-left"><a href="sve_prijave.php?objava_del=<?php print "$prijava->idO"?>&korisnik_del=<?php print "$prijava->idR"?>&lang=<?php echo $lang?>"><span style="color:red;"> <?php echo $L_DELOBJ ?></span></a></td>
                 <td class="td text-left"><a href="sve_prijave.php?user_del=<?php echo vrati_ime_korisnika($prijava->idR) ?>&lang=<?php echo $lang?>"><span style="color: red;"> <?php echo $L_DELPRIJAVLJENI ?></span></a></td>
                 <td class="td text-left"><a href="sve_prijave.php?user_del=<?php echo vrati_ime_korisnika($prijava->idP) ?>&lang=<?php echo $lang?>"><span style="color: red;"> <?php echo $L_DELPRIJAVILAC ?></span></a></td>
+                
                 </tr>
 <?php } ?>
                 
