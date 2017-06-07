@@ -3,7 +3,7 @@
 //Izgubljena/nadjena stvar.php
 
 $L_IZGUBLJENO='Izgubljeno';
-$L_NADJENO='Nadjeno';
+$L_NADJENO='Nađeno';
 
 //index.php
 
