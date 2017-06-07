@@ -1,11 +1,17 @@
 <?php
 
+//Izgubljena/nadjena stvar.php
+
+$L_IZGUBLJENO='Izgubljeno';
+$L_NADJENO='Nadjeno';
+
 //index.php
 
 $L_REGSE='Registruj se';
 $L_LOGSE='Prijavi se';
 $L_IZG='Izgubili ste nešto?';
 $L_NDJ='Našli ste nešto?';
+$L_BRUSPESNIH='Broj uspešno rešenih slučajeva:';
 
 
 $L_NDI='Najskorije dodate izgubljene stvari';
@@ -23,6 +29,8 @@ $L_REGIST='Registracija';
 $L_CHACC='Izmeni Profil';
 $L_UNAM='Korisničko ime';
 $L_PASS='Lozinka';
+$L_PASSNEW='Nova lozinka';
+$L_POTVRDA='Potvrda lozinke';
 $L_PASSVER='Potvrda nove lozinke';
 $L_DRZAVA='Država';
 $L_NEMATENALOG='Niste registrovani? Registrujte se.';
@@ -51,6 +59,7 @@ $L_NAGRADA='Nagrada';
 $L_NAGRADALONG='Nagrada za pronalazača:';
 $L_DELOBJ='Obriši objavu';
 $L_CHAOBJ='Izmeni objavu';
+$L_OZNACI='Označi kao uspešno';
 
 //lista_clanova.php
 

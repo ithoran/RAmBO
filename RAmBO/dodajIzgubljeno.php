@@ -7,10 +7,6 @@
 
 
 
-
-
-
-
 if(isset($_REQUEST['lang'])){
     if($_REQUEST['lang'] == 'eng'){
         $lang = 'eng';
@@ -41,9 +37,10 @@ else{
         $lokacija = $_POST['lokacija'];
         $datum = $_POST['datum'];
         $nagrada = $_POST['nagrada'];
+        $opis = $_POST['opis'];
         $korisnik = $_SESSION['login_user'];
         if ($naziv != "" && $tip != NULL && $lokacija != "" && $datum != NULL){
-            $izgubljeno = new Izgubljeno($naziv, $tip, $lokacija, $datum, $nagrada, $korisnik);
+            $izgubljeno = new Izgubljeno($naziv, $tip, $lokacija, $datum, $nagrada, $opis, $korisnik, $izgubljeno_za_izmenu->slika, $izgubljeno_za_izmenu->lat, $izgubljeno_za_izmenu->lng);
             izmeni_izgubljeno($izgubljeno_za_izmenu, $izgubljeno);
             header("location: index.php?lang=$lang");
       }else {
@@ -58,49 +55,8 @@ else{
    if(isset($_POST['dodaj_hdn']) && isset($_POST['tip'])) {
       
        
-       
-                $target_dir = "uploads/";
-                $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-                $uploadOk = 1;
-                $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-                // Check if image file is a actual image or fake image
-                
-                    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-                    if($check !== false) {
-                        echo "File is an image - " . $check["mime"] . ".";
-                        $uploadOk = 1;
-                    } else {
-                        echo "File is not an image.";
-                        $uploadOk = 0;
-                    }
-                
-                // Check if file already exists
-                if (file_exists($target_file)) {
-                    echo "Sorry, file already exists.";
-                    $uploadOk = 0;
-                }
-                // Check file size
-                if ($_FILES["fileToUpload"]["size"] > 5000000) {
-                    echo "Sorry, your file is too large.";
-                    $uploadOk = 0;
-                }
-                // Allow certain file formats
-                if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                && $imageFileType != "gif" ) {
-                    echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
-                    $uploadOk = 0;
-                }
-                // Check if $uploadOk is set to 0 by an error
-                if ($uploadOk == 0) {
-                    echo "Sorry, your file was not uploaded.";
-                // if everything is ok, try to upload file
-                } else {
-                    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-                    } else {
-                        echo "Sorry, there was an error uploading your file.";
-                    }
-                }
+     include ("upload.php");  
+
      
        
       $naziv = $_POST['naziv'];
@@ -111,13 +67,21 @@ else{
       $opis = $_POST['opis'];
       $korisnik = $_SESSION['login_user'];
       $slika = basename( $_FILES["fileToUpload"]["name"]);
+      
+      if (($_POST['lat']) != ""){
+          
       $lat = $_POST['lat'];
       $lng = $_POST['lng'];
+      }
+      else{
+          $lat = 0.0;
+          $lng = 0.0;
+      }
       
       if ($naziv != "" && $tip != NULL && $lokacija != "" && $datum != NULL){
         $izgubljeno = new Izgubljeno($naziv, $tip, $lokacija, $datum, $nagrada, $opis, $korisnik, $slika, $lat, $lng);
         dodaj_izgubljeno($izgubljeno);
-        header("location: index.php?lang=$lang");
+       header("location: index.php?lang=$lang");
       }else {
          $error = "Pogresni podaci";
       }
@@ -143,13 +107,13 @@ else{
 
             function initialize () {
                 var map = new google.maps.Map(document.getElementById('map'), {
-                    zoom: 7,
+                    zoom: 8,
                     center: new google.maps.LatLng(44.10943599214824, 20.723862648010254),
                     mapTypeId: google.maps.MapTypeId.roadmap,
                     disableDefaultUI: true,
                     zoomControl: true,
 					maxZoom: 16,
-					minZoom: 7
+					minZoom: 8
                 });
 
                 drawingManager = new google.maps.drawing.DrawingManager({
@@ -218,22 +182,28 @@ else{
         
 	
             <?php if(isset($_GET['naziv_izmena'])){ ?>
-        <div class="login">
-            <div class="login-screen">
+
+                   
+            <div class="login-dodaj">
+            <div class="login-screen-dodaj">
 			<div class="form-title dodaj_izgubljeno_title">
 				<h1><?php echo $L_IZGIZM ?></h1>
 			</div>
                     <form action="" method="post">
 			<div class="login-form">
 		
+                            
+                            <div class="form_left">
+                            
                                 <input type="hidden" name="izmeni_hdn">
                             
-                                <div class="form_label"><?php echo $L_NAZ ?></div>
+                                <div class="form_label_dodaj"><?php echo $L_IZGNAM ?>:</div>
                                 <div class="control-group">
                                 <input maxlength="20" type="text" class="login-field" name="naziv" value="<?php print $izgubljeno_za_izmenu->naziv ?>">
+
 				</div>
                                 
-                                <div class="form_label"><?php echo $L_TIP ?>:</div>
+                                <div class="form_label_dodaj"><?php echo $L_TIP ?>:</div>
 				<div class="control-group">
 				<select class="select_forma" name="tip" size="1">
                                     <option value="zivotinja" <?php if($izgubljeno_za_izmenu->tip == 'zivotinja') echo"selected"; ?>> <?php echo $L_ZIV ?> </option>
@@ -243,14 +213,10 @@ else{
                                 </select>
 				</div>
                                 
-                                <div class="form_label"><?php echo $L_LOK ?></div>
+                              
+                                                 <div class="form_label_dodaj"><?php echo $L_DATUM ?></div>
                                 <div class="control-group">
-                                    <input maxlength="20" type="text" class="login-field" name="lokacija" value="<?php print $izgubljeno_za_izmenu->mesto ?>">
-				</div>
-                                
-                                <div class="form_label"><?php echo $L_DATUM ?></div>
-                                <div class="control-group">
-                                  <input id="date" name="datum"  data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="text"  class="login-field" value="<?php print $izgubljeno_za_izmenu->datum ?>"> 
+                                    <input id="date" name="datum"  data-format="YYYY-MM-DD" data-template="D MMM YYYY" type="text"  class="login-field" value="<?php print $izgubljeno_za_izmenu->mesto ?>"> 
                                     <script>
                                       $('#date').combodate({
                                             minYear: 1975,
@@ -259,20 +225,48 @@ else{
                                     </script>
 				</div>
                                 
-                                <div class="form_label"><?php echo $L_NAGUNOS ?></div>
+                            </div>   
+                                
+                            <div class="form_right">
+                                
+                                
+               
+                                  <div class="form_label_dodaj"><?php echo $L_LOK ?></div>
+                                <div class="control-group">
+                                    <input maxlength="20" type="text" class="login-field" name="lokacija" value="<?php print $izgubljeno_za_izmenu->mesto ?>">
+				</div>
+                                
+                                <div class="form_label_dodaj"><?php echo $L_NAGUNOS ?></div>
                                 <div class="control-group">
                                    <input maxlength="20" type="text" class="login-field" name="nagrada" value="<?php print $izgubljeno_za_izmenu->nagrada ?>">
 				</div>
-                                
            
+                            
+                            </div>
+                            
+                            <div class='clear'></div>
+                            <div class="form_label_dodaj"><?php echo $L_OPIS ?></div>
+                            <div class="opis_txtbox">
+                    
+                            <textarea class="opis_txt" wrap="soft" name="opis" maxlength="150"><?php print $izgubljeno_za_izmenu->opis ?></textarea>
+                    
+                            </div>
+ 
                             <input type="submit" class="btn btn_dodaj_izgubljeno" value='<?php echo $L_IZM ?>' name="izmeniIzgubljeno">
-
 			</div>
                     </form>
 		</div>
-        </div>
+            </div>
+       
+            
+            
+            
             <?php } else { ?>
-        <div class="login-dodaj">
+       
+    
+    
+    
+    <div class="login-dodaj">
             <div class="login-screen-dodaj">
 			<div class="form-title dodaj_izgubljeno_title">
 				<h1><?php echo $L_IZGREP ?></h1>
@@ -357,7 +351,7 @@ else{
             </div>
             <?php }?>
 	
-    </div>   
+    </div>
     
     
     <footer>

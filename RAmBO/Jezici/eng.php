@@ -1,12 +1,17 @@
 <?php
 
+//Izgubljena/nadjena stvar.php
+
+$L_IZGUBLJENO='Lost';
+$L_NADJENO='Found';
+
 //index.php
 
 $L_REGSE='Register';
 $L_LOGSE='Login';
 $L_IZG='Lost something?';
 $L_NDJ='Found something?';
-
+$L_BRUSPESNIH='Number of solved cases:';
 
 $L_NDI='Latest lost things';
 $L_NDN='Latest found things';
@@ -23,7 +28,9 @@ $L_REGIST='Register';
 $L_CHACC='Edit profile';
 $L_UNAM='Username';
 $L_PASS='Password';
-$L_PASSVER='Confirm password';
+$L_PASSNEW='New password';
+$L_POTVRDA='Confirm password';
+$L_PASSVER='Confirm new password';
 $L_DRZAVA='Country';
 $L_NEMATENALOG="Don't have an account? Register now.";
 
@@ -51,6 +58,7 @@ $L_NAGRADA='Prize';
 $L_NAGRADALONG='Prize for finder:';
 $L_DELOBJ='Delete notice';
 $L_CHAOBJ='Edit notice';
+$L_OZNACI='Mark as successfull';
 
 //lista_clanova.php
 

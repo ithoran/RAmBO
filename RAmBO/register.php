@@ -107,13 +107,13 @@ else{
                             <div class="control-group">
 				<input maxlength="20" type="text" class="login-field" name="username" value="<?php print $korisnik->username ?>">
 				</div>
-                            <div class="form_label"><?php echo $L_PASS ?>:</div>
+                            <div class="form_label"><?php echo $L_PASSNEW ?>:</div>
 				<div class="control-group">
-				<input maxlength="30" type="password" class="login-field" name="password" value="">
+				<input maxlength="30" type="password" class="login-field" name="password" value="<?php print $korisnik->password ?>">
 				</div>
                             <div class="form_label"><?php echo $L_PASSVER ?>:</div>
                                 <div class="control-group">
-				<input maxlength="30" type="password" class="login-field" name="password2" value="">
+				<input maxlength="30" type="password" class="login-field" name="password2" value="<?php print $korisnik->password ?>">
 				</div>
                             <div class="form_label">E-mail:</div>
                                 <div class="control-group">
@@ -144,7 +144,7 @@ else{
 				</div>
                             
                                 <div class="control-group">
-				<input maxlength="30" type="password" class="login-field" name="password2" value="" placeholder="<?php echo $L_PASS ?>">
+				<input maxlength="30" type="password" class="login-field" name="password2" value="" placeholder="<?php echo $L_POTVRDA ?>">
 				</div>
                             
                                 <div class="control-group">
@@ -154,7 +154,6 @@ else{
                                 <div class="form_label"><?php echo $L_DRZAVA ?>:</div>
 				<div class="control-group">
                                 <select class="select_forma" name="drzava" size="1">
-                                    <option value=""></option>
                                     <option value="AF">Afghanistan</option>
                                     <option value="AX">Åland Islands</option>
                                     <option value="AL">Albania</option>

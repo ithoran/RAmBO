@@ -78,8 +78,8 @@ switch ($izgubljeno->tip) {
             }
             google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=555">
-    <link rel="stylesheet" href="css/style_forme.css?version=11">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=55">
+    <link rel="stylesheet" href="css/style_forme.css?version=1">
     <link rel="stylesheet" href="css/style_googlemaps.css?version=113">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
@@ -115,7 +115,7 @@ switch ($izgubljeno->tip) {
             </div>
             
             <div class="informacije_o_stvari">
-                <h2><?php print "$izgubljeno->naziv" ?></h2><hr>
+                <h2><?php print "$izgubljeno->naziv"?>         <span class="orange">(<?php print $L_IZGUBLJENO?>)</span></h2><hr>
                 <div class="label_informacije_o_izgubljenoj_stvari">  <span class="bold_font"><?php echo $L_LOK ?></span>    <?php print "$izgubljeno->mesto" ?></div>
                 <div class="label_informacije_o_izgubljenoj_stvari">  <span class="bold_font"><?php echo $L_DATUM ?></span>    <?php print "$izgubljeno->datum" ?></div><br>
                 <div class="label_informacije_o_izgubljenoj_stvari">  <span class="bold_font"><?php echo $L_TIP ?>:</span>   <?php print "$tiploc" ?></div><br>
@@ -146,6 +146,10 @@ switch ($izgubljeno->tip) {
                 </form>
                 
                 <?php } ?>
+                
+                <div class="ime_autora"> 
+                    <?php echo $izgubljeno->korisnik ?>
+                </div>
             </div>
         </div>
     </div>

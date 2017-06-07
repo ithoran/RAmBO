@@ -28,17 +28,36 @@ if(isset($_GET['naziv_del']) && isset($_GET['korisnik_del'])){
     obrisi_objavu($naziv, $korisnik);
 }
 
-if(isset($_POST['filter_submit'])){
+ 
+if(isset($_POST['filter_hdn']) && !isset($_POST['reset_submit'])){
+    
+    
     $naziv = $_POST['filter_naziv'];
     $lokacija = $_POST['filter_lokacija'];
     $tip = $_POST['filter_tip'];
     $datum_od = $_POST['filter_datum_od'];
+    $brStrana = ceil(vrati_broj_objava_filter($naziv, $tip, $lokacija, $datum_od, 0)/6);
     
-    $lista_nadj = vrati_sve_objave_filter($naziv, $tip, $lokacija, $datum_od, 0);
+    if (isset($_GET['page'])){
+    $page = $_GET['page'];
+         }
+    else {
+    $page = 1;
+    }
+   
+    $lista_nadj = vrati_sve_objave_filter_limit($naziv, $tip, $lokacija, $datum_od,($page*6) - 6, 6, 0);
 }
  else {
-    $lista_nadj = vrati_sve_objave(0);
+    $brStrana = ceil(vrati_broj_objava(0)/6); 
+    if (isset($_GET['page'])){
+    $page = $_GET['page'];
 }
+else {
+    $page = 1;
+}
+    $lista_nadj = vrati_sve_objave_limit(($page*6) - 6, 6, 0);
+}
+
 ?>
 
 <html>
@@ -94,9 +113,11 @@ if(isset($_POST['filter_submit'])){
                                         });   
                                     </script>
                 </div>
-                
+                 <input type="hidden" name="filter_hdn">
                 <input type="submit" value="<?php echo $L_PRETRAZI ?>" name="filter_submit" class="button filter_button">
+                <input type="submit" value="Reset" name="reset_submit" class="button filter_button">
             </form>
+            
         </div>
 
         
@@ -119,6 +140,19 @@ if(isset($_POST['filter_submit'])){
                 <div class="label_stvar_u_listi"><?php echo $L_DATUM ?> <?php print "$nadjeno->datum" ?></div>            
             </div>
              </a>
+            <?php } ?>
+            
+            <?php if($brStrana > 1) {?>
+                <div class="pagination">
+                 
+                <?php for($j = 1; $j <= $brStrana; $j++) { ?>
+                <a  href="spisak_nadjenih.php?page=<?php echo $j ?>&lang=<?php echo $lang ?>">
+                <div class="strana_link">
+                    <?php echo $j ?>
+                </div>
+                </a>
+            <?php } ?>
+            </div>
             <?php } ?>
         </div>
         <div class='clear'></div>

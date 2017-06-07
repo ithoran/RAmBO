@@ -80,8 +80,8 @@ switch ($nadjeno->tip) {
             }
             google.maps.event.addDomListener(window, 'load', initialize);
     </script>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=45">
-    <link rel="stylesheet" href="css/style_forme.css?version=3">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1?version=5">
+    <link rel="stylesheet" href="css/style_forme.css?version=35">
     <link rel="stylesheet" href="css/style_googlemaps.css?version=113">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
@@ -118,7 +118,7 @@ switch ($nadjeno->tip) {
             </div>
             
             <div class="informacije_o_stvari">
-                <h2><?php print "$nadjeno->naziv" ?></h2><hr>
+                <h2><?php print "$nadjeno->naziv"?>         <span class="blue">(<?php print $L_NADJENO?>)</span></h2><hr>
                 <div class="label_informacije_o_izgubljenoj_stvari">  <span class="bold_font"> <?php echo $L_LOK ?></span>   <?php print "$nadjeno->mesto" ?></div>
                 <div class="label_informacije_o_izgubljenoj_stvari">  <span class="bold_font"><?php echo $L_DATUM ?></span>   <?php print "$nadjeno->datum" ?></div><br>
                 <div class="label_informacije_o_izgubljenoj_stvari">  <span class="bold_font"><?php echo $L_TIP ?>:</span>   <?php print "$tiploc" ?></div><br>
@@ -145,6 +145,10 @@ switch ($nadjeno->tip) {
                 </form>
                 
                 <?php } ?>
+                
+                <div class="ime_autora"> 
+                    <?php echo $nadjeno->korisnik ?>
+                </div>
             </div>
         </div>
     </div>

@@ -28,23 +28,41 @@ if(isset($_GET['naziv_del']) && isset($_GET['korisnik_del'])){
     obrisi_objavu($naziv, $korisnik);
 }
 
-if(isset($_POST['filter_submit'])){
+if(isset($_POST['filter_hdn']) && !isset($_POST['reset_submit'])){
+    
+    
     $naziv = $_POST['filter_naziv'];
     $lokacija = $_POST['filter_lokacija'];
     $tip = $_POST['filter_tip'];
     $datum_od = $_POST['filter_datum_od'];
+    $brStrana = ceil(vrati_broj_objava_filter($naziv, $tip, $lokacija, $datum_od, 1)/6);
     
-    $lista_izg = vrati_sve_objave_filter($naziv, $tip, $lokacija, $datum_od, 1);
+    if (isset($_GET['page'])){
+    $page = $_GET['page'];
+         }
+    else {
+    $page = 1;
+    }
+   
+    $lista_izg = vrati_sve_objave_filter_limit($naziv, $tip, $lokacija, $datum_od,($page*6) - 6, 6, 1);
 }
  else {
-    $lista_izg = vrati_sve_objave(1);
+    $brStrana = ceil(vrati_broj_objava(1)/6); 
+    if (isset($_GET['page'])){
+    $page = $_GET['page'];
 }
+else {
+    $page = 1;
+}
+    $lista_izg = vrati_sve_objave_limit(($page*6) - 6, 6, 1);
+}
+
 ?>
 
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=884">
-    <link rel="stylesheet" href="css/style_forme.css?version=585">
+    <link rel="stylesheet" type="text/css" href="css/style_main.css?version=1">
+    <link rel="stylesheet" href="css/style_forme.css?version=95">
     <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
   <title>RAmBO L&F</title>
 </head>
@@ -95,9 +113,11 @@ if(isset($_POST['filter_submit'])){
                                         });   
                                     </script>
                 </div>
-                
-                <input type="submit" value="<?php echo $L_PRETRAZI ?>" name="filter_submit" class="button filter_button">
+                <input type="hidden" name="filter_hdn">
+                <input type="submit" value="<?php echo $L_PRETRAZI ?>" name="filter_submit" class="button filter_button filter">
+                <input type="submit" value="Reset" name="reset_submit" class="button filter_button">
             </form>
+            
         </div>
 
       
@@ -121,9 +141,25 @@ if(isset($_POST['filter_submit'])){
             </div>
              </a>
             <?php } ?>
+                  <?php if($brStrana > 1) {?>
+                <div class="pagination">
+                 
+                <?php for($j = 1; $j <= $brStrana; $j++) { ?>
+                <a  href="spisak_izgubljenih.php?page=<?php echo $j ?>&lang=<?php echo $lang ?>">
+                <div class="strana_link">
+                    <?php echo $j ?>
+                </div>
+                </a>
+            <?php } ?>
+            </div>
+            <?php } ?>
+            
         </div>
+        <div class='clear'></div>
+        
+        
     </div>   
-      <div class='clear'></div>
+
     
     <footer>
         RAmBO © 2017 | All rights reserved.

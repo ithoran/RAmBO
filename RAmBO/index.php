@@ -23,7 +23,7 @@ $broj_resenih = izbroji_reseno();
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="css/style_main.css?version=56">
+        <link rel="stylesheet" type="text/css" href="css/style_main.css?version=585">
         <link href="https://fonts.googleapis.com/css?family=Quantico" rel="stylesheet">
         <title>RAmBO L&F</title>
     </head>

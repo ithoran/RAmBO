@@ -22,6 +22,11 @@ session_start();
 
 $korisnik = $_SESSION['login_user'];
 
+if (isset($_GET['naziv_uspesno'])){
+    $naziv = $_GET['naziv_uspesno'];
+    oznaci_reseno($naziv, $korisnik);
+}
+
 if (isset($_GET['naziv_del'])){
     $naziv = $_GET['naziv_del'];
     obrisi_objavu($naziv, $korisnik);
@@ -72,6 +77,7 @@ $lista_nadjenih = vrati_sve_objave_korisnik($korisnik, 0);
                 <th class="th text-left"><?php echo $L_NAGRADA ?></th>
                 <th class="th text-left"></th>
                 <th class="th text-left"></th>
+                <th class="th text-left"></th>
                 </tr>
                 </thead>
                 <tbody class="table-hover">
@@ -83,7 +89,8 @@ $lista_nadjenih = vrati_sve_objave_korisnik($korisnik, 0);
                 <td class="td text-left"><?php print "$izgubljeno->tip" ?></td>
                 <td class="td text-left"><?php print "$izgubljeno->nagrada" ?></td>
                 <td class="td text-left"><a href="svoje_objave.php?naziv_del=<?php print "$izgubljeno->naziv"?>&lang=<?php echo $lang?>"><span style="color:red;"> <?php echo $L_DELOBJ ?></span></a></td>
-                <td class="td text-left"><a href="dodajIzgubljeno.php?naziv_izmena=<?php print "$izgubljeno->naziv"?>&korisnik_izmena=<?php print "$izgubljeno->korisnik"?>&lang=<?php echo $lang?>"><span style="color: green;"> <?php echo $L_CHAOBJ ?></span></a></td>
+                <td class="td text-left"><a href="dodajIzgubljeno.php?naziv_izmena=<?php print "$izgubljeno->naziv"?>&korisnik_izmena=<?php print "$izgubljeno->korisnik"?>&lang=<?php echo $lang?>"><span style="color: #3bb6f1;"> <?php echo $L_CHAOBJ ?></span></a></td>
+                <td class="td text-left"><a href="svoje_objave.php?naziv_uspesno=<?php print "$izgubljeno->naziv"?>&lang=<?php echo $lang?>"><span style="color:green;"> <?php echo $L_OZNACI ?></span></a></td>
                 </tr>
 <?php } ?>
 <?php foreach ($lista_nadjenih->lista as $nadjeno) { ?>
@@ -94,7 +101,8 @@ $lista_nadjenih = vrati_sve_objave_korisnik($korisnik, 0);
                 <td class="td text-left"><?php print "$nadjeno->tip" ?></td>
                 <td class="td text-left">/</td>
                 <td class="td text-left"><a href="svoje_objave.php?naziv_del=<?php print "$nadjeno->naziv"?>&lang=<?php echo $lang?>"><span style="color:red;"> <?php echo $L_DELOBJ ?></span></a></td>
-                <td class="td text-left"><a href="dodajNadjeno.php?naziv_izmena=<?php print "$nadjeno->naziv"?>&korisnik_izmena=<?php print "$nadjeno->korisnik"?>&lang=<?php echo $lang?>"><span style="color: green;"> <?php echo $L_CHAOBJ ?></span></a></td>
+                <td class="td text-left"><a href="dodajNadjeno.php?naziv_izmena=<?php print "$nadjeno->naziv"?>&korisnik_izmena=<?php print "$nadjeno->korisnik"?>&lang=<?php echo $lang?>"><span style="color: #3bb6f1;"> <?php echo $L_CHAOBJ ?></span></a></td>
+                <td class="td text-left"><a href="svoje_objave.php?naziv_uspesno=<?php print "$nadjeno->naziv"?>&lang=<?php echo $lang?>"><span style="color:green;"> <?php echo $L_OZNACI ?></span></a></td>
                 </tr>
 <?php } ?>
 

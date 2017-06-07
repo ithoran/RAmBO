@@ -18,9 +18,10 @@ include_once 'klase/poruka.php';
 session_start();
 
 $id_poruke = $_GET['id_poruke'];
+
 //$korisnik = $_GET['korisnik']; // mozda i nece treba
 $por = vrati_poruku($id_poruke);
-
+oznaci_jednu($id_poruke);
 
 
 $objava= vrati_naziv_objave($por->objava_id);
