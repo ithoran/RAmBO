@@ -1,17 +1,34 @@
 INSERT INTO KORISNIK VALUES (NULL,0,1,'mirko','mirko','mirko@gmail.com',1);
 INSERT INTO KORISNIK VALUES (NULL,1,0,'admin','admin','admin@gmail.com',189);
 INSERT INTO KORISNIK VALUES (NULL,0,1,'perica','perica','perica@gmail.com',15); 
+INSERT INTO KORISNIK VALUES (NULL,0,1,'danilo','danilo','danilo@gmail.com',189); 
 
 INSERT INTO `objava` (`ID`, `NAZIV`, `TIP`, `DATUM`, `DATUM_OBJAVE`, `MESTO`, `FIZGUBLJENO`, `FNADJENO`, `OPIS`, `NAGRADA`, `STANJE`, `SLIKA`, `LAT`, `LNG`, `KORISNIK_ID`) VALUES
-(5000, 'Prsten', 'ostalo', '2017-05-03', '2017-06-05 00:45:47', 'Nis', 1, 0, 'Izgubljen ispred zgrade', '100e', 'U toku', '1.jpg', NULL, NULL, 100001),
-(5001, 'Macka', 'zivotinja', '2017-05-14', '2017-06-05 01:00:48', 'Nis', 1, 0, 'Izgubio sam moju milu macu kad sam se igrao u parku', '50e', 'U toku', '2.jpg', NULL, NULL, 100001),
-(5002, 'Mobilni K510', 'uredjaj', '2017-03-24', '2017-06-05 01:00:48', 'Nis', 1, 0, 'Nov, zaboravio ga u skoli', '10e', 'U toku', '3.jpg', NULL, NULL, 100001),
-(5003, 'Sat', 'ostalo', '2017-06-01', '2017-06-05 01:00:48', 'Nis', 1, 0, 'Nestao mi je u birou za nezaposlene', '300 din', 'U toku', '4.jpeg', NULL, NULL, 100003),
-(5004, 'Licna Karta', 'dokument', '2017-04-03', '2017-06-05 01:00:48', 'Nis', 1, 0, 'Ispao mi u opstini, ime:Stepa Stepanovic', NULL, 'U toku', NULL, NULL, NULL, 100003),
-(5005, 'Zec', 'zivotinja', '2017-05-25', '2017-06-05 01:00:48', 'Nis', 1, 0, 'Istrcao na ulicu, ne znam gde je nestao', 'Moje beskrajne zahvale', 'U toku', '6.jpeg', NULL, NULL, 100003),
-(5006, 'Kljucevi', 'ostalo', '2017-06-04', '2017-06-05 01:01:18', 'Nis', 0, 1, 'Naso sam ispred kola u Paliluli', NULL, 'U toku', NULL, NULL, NULL, 100001),
-(5007, 'Papagaj', 'zivotinja', '2017-06-03', '2017-06-05 01:01:33', 'Nis', 0, 1, 'Sleteo mi na prozor, pizda mu materina', NULL, 'U toku', '8.jpg', NULL, NULL, 100001),
-(5008, 'Rolex', 'uredjaj', '2017-06-02', '2017-06-05 01:01:33', 'Nis', 0, 1, 'Naso sam u sali za fizicko Ratko Vukicevic', NULL, 'U toku', '9.jpg', NULL, NULL, 100001),
-(5009, 'Ogrlica', 'ostalo', '2016-03-01', '2017-06-05 01:01:33', 'Nis', 0, 1, 'ispao mi na nisavskom mostu', NULL, 'U toku', '10.jpg', NULL, NULL, 100003),
-(5010, 'Pasos', 'dokument', '2017-06-01', '2017-06-05 01:01:33', 'Nis', 0, 1, 'Zadnji put vidjen u durlanu, moje ime je Nikola Grbic', NULL, 'U toku', NULL, NULL, NULL, 100003),
-(5011, 'Kornjaca', 'zivotinja', '2017-05-31', '2017-06-05 01:01:33', 'Nis', 0, 1, 'Nema je od nocas, nije mogla daleko da ode', NULL, 'U toku', '12.jpg', NULL, NULL, 100003); 
+(NULL, 'Prsten', 'ostalo', '2017-05-03', '2017-06-05 00:45:47', 'Nis', 1, 0, 'Izgubljen ispred zgrade', '100e', 'U toku', '1.jpg', NULL, NULL, 100001),
+(NULL, 'Macka', 'zivotinja', '2017-05-14', '2017-06-05 01:00:48', 'Nis', 1, 0, 'Izgubio sam moju milu macu kad sam se igrao u parku', '50e', 'U toku', '2.jpg', NULL, NULL, 100001),
+(NULL, 'Mobilni K510', 'uredjaj', '2017-03-24', '2017-06-05 01:00:48', 'Nis', 1, 0, 'Nov, zaboravio ga u skoli', '10e', 'U toku', '3.jpg', NULL, NULL, 100001),
+(NULL, 'Sat', 'ostalo', '2017-06-01', '2017-06-05 01:00:48', 'Nis', 1, 0, 'Nestao mi je u birou za nezaposlene', '300 din', 'U toku', '4.jpeg', NULL, NULL, 100003),
+(NULL, 'Licna Karta', 'dokument', '2017-04-03', '2017-06-05 01:00:48', 'Nis', 1, 0, 'Ispao mi u opstini, ime:Stepa Stepanovic', NULL, 'U toku', NULL, NULL, NULL, 100003),
+(NULL, 'Zec', 'zivotinja', '2017-05-25', '2017-06-05 01:00:48', 'Nis', 1, 0, 'Istrcao na ulicu, ne znam gde je nestao', 'Moje beskrajne zahvale', 'U toku', '6.jpeg', NULL, NULL, 100003),
+(NULL, 'Kljucevi', 'ostalo', '2017-06-04', '2017-06-05 01:01:18', 'Nis', 0, 1, 'Naso sam ispred kola u Paliluli', NULL, 'U toku', NULL, NULL, NULL, 100001),
+(NULL, 'Papagaj', 'zivotinja', '2017-06-03', '2017-06-05 01:01:33', 'Nis', 0, 1, 'Sleteo mi na prozor', NULL, 'U toku', '8.jpg', NULL, NULL, 100001),
+(NULL, 'Rolex', 'uredjaj', '2017-06-02', '2017-06-05 01:01:23', 'Nis', 0, 1, 'Naso sam u sali za fizicko Ratko Vukicevic', NULL, 'U toku', '9.jpg', NULL, NULL, 100001),
+(NULL, 'Ogrlica', 'ostalo', '2016-03-01', '2017-06-05 01:01:33', 'Nis', 0, 1, 'ispao mi na nisavskom mostu', NULL, 'U toku', '10.jpg', NULL, NULL, 100003),
+(NULL, 'Pasos', 'dokument', '2017-06-01', '2017-06-05 01:01:43', 'Nis', 0, 1, 'Zadnji put vidjen u durlanu, moje ime je Nikola Grbic', NULL, 'U toku', NULL, NULL, NULL, 100003),
+(NULL, 'Kornjaca', 'zivotinja', '2017-05-31', '2017-06-05 01:01:53', 'Nis', 0, 1, 'Nema je od nocas, nije mogla daleko da ode', NULL, 'U toku', '12.jpg', NULL, NULL, 100003), 
+(NULL, 'Shiba Inu', 'zivotinja', '2017-06-05', '2017-06-07 01:01:33', 'Tokio', 1, 0, 'Odlutao je preko noci negde', 'much wow', 'U toku', '13.jpg', NULL, NULL, 100004), 
+(NULL, 'Note 7', 'uredjaj', '2017-05-31', '2017-07-05 01:01:34', 'Nis', 1, 0, 'bio sam u klubu, provalio da mi ga nema telefon kad sam doso kuci', '200e', 'U toku', '14.jpg', NULL, NULL, 100004), 
+(NULL, 'Trzalica', 'ostalo', '2017-05-31', '2017-07-05 01:01:35', 'Nis', 0, 1, 'Naso u novom studiu', NULL, 'U toku', '15.jpg', NULL, NULL, 100004),
+(NULL, 'Dozvola', 'dokument', '2017-05-31', '2017-07-05 01:01:36', 'Nis', 0, 1, 'Nadjena na podu u opstini na ime:Mile Mrsic', NULL, 'U toku', '', NULL, NULL, 100004); 
+
+
+INSERT INTO `prijava` (`ID`, `IDP`, `IDR`, `IDO`, `TEKST`) VALUES
+(100, 100003, 100001, 5001, 'zato'),
+(101, 100003, 100001, 5002, 'ne valja'),
+(102, 100004, 100003, 5003, 'ne svidja mi se\r\n'),
+(103, 100001, 100004, 5015, 'ukradeno je');
+
+INSERT INTO `poruka` (`ID`, `CONTENT`, `OBJAVA_ID`, `SENDER_ID`, `RECEIVER_ID`, `VREME`, `READ`) VALUES
+(1, 'naso sam je, cimni me na 065 12425125', 5014, 100001, 100004, '2017-06-07 04:32:58', 0),
+(2, 'imam ga dodji do mene ', 5005, 100004, 100003, '2017-06-07 04:33:39', 0),
+(3, 'video sam ga juce oko 2 u durlanu', 5007, 100003, 100001, '2017-06-07 04:35:06', 0);

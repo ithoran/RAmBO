@@ -79,4 +79,3 @@ ALTER TABLE poruka AUTO_INCREMENT = 1;
 
 
 
-
